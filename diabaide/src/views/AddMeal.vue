@@ -1,5 +1,5 @@
 <template>
   <div>
-    <h1>About page</h1>
+    <h1>Page d'ajout d'un repas</h1>
   </div>
 </template>
