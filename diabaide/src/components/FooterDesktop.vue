@@ -5,7 +5,7 @@
       class="text-center grey lighten-3"
       cols="12"
     >
-      {{ new Date().getFullYear() }} - Developped by Antoine and Olivier
+      {{ new Date().getFullYear() }} - Developped by Diabaide
     </v-col>
   </v-footer>
 </template>
