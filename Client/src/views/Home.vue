@@ -1,13 +1,21 @@
 <template>
   <div>
-    <h1>Page d'accueil</h1>
+    <h1>Bonjour {{ name }}</h1>
+    <h2>Taux actuel :</h2>
+    <h1>{{ taux }} mg</h1>
+    <Graph/>
   </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
-
-export default Vue.extend({
-  name: "Home",
-});
+<script>
+import Graph from "../components/Graph";
+export default {
+  components: {
+    Graph,
+  },
+  data: () => ({
+    name: "Sofiane",
+    taux: 90,
+  }),
+};
 </script>
