@@ -1,8 +1,13 @@
-const db = require("../../DB.js");
-
-const listAllUsers = async () => {
+const listAllUsers = async (client) => {
   return new Promise((resolve, reject) => {
-    
+    try{
+      const user = client.db('diabaide').collection('Users');
+      const res = user.find({}).toArray();
+      resolve(res);
+
+    } catch (err) {
+      reject(err)
+    }
   });
 };
 

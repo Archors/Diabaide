@@ -1,17 +1,18 @@
 const {
   listAllUsers,
-  createNewUser,
-  showUser,
-  updateUser,
-  deleteUser,
-  showUserFromEmail,
 } = require("../models/user");
+const db = require("../../DB.js")
 
 exports.index = async (req, res) => {
   try {
-    const users = await listAllUsers();
+    const client = await db.connect()
+    const users = await listAllUsers(client);
+    await db.close()
     return res.status(200).json(users);
+    
+
   } catch (err) {
     return res.status(400).json(err.message);
+  }finally {
   }
 };
