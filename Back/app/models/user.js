@@ -1,7 +1,9 @@
-const listAllUsers = async (client) => {
+const bcrypt = require('bcrypt');
+const mongo = require('mongodb');
+
+const listAllUsers = async (user) => {
   return new Promise((resolve, reject) => {
     try{
-      const user = client.db('diabaide').collection('Users');
       const res = user.find({}).toArray();
       resolve(res);
 
@@ -11,7 +13,42 @@ const listAllUsers = async (client) => {
   });
 };
 
+const createNewUser = (body,client) => {
+  const user = {
+    first_name: body.first_name,
+    last_name: body.last_name,
+    birthdate: body.birthdate,
+    email: body.email,
+    ratio : body.ratio,
+    password: bcrypt.hashSync(body.password, 10),
+  };
+
+  return new Promise((resolve, reject) => {
+    client.insertOne(user, (err) => {
+      if (err) {
+        return reject(err);
+      } else {
+        resolve(user);
+      }
+    });
+  });
+};
+
+const showUser = async (userId, client) => {
+  return new Promise((resolve, reject) => {
+    const query = {_id : new mongo.ObjectId(userId)}
+    client.find(query).toArray(function(err, result) {
+    if (err) reject(err);
+    resolve(result)
+    });
+   
+  });
+};
+
+
 
 module.exports = {
-  listAllUsers
+  listAllUsers,
+  showUser,
+  createNewUser
 };
