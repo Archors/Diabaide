@@ -1,6 +1,6 @@
 <template>
   <div>
-    <FooterDesktop />
+    <!--<FooterDesktop />-->
     <FooterMobile />
   </div>
 </template>

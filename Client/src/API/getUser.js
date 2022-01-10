@@ -1,6 +1,6 @@
-import axios from "axios";
+/*import axios from "axios";
 
-//Appel API de la liste des candidats
+//Appel API de la liste des user
 export async function getUserAPI() {
   try {
     const res = await axios.get("");
@@ -8,4 +8,4 @@ export async function getUserAPI() {
   } catch (e) {
     console.log("erreur " + e);
   }
-}
+}*/

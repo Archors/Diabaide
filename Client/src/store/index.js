@@ -24,6 +24,10 @@ export default new Vuex.Store({
       weaight: "",
       date: "",
     },
+    history_glycemie: {
+      id_user: "1",
+      glycemie: [1, 2, 3]
+    },
     api: "urlapi",
   },
   mutations: {
@@ -49,13 +53,11 @@ export default new Vuex.Store({
     history_meal(state) {
       return state.history_meal;
     },
+    history_glycemie(state) {
+      return state.history_glycemie;
+    },
     api(state) {
       return state.api;
     },
   },
 });
-//J'ai mangé tant d'unité ducoup ca fait
-//Unité
-//Poid de ce que je mange -> donne le
-//ratio glucide unité international
-//Parti manuel à faire absolument

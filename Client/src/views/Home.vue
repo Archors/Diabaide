@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>Bonjour {{ name }}</h1>
+    <h1>Bonjour {{ user.first_name }}</h1>
     <h2>Taux actuel :</h2>
-    <h1>{{ taux }} mg</h1>
+    <h1>{{ this.history_glycemie.glycemie[this.history_glycemie.glycemie.length - 1] }} mg</h1>
     <Graph/>
   </div>
 </template>
@@ -14,8 +14,13 @@ export default {
     Graph,
   },
   data: () => ({
-    name: "Sofiane",
-    taux: 90,
+    user: {},
+    history_glycemie: {},
   }),
+  created() {
+    //Get the data from the store
+    this.user = this.$store.getters.user
+    this.history_glycemie = this.$store.getters.history_glycemie
+  },
 };
 </script>
