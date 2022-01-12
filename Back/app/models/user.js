@@ -1,6 +1,9 @@
 const bcrypt = require('bcrypt');
 const mongo = require('mongodb');
 
+
+//List all Users 
+// To delete
 const listAllUsers = async (user) => {
   return new Promise((resolve, reject) => {
     try{
@@ -13,6 +16,7 @@ const listAllUsers = async (user) => {
   });
 };
 
+// Create a new user
 const createNewUser = (body,client) => {
   const user = {
     first_name: body.first_name,
@@ -34,6 +38,7 @@ const createNewUser = (body,client) => {
   });
 };
 
+// Show user by id
 const showUser = async (userId, client) => {
   return new Promise((resolve, reject) => {
     const query = {_id : new mongo.ObjectId(userId)}

@@ -1,5 +1,7 @@
 const mongo = require('mongodb');
 
+
+// List all meals in the app
 const listAllMeals = async (user) => {
     return new Promise((resolve, reject) => {
       try{
@@ -12,11 +14,11 @@ const listAllMeals = async (user) => {
     });
   };
 
-
+// Create a Meal
   const createNewMeal = (body,client) => {
     const meal = {
       name: body.name,
-      glycemie: body.glycemie,
+      sugar: body.sugar,
       brand: body.brand,
     };
   
@@ -31,6 +33,7 @@ const listAllMeals = async (user) => {
     });
   };
   
+// Show meal by its name
   const showMealByName = async (meal, client) => {
     return new Promise((resolve, reject) => {
       const query = {name : meal}
@@ -43,9 +46,11 @@ const listAllMeals = async (user) => {
     });
   };
 
+  // Show meal by its name and brand
   const showMealByBrand = async (info, client) => {
     return new Promise((resolve, reject) => {
-      const query = {name : info.name, brand : info.brand}
+      const query = { $and: [ { name: info.meal }, { brand: info.brand } ] }
+      filter =  { projection: { _id: 0}}
       client.find(query,filter).toArray(function(err, result) {
       if (err) reject(err);
       resolve(result)

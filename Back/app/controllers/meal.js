@@ -25,8 +25,8 @@ const {
     if (!body.name) {
       return res.status(400).send("Name is required");
     }
-    if (!body.glycemie) {
-      return res.status(400).send("Glycemie is required");
+    if (!body.sugar) {
+      return res.status(400).send("Sugar rate is required");
     }
     if (!body.brand) {
       return res.status(400).send("Brand is required");
@@ -34,7 +34,7 @@ const {
   
     try {
       const client = await (await db.connect()).db().collection('Meals')
-      const meal = await createNewUser(body,client);
+      const meal = await createNewMeal(body,client);
       return res.status(201).json(meal);
     } catch (err) {
       return res.status(400).send(err.message);
