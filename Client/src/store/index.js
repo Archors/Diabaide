@@ -12,15 +12,8 @@ export default new Vuex.Store({
       date: "",
       quantity: "",
     },
-    history_meal: {
-      id_user: "",
-      weaight: "",
-      date: "",
-    },
-    history_glycemie: {
-      id_user: "1",
-      glycemie: [1, 2, 3],
-    },
+    history_meal: {},
+    history_glycemie: {},
     api: "urlapi",
   },
   mutations: {
@@ -35,6 +28,9 @@ export default new Vuex.Store({
     },
     SET_HISTORY_MEAL(state, payload) {
       state.history_meal = payload;
+    },
+    SET_HISTORY_GLYCEMIE(state, payload) {
+      state.history_injection = payload;
     },
   },
   actions: {},

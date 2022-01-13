@@ -3,8 +3,7 @@
     <h1>Bonjour {{ user.first_name }}</h1>
     <h2>Taux actuel :</h2>
     <h1>
-      {{ history_glycemie.glycemie[history_glycemie.glycemie.length - 1] }}
-      mg
+      {{ lastGlycemie }}
     </h1>
     <Graph />
   </div>
@@ -37,13 +36,27 @@ export default {
       clearInterval(this.timer);
     },
   },
+  computed: {
+    lastGlycemie() {
+      if (
+        typeof this.history_glycemie !== "undefined" &&
+        this.history_glycemie.length > 0
+      )
+        return (
+          this.history_glycemie.glycemie[
+            this.history_glycemie.glycemie.length - 1
+          ] + " mg"
+        );
+      return "Pas d'historique de glycemie";
+    },
+  },
   watch: {
     "$store.state.user": function () {
       this.user = this.$store.getters.user;
     },
-    "$store.state.user" : function () {
+    "$store.state.user": function () {
       this.history_glycemie = this.$store.getters.history_glycemie;
-    }
+    },
   },
   beforeDestroy() {
     this.cancelAutoUpdate();

@@ -4,7 +4,6 @@ import axios from "axios";
 export async function getUser(id) {
   try {
     const res = await axios.get(process.env.VUE_APP_ROOT_API + "/users/" + id);
-    //console.log(res.data)
     return res.data;
   } catch (e) {
     console.log("erreur " + e);
