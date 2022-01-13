@@ -20,6 +20,7 @@ const listAllMeals = async (user) => {
       name: body.name,
       sugar: body.sugar,
       brand: body.brand,
+      barCode : body.barCode
     };
   
     return new Promise((resolve, reject) => {
@@ -34,9 +35,11 @@ const listAllMeals = async (user) => {
   };
   
 // Show meal by its name
-  const showMealByName = async (meal, client) => {
+  const showMeal = async (meal, client) => {
     return new Promise((resolve, reject) => {
-      const query = {name : meal}
+      var query = {name : meal}
+      if (/\d{8}/.test(meal))
+        query = {barCode : meal}
       filter =  { projection: { _id: 0}}
       client.find(query, filter).toArray(function(err, result) {
       if (err) reject(err);
@@ -64,7 +67,7 @@ const listAllMeals = async (user) => {
   
   module.exports = {
     listAllMeals,
-    showMealByName,
+    showMeal,
     showMealByBrand,
     createNewMeal
   };

@@ -31,6 +31,26 @@ const addToHistory = (body,client) => {
   });
 };
 
+const updateHistory = (client,timestamp, body) => {
+  const newH ={$set: {
+    meal: body.meal
+  }};
+
+  const history = {
+    timestamp: timestamp
+  };
+
+  return new Promise((resolve, reject) => {
+    client.updateOne(history,newH, (err) => {
+      if (err) {
+        return reject(err);
+      } else {
+        resolve(history);
+      }
+    });
+  });
+};
+
 // Show history by date
 const showHistoryByTimestamp = async (info, client) => {
     return new Promise((resolve, reject) => {
@@ -54,5 +74,6 @@ module.exports = {
     listHistory,
     showHistoryByTimestamp,
     addToHistory,
+    updateHistory
     
 };

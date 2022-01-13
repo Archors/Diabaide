@@ -1,7 +1,8 @@
 const {
     listHistory,
     showHistoryByTimestamp,
-    addToHistory
+    addToHistory,
+    updateHistory
   } = require("../models/history_meals");
   const db = require("../../DB.js")
   
@@ -32,6 +33,29 @@ const {
       return res.status(201).json(user);
     } catch (err) {
       return res.status(400).send(err.message);
+    }finally {
+      await db.close()
+    }
+  };
+
+
+  exports.updateByTimestamp = async (req, res) => {
+    const { body } = req;
+    const timestamp = req.params.timestamp;
+  
+    if (!body.meal) {
+      return res.status(400).send("Meal is required");
+    }
+
+    const client = await (await db.connect()).db().collection('History_meals');
+
+    try {
+      const updt = await updateHistory(client,timestamp, body);
+      return res.status(200).json(updt);
+    } catch (err) {
+      return res.status(400).send(err.message);
+    }finally {
+      await db.close()
     }
   };
   
@@ -43,6 +67,8 @@ const {
       return res.status(200).json(user);
     } catch (err) {
       return res.sendStatus(404);
+    }finally {
+      await db.close()
     }
   };
   

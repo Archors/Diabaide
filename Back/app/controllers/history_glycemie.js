@@ -32,6 +32,8 @@ const {
       return res.status(201).json(user);
     } catch (err) {
       return res.status(400).send(err.message);
+    }finally {
+      await db.close()
     }
   };
   
@@ -43,6 +45,8 @@ const {
       return res.status(200).json(user);
     } catch (err) {
       return res.sendStatus(404);
+    }finally {
+      await db.close()
     }
   };
   

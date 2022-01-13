@@ -42,7 +42,7 @@ const createNewUser = (body,client) => {
 const showUser = async (userId, client) => {
   return new Promise((resolve, reject) => {
     const query = {_id : new mongo.ObjectId(userId)}
-    client.find(query).toArray(function(err, result) {
+    client.findOne(query,function(err, result) {
     if (err) reject(err);
     resolve(result)
     });

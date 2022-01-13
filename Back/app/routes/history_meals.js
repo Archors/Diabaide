@@ -6,5 +6,6 @@ const historyMealsController = require("../controllers/history_meals");
 router.get('/', historyMealsController.index);
 router.post('/', historyMealsController.create);
 router.get('/:timestamp', historyMealsController.showByTimestamp);
+router.put('/:timestamp', historyMealsController.updateByTimestamp);
 
 module.exports = router;

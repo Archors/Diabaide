@@ -1,5 +1,5 @@
 const {
-    listAllMeals, showMealByName,
+    listAllMeals, showMeal,
     showMealByBrand,
     createNewMeal
   } = require("../models/meals");
@@ -38,17 +38,21 @@ const {
       return res.status(201).json(meal);
     } catch (err) {
       return res.status(400).send(err.message);
+    }finally {
+      await db.close()
     }
   };
   
-  exports.showFromName = async (req, res) => {
+  exports.show = async (req, res) => {
     try {
       const client = await (await db.connect()).db().collection('Meals')
       const info = req.params.meal;
-      const meal = await showMealByName(info,client);
+      const meal = await showMeal(info,client);
       return res.status(200).json(meal);
     } catch (err) {
       return res.sendStatus(404);
+    }finally {
+      await db.close()
     }
   };
 
@@ -60,5 +64,7 @@ const {
       return res.status(200).json(meal);
     } catch (err) {
       return res.sendStatus(404);
+    }finally {
+      await db.close()
     }
   };
