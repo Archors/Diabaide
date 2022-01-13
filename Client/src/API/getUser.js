@@ -1,11 +1,12 @@
-/*import axios from "axios";
+import axios from "axios";
 
-//Appel API de la liste des user
-export async function getUserAPI() {
+//Appel API des donnees du user
+export async function getUser(id) {
   try {
-    const res = await axios.get("");
+    const res = await axios.get(process.env.VUE_APP_ROOT_API + "/users/" + id);
+    //console.log(res.data)
     return res.data;
   } catch (e) {
     console.log("erreur " + e);
   }
-}*/
+}

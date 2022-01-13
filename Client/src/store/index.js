@@ -5,15 +5,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    user: {
-      id: 1,
-      first_name: "test",
-      last_name: "test",
-      birthdate: "",
-      email: "",
-      password: "",
-      ratio: "",
-    },
+    id: "61d8095482279396c5022ecf",
+    user: {},
     history_injection: {
       id_user: "",
       date: "",
@@ -26,11 +19,14 @@ export default new Vuex.Store({
     },
     history_glycemie: {
       id_user: "1",
-      glycemie: [1, 2, 3]
+      glycemie: [1, 2, 3],
     },
     api: "urlapi",
   },
   mutations: {
+    SET_ID(state, payload) {
+      state.id = payload;
+    },
     SET_USER(state, payload) {
       state.user = payload;
     },
@@ -44,6 +40,9 @@ export default new Vuex.Store({
   actions: {},
   modules: {},
   getters: {
+    id(state) {
+      return state.id;
+    },
     user(state) {
       return state.user;
     },
