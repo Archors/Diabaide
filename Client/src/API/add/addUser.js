@@ -1,11 +1,11 @@
-/*import axios from "axios";
+import axios from "axios";
 
-//Ajouter/modifier un user en BDD via API
+//Ajouter un user en BDD
 export async function addUserAPI(user) {
   var userJSON = JSON.stringify(user);
   return axios({
     method: "post",
-    url: "",
+    url: process.env.VUE_APP_ROOT_API + "/user/",
     data: userJSON,
   })
     .then(function (response) {
@@ -16,4 +16,3 @@ export async function addUserAPI(user) {
       console.log(erreur);
     });
 }
-*/

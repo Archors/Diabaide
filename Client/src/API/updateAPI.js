@@ -1,11 +1,11 @@
 import store from '../store'
 store.getters.config
-import { getUser } from "../API/getUser";
-import { getGlycemie } from "../API/getGlycemie";
-import { getMeal } from "../API/getMeal";
-import { getInjection } from "../API/getInjection";
+import { getUser } from "../API/get/getUser";
+import { getGlycemie } from "../API/get/getGlycemie";
+import { getMeal } from "../API/get/getMeal";
+import { getInjection } from "../API/get/getInjection";
 
-//Appel API des donnees du user
+//Met a jour les donnes dans l'application
 export async function updateAPI(id = store.getters.id) {
     store.commit("SET_USER", await getUser(id));
     store.commit("SET_HISTORY_GLYCEMIE", await getGlycemie(id));
