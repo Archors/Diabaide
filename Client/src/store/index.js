@@ -7,13 +7,10 @@ export default new Vuex.Store({
   state: {
     id: "61d8095482279396c5022ecf",
     user: {},
-    history_injection: {
-      id_user: "",
-      date: "",
-      quantity: "",
-    },
-    history_meal: {},
-    history_glycemie: {},
+    history_injections: {},
+    history_meals: {},
+    history_glycemias: {},
+    value_history_glycemias: {},
     api: "urlapi",
   },
   mutations: {
@@ -23,14 +20,17 @@ export default new Vuex.Store({
     SET_USER(state, payload) {
       state.user = payload;
     },
-    SET_HISTORY_INJECTION(state, payload) {
-      state.history_injection = payload;
+    SET_HISTORY_INJECTIONS(state, payload) {
+      state.history_injections = payload;
     },
-    SET_HISTORY_MEAL(state, payload) {
-      state.history_meal = payload;
+    SET_HISTORY_MEALS(state, payload) {
+      state.history_meals = payload;
     },
-    SET_HISTORY_GLYCEMIE(state, payload) {
-      state.history_injection = payload;
+    SET_HISTORY_GLYCEMIAS(state, payload) {
+      state.history_glycemias = payload;
+    },
+    SET_VALUE_HISTORY_GLYCEMIAS(state, payload) {
+      state.history_glycemias = payload;
     },
   },
   actions: {},
@@ -42,14 +42,17 @@ export default new Vuex.Store({
     user(state) {
       return state.user;
     },
-    history_injection(state) {
-      return state.history_injection;
+    history_injections(state) {
+      return state.history_injections;
     },
-    history_meal(state) {
-      return state.history_meal;
+    history_meals(state) {
+      return state.history_meals;
     },
-    history_glycemie(state) {
-      return state.history_glycemie;
+    history_glycemies(state) {
+      return state.history_glycemias;
+    },
+    value_history_glycemias(state) {
+      return state.value_history_glycemias;
     },
     api(state) {
       return state.api;
