@@ -1,14 +1,14 @@
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
-// module.exports = (req, res, next) => {
-//     try {
-//         const token = req.headers.authorization.split(' ')[1];
-//         jwt.verify(token, 'pfe_2022');
-//         next();
-//     } catch {
-//         res.status(401).json({
+module.exports = (req, res, next) => {
+    try {
+        const token = req.headers.authorization.split(' ')[1];
+        jwt.verify(token, 'pfe_2022');
+        next();
+    } catch {
+        res.status(401).json({
             
-//             error: new Error('Invalid request!')
-//         });
-//     }
-// };
+            error: new Error('Invalid request!')
+        });
+    }
+};

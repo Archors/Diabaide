@@ -1,9 +1,11 @@
 const {
   listAllUsers,
   showUser,
-  createNewUser
+  createNewUser,
+  showUserFromEmail
 } = require("../models/user");
 const db = require("../../DB.js")
+const jwt = require('jsonwebtoken');
 
 exports.index = async (req, res) => {
   try {
@@ -23,7 +25,7 @@ exports.create = async (req, res) => {
   const { body } = req;
 
   if (!body.first_name) {
-    return res.status(400).send("Fisrt name is required");
+    return res.status(400).send("First name is required");
   }
   if (!body.ratio) {
     return res.status(400).send("Glycemie Ratio is required");
@@ -53,14 +55,30 @@ exports.create = async (req, res) => {
 };
 
 exports.show = async (req, res) => {
+  const token = req.headers.authorization.split(' ')[1];
+  const decoded = jwt.verify(token, 'pfe_2022');
+
   try {
     const client = await (await db.connect()).db().collection('Users')
     const userId = req.params.userId;
     const user = await showUser(userId,client);
-    return res.status(200).json(user);
+    if (user[0].email === decoded.email)
+      return res.status(200).json(user);
+    else return res.sendStatus(404);
   } catch (err) {
     return res.sendStatus(404);
   }finally {
     await db.close()
+  }
+};
+
+exports.showFromEmail = async (req, res) => {
+  try {
+    const client = await (await db.connect()).db().collection('Users')
+    const email = req.params.email;
+    const user = await showUserFromEmail(client,email);
+    return res.status(200).json(user);
+  } catch (err) {
+    return res.sendStatus(404);
   }
 };

@@ -3,9 +3,9 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 const historyMealsController = require("../controllers/history_meals");
 
-router.get('/', historyMealsController.index);
-router.post('/', historyMealsController.create);
-router.get('/:timestamp', historyMealsController.showByTimestamp);
-router.put('/:timestamp', historyMealsController.updateByTimestamp);
+router.get('/',auth, historyMealsController.index);
+router.post('/',auth, historyMealsController.create);
+router.get('/:timestamp',auth, historyMealsController.showByTimestamp);
+router.put('/:timestamp',auth, historyMealsController.updateByTimestamp);
 
 module.exports = router;

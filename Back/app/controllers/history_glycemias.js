@@ -2,7 +2,7 @@ const {
     listHistory,
     showHistoryByTimestamp,
     addToHistory
-  } = require("../models/history_injections");
+  } = require("../models/history_glycemias");
   const {
     showUserFromEmail
   } = require("../models/user");
@@ -16,7 +16,7 @@ const {
       const userdb = await (await db.connect()).db().collection('Users')
       const userToVerify = await showUserFromEmail(decoded.email,userdb);  
 
-      const client = await (await db.connect()).db().collection('History_injections')
+      const client = await (await db.connect()).db().collection('History_glycemie')
       const users = await listHistory(client,userToVerify);   
       return res.status(200).json(users);
       
@@ -31,8 +31,8 @@ const {
   exports.create = async (req, res) => {
     const { body } = req;
   
-    if (!body.quantity) {
-      return res.status(400).send("Insuline's Quantity is required");
+    if (!body.glycemia) {
+      return res.status(400).send("glycemia is required");
     }
 
     const token = req.headers.authorization.split(' ')[1];
@@ -40,8 +40,8 @@ const {
     try {
       const userdb = await (await db.connect()).db().collection('Users')
       const userToVerify = await showUserFromEmail(decoded.email,userdb);  
-
-      const client = await (await db.connect()).db().collection('History_injections')
+      
+      const client = await (await db.connect()).db().collection('History_glycemie')
       const user = await addToHistory(body,client,userToVerify);
       return res.status(201).json(user);
     } catch (err) {
@@ -57,8 +57,8 @@ const {
     try {
       const userdb = await (await db.connect()).db().collection('Users')
       const userToVerify = await showUserFromEmail(decoded.email,userdb);  
-
-      const client = await (await db.connect()).db().collection('History_injections')
+      
+      const client = await (await db.connect()).db().collection('History_glycemie')
       const info = req.params.timestamp;
       const user = await showHistoryByTimestamp(info,client,userToVerify);
       return res.status(200).json(user);

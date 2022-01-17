@@ -9,7 +9,7 @@ const listAllUsers = async (user) => {
     try{
       const res = user.find({}).toArray();
       resolve(res);
-
+      
     } catch (err) {
       reject(err)
     }
@@ -42,7 +42,19 @@ const createNewUser = (body,client) => {
 const showUser = async (userId, client) => {
   return new Promise((resolve, reject) => {
     const query = {_id : new mongo.ObjectId(userId)}
-    client.findOne(query,function(err, result) {
+    client.find(query).toArray(function(err, result) {
+    if (err) reject(err);
+    resolve(result)
+    });
+   
+  });
+};
+
+// Show user /w email
+const showUserFromEmail = async (email, client) => {
+  return new Promise((resolve, reject) => {
+    const query = {email : email}
+    client.find(query).toArray(function(err, result) {
     if (err) reject(err);
     resolve(result)
     });
@@ -55,5 +67,6 @@ const showUser = async (userId, client) => {
 module.exports = {
   listAllUsers,
   showUser,
-  createNewUser
+  createNewUser,
+  showUserFromEmail
 };

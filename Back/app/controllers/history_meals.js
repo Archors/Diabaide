@@ -4,12 +4,21 @@ const {
     addToHistory,
     updateHistory
   } = require("../models/history_meals");
+  const {
+    showUserFromEmail
+  } = require("../models/user");
   const db = require("../../DB.js")
+  const jwt = require('jsonwebtoken');
   
   exports.index = async (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+    const decoded = jwt.verify(token, 'pfe_2022');
     try {
+      const userdb = await (await db.connect()).db().collection('Users')
+      const userToVerify = await showUserFromEmail(decoded.email,userdb);  
+
       const client = await (await db.connect()).db().collection('History_meals')
-      const users = await listHistory(client);   
+      const users = await listHistory(client,userToVerify);   
       return res.status(200).json(users);
       
   
@@ -27,9 +36,14 @@ const {
       return res.status(400).send("Meal is required");
     }
 
+    const token = req.headers.authorization.split(' ')[1];
+    const decoded = jwt.verify(token, 'pfe_2022');
     try {
+      const userdb = await (await db.connect()).db().collection('Users')
+      const userToVerify = await showUserFromEmail(decoded.email,userdb);  
+      
       const client = await (await db.connect()).db().collection('History_meals')
-      const user = await addToHistory(body,client);
+      const user = await addToHistory(body,client,userToVerify);
       return res.status(201).json(user);
     } catch (err) {
       return res.status(400).send(err.message);
@@ -47,10 +61,14 @@ const {
       return res.status(400).send("Meal is required");
     }
 
-    const client = await (await db.connect()).db().collection('History_meals');
-
+    const token = req.headers.authorization.split(' ')[1];
+    const decoded = jwt.verify(token, 'pfe_2022');
     try {
-      const updt = await updateHistory(client,timestamp, body);
+      const userdb = await (await db.connect()).db().collection('Users')
+      const userToVerify = await showUserFromEmail(decoded.email,userdb);  
+      
+      const client = await (await db.connect()).db().collection('History_meals');
+      const updt = await updateHistory(client,timestamp, body,userToVerify);
       return res.status(200).json(updt);
     } catch (err) {
       return res.status(400).send(err.message);
@@ -60,10 +78,15 @@ const {
   };
   
   exports.showByTimestamp = async (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+    const decoded = jwt.verify(token, 'pfe_2022');
     try {
+      const userdb = await (await db.connect()).db().collection('Users')
+      const userToVerify = await showUserFromEmail(decoded.email,userdb);  
+      
       const client = await (await db.connect()).db().collection('History_meals')
       const info = req.params.timestamp;
-      const user = await showHistoryByTimestamp(info,client);
+      const user = await showHistoryByTimestamp(info,client,userToVerify);
       return res.status(200).json(user);
     } catch (err) {
       return res.sendStatus(404);

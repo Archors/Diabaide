@@ -18,11 +18,14 @@ app.use("/api/v1/meals", mealRoutes);
 const historicInjectionsRoutes = require("./app/routes/history_injections");
 app.use("/api/v1/history_injections", historicInjectionsRoutes);
 
-const historicGlycemieRoutes = require("./app/routes/history_glycemie");
-app.use("/api/v1/history_glycemie", historicGlycemieRoutes);
+const historicGlycemiasRoutesRoutes = require("./app/routes/history_glycemias");
+app.use("/api/v1/history_glycemias", historicGlycemiasRoutesRoutes);
 
 const historicMealsRoutes = require("./app/routes/history_meals");
 app.use("/api/v1/history_meals", historicMealsRoutes);
+
+const loginRoutes = require('./app/routes/login_routes');
+app.use('/api/v1/login', loginRoutes);
 
 
 module.exports = app;

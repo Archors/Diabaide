@@ -2,10 +2,10 @@ const mongo = require('mongodb');
 
 
 // List all meals in the app
-const listAllMeals = async (user) => {
+const listAllMeals = async (meals, userToVerify) => {
     return new Promise((resolve, reject) => {
       try{
-        const res = user.find({}).toArray();
+        const res = meals.find({userId : userToVerify[0]._id}).toArray();
         resolve(res);
   
       } catch (err) {
@@ -15,12 +15,13 @@ const listAllMeals = async (user) => {
   };
 
 // Create a Meal
-  const createNewMeal = (body,client) => {
+  const createNewMeal = (body,client, user) => {
     const meal = {
       name: body.name,
       sugar: body.sugar,
       brand: body.brand,
-      barCode : body.barCode
+      barCode : body.barCode,
+      userId : user._id
     };
   
     return new Promise((resolve, reject) => {
@@ -35,11 +36,11 @@ const listAllMeals = async (user) => {
   };
   
 // Show meal by its name
-  const showMeal = async (meal, client) => {
+  const showMeal = async (meal, client,userToVerify) => {
     return new Promise((resolve, reject) => {
-      var query = {name : meal}
+      var query =  { $and: [ { name: meal }, { userId:  userToVerify[0]._id } ] }
       if (/\d{8}/.test(meal))
-        query = {barCode : meal}
+        query =  { $and: [ { barcode: meal }, { userId:  userToVerify[0]._id } ] }
       filter =  { projection: { _id: 0}}
       client.find(query, filter).toArray(function(err, result) {
       if (err) reject(err);
@@ -50,9 +51,9 @@ const listAllMeals = async (user) => {
   };
 
   // Show meal by its name and brand
-  const showMealByBrand = async (info, client) => {
+  const showMealByBrand = async (info, client,userToVerify) => {
     return new Promise((resolve, reject) => {
-      const query = { $and: [ { name: info.meal }, { brand: info.brand } ] }
+      const query = { $and: [ { name: info.meal }, { brand: info.brand }, { userId: userToVerify[0]._id } ] }
       filter =  { projection: { _id: 0}}
       client.find(query,filter).toArray(function(err, result) {
       if (err) reject(err);
