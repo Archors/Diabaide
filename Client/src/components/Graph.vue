@@ -29,5 +29,10 @@ export default {
     this.glycemias = this.$store.value_history_glycemias;
   },
   computed: {},
+  watch: {
+    "$store.state.value_history_glycemias": function () {
+      this.glycemias = this.$store.getters.value_history_glycemias;
+    },
+  },
 };
 </script>

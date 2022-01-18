@@ -1,12 +1,12 @@
 import axios from "axios";
+import authHeader from "../authentification/authHeader";
 
 //Appel API des donnees sur la glycemie
-export async function getGlycemias(id) {
-  var idJSON = JSON.stringify({ userid: id });
+export async function getGlycemias() {
   return axios({
     method: "get",
     url: process.env.VUE_APP_ROOT_API + "/history_glycemias/",
-    data: idJSON,
+    headers: authHeader()
   })
     .then(function (response) {
       return response.data;

@@ -20,6 +20,7 @@ export default {
   data: () => ({
     user: {},
     history_glycemias: {},
+    value_history_glycemias: {},
   }),
   created() {
     this.timer = setInterval(async () => {
@@ -31,7 +32,8 @@ export default {
     async updateData() {
       await updateAPI();
       this.user = this.$store.getters.user;
-      this.history_glycemie = this.$store.getters.history_glycemias;
+      this.history_glycemias = this.$store.getters.history_glycemias;
+      this.value_history_glycemias = this.$store.getters.value_history_glycemias;
     },
     cancelAutoUpdate() {
       clearInterval(this.timer);
@@ -40,13 +42,12 @@ export default {
   computed: {
     lastGlycemia() {
       if (
-        typeof this.history_glycemias !== "undefined" &&
-        this.history_glycemias.length > 0
+        typeof this.value_history_glycemias !== "undefined" &&
+        this.value_history_glycemias.length > 0
       )
         return (
-          this.history_glycemias.glycemie[
-            this.history_glycemias.glycemias.length - 1
-          ] + " mg"
+          this.value_history_glycemias[this.history_glycemias.length - 1] +
+          " mg"
         );
       return "Pas d'historique de glycemie";
     },
@@ -57,6 +58,7 @@ export default {
     },
     "$store.state.history_glycemias": function () {
       this.history_glycemias = this.$store.getters.history_glycemias;
+      this.value_history_glycemias = this.$store.getters.value_history_glycemias;
     },
   },
   beforeDestroy() {
