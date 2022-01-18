@@ -9,7 +9,6 @@ export async function getGlycemias(id) {
     data: idJSON,
   })
     .then(function (response) {
-      console.log(response.data)
       return response.data;
     })
     .catch(function (erreur) {
