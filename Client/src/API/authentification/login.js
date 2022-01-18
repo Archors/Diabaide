@@ -4,22 +4,19 @@ store.getters.config;
 
 //Appel API des donnees sur les injections
 export async function login(email, password) {
-  var test = {
-    email : email,
-    password : password
-  }
   return axios({
     method: "post",
     url: process.env.VUE_APP_ROOT_API + "/login",
-    data: test
+    data: {
+      email: email,
+      password: password,
+    },
   })
     .then(function (response) {
-      that.$store.commit("LOGIN_SUCCESS", response.data);
-      //localStorage.setItem("token", JSON.stringify(response.data));
+      localStorage.setItem("token", JSON.stringify(response.data.accessToken));
     })
     .catch(function (error) {
       //Affichage de l'erreur
-      console.log("ici")
       console.log(error);
     });
 }
