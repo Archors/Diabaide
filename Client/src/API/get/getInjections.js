@@ -1,12 +1,12 @@
 import axios from "axios";
+import authHeader from "../authentification/authHeader";
 
 //Appel API des donnees sur les injections
 export async function getInjections(id) {
-  var idJSON = JSON.stringify({ userid: id });
   return axios({
     method: "get",
     url: process.env.VUE_APP_ROOT_API + "/history_injections/",
-    data: idJSON,
+    headers: authHeader()
   })
     .then(function (response) {
       return response.data;

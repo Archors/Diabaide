@@ -34,7 +34,7 @@ export default new Vuex.Store({
       state.history_glycemias = history_glycemias;
     },
     SET_VALUE_HISTORY_GLYCEMIAS(state, value_history_glycemias) {
-      state.history_glycemias = value_history_glycemias;
+      state.value_history_glycemias = value_history_glycemias;
     },
   },
   actions: {},
@@ -55,7 +55,7 @@ export default new Vuex.Store({
     history_meals(state) {
       return state.history_meals;
     },
-    history_glycemies(state) {
+    history_glycemias(state) {
       return state.history_glycemias;
     },
     value_history_glycemias(state) {
