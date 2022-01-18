@@ -15,7 +15,7 @@ exports.login = async (req, res) => {
             const client = await (await db.connect()).db().collection('Users')
             const users = await listAllUsers(client);   
             const token = await getLogin(body,users);
-            return res.status(201).json({user : token.user, accessToken : token.accessToken});
+            return res.status(201).json({ accessToken : token.accessToken});
 
     } catch(err) {
 

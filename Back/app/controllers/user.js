@@ -60,11 +60,8 @@ exports.show = async (req, res) => {
 
   try {
     const client = await (await db.connect()).db().collection('Users')
-    const userId = req.params.userId;
-    const user = await showUser(userId,client);
-    if (user[0].email === decoded.email)
-      return res.status(200).json(user);
-    else return res.sendStatus(404);
+    const user = await showUserFromEmail(decoded.email, client);
+    return res.status(200).json(user);
   } catch (err) {
     return res.sendStatus(404);
   }finally {
