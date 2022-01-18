@@ -10,8 +10,9 @@ import { getInjections } from "../API/get/getInjections";
 export async function updateAPI(id = store.getters.id) {
     await login("naruto@gmail.com", "Hinata");
     store.commit("SET_USER", await getUser(id));
-    /*store.commit("SET_HISTORY_GLYCEMIAS", await getGlycemias(id));
+    store.commit("SET_HISTORY_GLYCEMIAS", await getGlycemias(id));
     store.commit("SET_VALUE_HISTORY_GLYCEMIAS", store.getters.history_glycemias.map(({glycemias}) => glycemias));
-    store.commit("SET_HISTORY_MEALS", await getMeals(id));
-    store.commit("SET_HISTORY_INJECTIONS", await getInjections(id));*/
+    console.log(store.getters.history_glycemias)
+    // store.commit("SET_HISTORY_MEALS", await getMeals(id));
+    // store.commit("SET_HISTORY_INJECTIONS", await getInjections(id));
 }

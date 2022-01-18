@@ -7,7 +7,6 @@
           md="4"
         >
           <v-text-field
-            v-model="email"
             :rules="emailRules"
             label="E-mail"
             required
@@ -19,7 +18,6 @@
           md="4"
         >
           <v-text-field
-            v-model="password"
             type="password"
             label="Password"
             required
