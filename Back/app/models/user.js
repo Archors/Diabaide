@@ -42,7 +42,6 @@ const createNewUser = (body,client) => {
 const showUser = async (userId, client) => {
   return new Promise((resolve, reject) => {
     const query = {_id : new mongo.ObjectId(userId)}
-    filter =  { projection: { _id: 0}}
     client.find(query,filter).toArray(function(err, result) {
     if (err) reject(err);
     resolve(result)
@@ -55,7 +54,7 @@ const showUser = async (userId, client) => {
 const showUserFromEmail = async (email, client) => {
   return new Promise((resolve, reject) => {
     const query = {email : email}
-    filter =  { projection: { _id: 0, password: 0}}
+    filter =  { projection: {  password: 0}}
 
     try{
       const user = client.findOne(query,filter )
