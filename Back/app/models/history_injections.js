@@ -4,7 +4,7 @@ const mongo = require('mongodb');
 const listHistory = async (history, userToVerify) => {
   return new Promise((resolve, reject) => {
     try{
-      const res = history.find({userId : userToVerify[0]._id}).toArray();
+      const res = history.find({userId : userToVerify[0]._id}).sort({"timestamp":-1}).toArray();
       resolve(res);
 
     } catch (err) {
@@ -42,7 +42,7 @@ const showHistoryByTimestamp = async (info, client, userToVerify) => {
           query =  { $and: [ { timestamp :{'$regex' : info, '$options' : 'i'}},  { userId:  userToVerify[0]._id } ] }
         }
         const filter =  { projection: { _id: 0}}
-        client.find(query,filter).toArray(function(err, result) {
+        client.find(query,filter).sort({"timestamp":-1}).toArray(function(err, result) {
         if (err) reject(err);
         resolve(result)
       });
