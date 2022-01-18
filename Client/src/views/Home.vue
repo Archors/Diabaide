@@ -1,7 +1,9 @@
 <template>
   <div>
-    <h1>Bonjour {{ user.first_name }}</h1>
-    <h2>Taux actuel :</h2>
+    <div class="bandeau">
+      <h1>Bonjour {{ user.first_name }}</h1>
+    </div>
+    <h3>Taux actuel :</h3>
     <h1>
       {{ lastGlycemie }}
     </h1>

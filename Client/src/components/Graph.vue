@@ -1,3 +1,3 @@
 <template>
-  <h1>Graphe taux insuline</h1>
+  <h3>Graphe taux insuline</h3>
 </template>
