@@ -55,7 +55,7 @@ const showUser = async (userId, client) => {
 const showUserFromEmail = async (email, client) => {
   return new Promise((resolve, reject) => {
     const query = {email : email}
-    filter =  { projection: { _id: 0}}
+    filter =  { projection: { _id: 0, password: 0}}
 
     try{
       const user = client.findOne(query,filter )
