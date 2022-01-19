@@ -39,7 +39,9 @@
                   clear-icon="mdi-close-circle"
                   v-bind="attrs"
                   v-on="on"
-                  required
+                  :rules="[
+                    (v) => !!v || 'La date de naissance est obligatoire',
+                  ]"
                 ></v-text-field>
               </template>
               <v-date-picker
@@ -48,6 +50,15 @@
                 locale="fr-FR"
               ></v-date-picker>
             </v-menu>
+            <v-text-field
+              v-model="user.ratio"
+              label="Ratio"
+              single-line
+              prepend-icon="mdi-cards-heart"
+              type="number"
+              oninput="if(this.value < 0) this.value = 0;"
+              :rules="[(v) => !!v || 'Le ratio est obligatoire']"
+            />
             <v-text-field
               v-model="user.email"
               :rules="emailRules"
@@ -116,6 +127,7 @@
 </template>
 
 <script>
+import { addUser } from "../API/add/addUser";
 export default {
   data: () => ({
     valid: false,
@@ -125,6 +137,7 @@ export default {
       email: "",
       birthdate: "",
       password: "",
+      ratio: "",
     },
     passwordCheck: "",
     showPassword1: false,
@@ -132,14 +145,13 @@ export default {
     boolBirthDate: false,
     snackbar: false,
     emailRules: [
-      (v) => !!v || "E-mail is required",
-      (v) => /.+@.+/.test(v) || "E-mail must be valid",
+      (v) => !!v || "L'adresse email est obligatoire",
+      (v) => /.+@.+/.test(v) || "L'adresse mail doit-être valide",
     ],
   }),
   methods: {
     registration() {
-      console.log("registration");
-      console.log(this.user);
+      addUser(this.user);
     },
     password1Rule() {
       if (this.user.password != null)

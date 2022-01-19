@@ -26,7 +26,7 @@
           </v-container>
         </v-card-text>
         <v-card-actions class="justify-center">
-          <v-btn color="primary" type="submit" :disabled="!valid">
+          <v-btn color="primary" type="submit">
             Se connecter
           </v-btn>
         </v-card-actions>

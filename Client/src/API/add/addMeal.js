@@ -3,7 +3,7 @@ import store from '../store'
 store.getters.config
 
 //Ajouter un meal en BDD
-export async function addMealAPI(meal, id = store.getters.id) {
+export async function addMeal(meal, id = store.getters.id) {
   meal.userid = id;
   var mealJSON = JSON.stringify(meal);
   return axios({

@@ -4,7 +4,7 @@
       <v-main>
         <router-view />
       </v-main>
-      <Footer />
+      <Footer v-if="connectionStatus === 1"/>
     </v-app>
   </div>
 </template>
