@@ -45,6 +45,10 @@ exports.create = async (req, res) => {
 
   try {
     const client = await (await db.connect()).db().collection('Users')
+    const userVerify = await showUserFromEmail(body.email, client);
+    if (userVerify) {
+      return res.status(400).send("Email already used");
+    }
     const user = await createNewUser(body,client);
     return res.status(201).json(user);
   } catch (err) {
