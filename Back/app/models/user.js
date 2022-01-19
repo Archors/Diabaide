@@ -28,7 +28,6 @@ const createNewUser = (body,client,verify) => {
   };
 
   return new Promise((resolve, reject) => {
-    const query = {email : body.email}
     try {
       client.insertOne(user, (err) => {
       if (err) {
