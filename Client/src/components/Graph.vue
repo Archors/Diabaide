@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <v-card color = "secondary"  class="mx-auto text-center" max-width="750">
     <v-card-text>
       <div class="text-h6">History</div>
@@ -37,3 +38,4 @@ export default {
   },
 };
 </script>
+

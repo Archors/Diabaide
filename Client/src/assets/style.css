@@ -1,0 +1,146 @@
+
+
+.menu-icon {
+  color: #D0364F ;
+}
+
+.active {background: pink;}
+.activee {background: purple;}
+
+
+.fiche{
+  text-align: left;
+  border-radius: 15px;
+  background-color: ghostwhite;
+  margin: 1%;
+  margin-top: 0;
+ /*  box-shadow: 1px 3px 5px #D0364F; */
+  font-size: 18px;
+
+  border: 1px solid #D0364F;
+}
+
+.fiche h4{
+color: #D0364F; 
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+sans-serif; 
+text-transform: uppercase;
+font-size: 24px;
+font-weight: 500;
+letter-spacing: 1px;
+margin-bottom: 5px;
+
+}
+
+
+
+
+.fiche hr{
+
+margin : 1% 1%;
+width: auto;
+}
+
+.bloc {
+  /* background-color : #ADC6D5 ; */
+  background-color: ghostwhite;
+
+  border-radius: 15px;
+  align-items: center;
+  margin: 1%;
+  padding: 5px 5px 5px 5px;
+  text-align: center;
+  margin-top: 0%;
+  min-height: 130px;
+  border: 1px solid #D0364F;
+
+}
+
+
+
+.bloc h4{
+  color: #D0364F; 
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif; 
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  
+}
+
+input{
+    background-color: whitesmoke;
+    border-style: double;
+}
+
+h3{
+  color: #D0364F;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 48px;
+  font-variant: small-caps;
+}
+
+.container {
+background-color:ghostwhite ;
+
+} 
+
+.bandeau {
+background-color: #D0364F;
+height: 100px;
+
+padding: 10px 10px 10px 10px;
+border-radius: 0px 0px 30px 30px;
+text-align: center;
+margin-bottom: 5% ;
+}
+
+.bandeau h1{
+font-size: 40px;
+font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 39.0095px;
+line-height: 48px;
+font-variant: small-caps;
+color: white;
+
+
+}
+
+button{
+background-color: #D0364F;
+color: white;
+width: 200px;
+height: 40px;
+border-radius: 15.25px;
+margin: 2%;
+
+}
+
+.connexion{
+align-items: center;
+background-color: #ADC6D5;
+height: 300px;
+padding-left: 5%;
+}
+
+h5{
+
+color: #D0364F;
+font-family: Montserrat;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 40px;
+font-variant: small-caps;
+
+
+}
