@@ -13,10 +13,12 @@ export async function login(email, password) {
     },
   })
     .then(function (response) {
-      localStorage.setItem("token", JSON.stringify(response.data.accessToken));
+      store.commit("LOGIN_SUCCESS", response.data.accessToken);
+      return 1;
     })
     .catch(function (error) {
       //Affichage de l'erreur
       console.log(error);
+      return 0;
     });
 }

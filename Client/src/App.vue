@@ -1,11 +1,12 @@
 <template>
-  <v-app>
-    <!--<NavbarDesktop />-->
-    <v-main>
-      <router-view />
-    </v-main>
-    <Footer />
-  </v-app>
+  <div>
+    <v-app>
+      <v-main>
+        <router-view />
+      </v-main>
+      <Footer />
+    </v-app>
+  </div>
 </template>
 
 <script>
@@ -22,5 +23,10 @@ export default {
   data: () => ({
     //
   }),
+  computed: {
+    connectionStatus() {
+      return this.$store.getters.connection_status;
+    },
+  },
 };
 </script>
