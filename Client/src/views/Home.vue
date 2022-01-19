@@ -1,5 +1,6 @@
 <template>
-  <div>
+
+  <div class="container">
     <div class="bandeau">
       <h1>Bonjour {{ user.first_name }}</h1>
     </div>
@@ -7,7 +8,15 @@
     <h1>
       {{ lastGlycemia }}
     </h1>
-    <Graph />
+     <v-frappe-chart
+    type="bar"
+    :labels="['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']"
+    :data="[
+        { values: [18, 40, 30, 35, 8, 52, 17, -4] }
+    ]"
+    :colors="['red']"
+/>
+    
   </div>
 </template>
 
@@ -18,6 +27,7 @@ import { updateAPI } from "../API/updateAPI";
 export default {
   components: {
     Graph,
+    Chart,
   },
   data: () => ({
     user: {},

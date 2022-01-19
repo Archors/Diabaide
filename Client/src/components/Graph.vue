@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <v-card color = "secondary"  class="mx-auto text-center" max-width="750">
     <v-card-text>
       <div class="text-h6">History</div>
@@ -9,9 +8,10 @@
         <v-sparkline 
           color = "primary"
           :value="glycemias"
-          height="200"
+          height="125"
           padding="15"
           stroke-linecap="round"
+          line-width="1"
           smooth="5"
         >
           <template v-slot:label="item">{{ item.value }} mg</template>

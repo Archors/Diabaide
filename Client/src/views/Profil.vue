@@ -5,7 +5,7 @@
       <h1>Profil</h1>
     </div>
     <div class="row">
-      <div class="fiche col-sm">
+      <v-card class="fiche col-sm">
             
             <h4> Informations personelles </h4>
               <hr></hr>
@@ -44,11 +44,11 @@
                <p style=" color:#D0364F; text-align:right">Modifier mes Informations</p>
 
 
-          </div>
+          </v-card>
       </div>
 
       <div class="row">
-          <div class="fiche col-sm" >
+          <v-card class="fiche col-sm" >
             <h4>Informations de compte</h4>              <hr></hr>
               <table>
                 <tbody>
@@ -67,9 +67,8 @@
               </table>
                       <p style=" color:#D0364F; text-align:right">Modifier mes Informations</p>
 
-            </div>
+            </v-card>
         </div>
     </div>
 
-  </div>
 </template>
