@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import router from "../router/index";
 
 Vue.use(Vuex);
 
@@ -13,10 +14,25 @@ export default new Vuex.Store({
     history_glycemias: {},
     value_history_glycemias: {},
     api: "urlapi",
+    connection_status: 0, //-1 = to signUp   0 = toSignIn    1 = Connected
   },
   mutations: {
-    LOGIN_SUCCESS(state, data) {
-      state.token = data.token;
+    LOGIN_SUCCESS(state, accessToken) {
+      console.log("Connected");
+      localStorage.setItem("token", JSON.stringify(accessToken));
+      state.connection_status = 1;
+      router.push({ path: "home" }).catch(() => {
+        /* ignore */
+      });
+    },
+    DISCONNECT(state) {
+      state.connection_status = 0;
+    },
+    LOGIN_TO_SIGNUP(state) {
+      state.connection_status = -1;
+    },
+    LOGIN_TO_SIGNIN(state) {
+      state.connection_status = 0;
     },
     SET_ID(state, id) {
       state.id = id;
@@ -40,6 +56,13 @@ export default new Vuex.Store({
   actions: {},
   modules: {},
   getters: {
+    connection_status(state) {
+      return state.connection_status;
+    },
+    isLoggedIn(state) {
+      if (state.connection_status == 1) return true;
+      else false;
+    },
     token(state) {
       return state.token;
     },

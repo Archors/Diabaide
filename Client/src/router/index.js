@@ -1,44 +1,71 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import store from "../store";
+store.getters.config;
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    redirect: '/home'
+    path: "/",
+    redirect: "/login",
   },
   {
-    path: '/login',
-    name: 'Login',
-    component: () => import('../views/Login.vue')
+    path: "*",
+    redirect: "/login",
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: () => import('../views/Home.vue')
+    path: "/login",
+    name: "Login",
+    component: () => import("../views/Login.vue"),
   },
   {
-    path: '/meal',
-    name: 'Meal',
-    component: () => import('../views/Meal.vue')
+    path: "/home",
+    name: "Home",
+    component: () => import("../views/Home.vue"),
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
-    path: '/profil',
-    name: 'Profil',
-    component: () => import('../views/Profil.vue')
+    path: "/meal",
+    name: "Meal",
+    component: () => import("../views/Meal.vue"),
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
-    path: '/injection',
-    name: 'Injection',
-    component: () => import('../views/Injection.vue')
-  }
-]
+    path: "/profil",
+    name: "Profil",
+    component: () => import("../views/Profil.vue"),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/injection",
+    name: "Injection",
+    component: () => import("../views/Injection.vue"),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+//Check Authentification before allowing changing page
+router.beforeEach((to, from, next) => {
+  const auth = store.getters.isLoggedIn;
+  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
+  if (requiresAuth && !auth) {
+    next("login");}
+  else next();
+});
+
+export default router;
