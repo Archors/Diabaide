@@ -1,13 +1,13 @@
 <template>
-  <v-card class="mx-auto text-center" max-width="750">
+  <v-card color = "secondary"  class="mx-auto text-center" max-width="750">
     <v-card-text>
-      <div class="text-h6">Historique</div>
+      <div class="text-h6">History</div>
     </v-card-text>
     <v-card-text>
-      <v-sheet color="rgba(0, 0, 0, .12)">
-        <v-sparkline
+      <v-sheet color = "secondary">
+        <v-sparkline 
+          color = "primary"
           :value="glycemias"
-          color="rgba(255, 255, 255, .7)"
           height="200"
           padding="15"
           stroke-linecap="round"
@@ -23,15 +23,16 @@
 <script>
 export default {
   data: () => ({
-    glycemias: {},
+    glycemias: [],
   }),
   created() {
-    this.glycemias = this.$store.value_history_glycemias;
+    //this.glycemias = this.$store.value_history_glycemias;
   },
   computed: {},
   watch: {
     "$store.state.value_history_glycemias": function () {
       this.glycemias = this.$store.getters.value_history_glycemias;
+      console.log(this.glycemias)
     },
   },
 };

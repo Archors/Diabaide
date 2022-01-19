@@ -17,7 +17,7 @@ const listAllUsers = async (user) => {
 };
 
 // Create a new user
-const createNewUser = (body,client) => {
+const createNewUser = (body,client,verify) => {
   const user = {
     first_name: body.first_name,
     last_name: body.last_name,
@@ -28,14 +28,18 @@ const createNewUser = (body,client) => {
   };
 
   return new Promise((resolve, reject) => {
-    client.insertOne(user, (err) => {
+    try {
+      client.insertOne(user, (err) => {
       if (err) {
         return reject(err);
       } else {
         resolve(user);
       }
     });
-  });
+  }
+  catch (err) {reject(err);}
+}
+  );
 };
 
 // Show user by id
