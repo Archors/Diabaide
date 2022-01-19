@@ -46,7 +46,7 @@ export default {
         this.value_history_glycemias.length > 0
       )
         return (
-          this.value_history_glycemias[this.history_glycemias.length - 1] +
+          this.value_history_glycemias[this.value_history_glycemias.length - 1]+
           " mg"
         );
       return "Pas d'historique de glycemie";
