@@ -4,24 +4,23 @@
   <div class="bandeau">
     <h1>Ajoutez vos apports en glucides</h1>
   </div>
-  
   <br>
-
     <div class="row">
-      <v-card class=" bloc col-sm">
-        <h4>ajout manuel</h4>
-        <input type="text" name="glucides"> grammes</input>
+      <v-card class="bloc col-sm">
+       <AddMealForm />
+        <v-btn
+        class="mx-2"
+        fab
+        dark
+        color="primary"
+        >
+        <v-icon  size="35">mdi-barcode</v-icon>
+        </v-btn >
         <br>
         <br>
-
-        <v-btn color="primary">Ajouter</v-btn>
+        
       </v-card>
       <br>
-      <v-card class="bloc col-sm">
-      <h4>scanner code barre</h4>
-        <v-icon color="primary" size="100">mdi-barcode</v-icon>
-        <h2 color="primary">Coming soon...</h2>
-      </v-card>
     </div>
     <div class="row">
     <br>
@@ -30,5 +29,13 @@
       </v-card>
     </div>
   </div>
-
 </template>
+
+
+<script>
+import AddMealForm from "../components/AddMealForm";
+export default {
+  components: {
+    AddMealForm,
+  }}
+</script>

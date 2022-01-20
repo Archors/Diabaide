@@ -1,7 +1,5 @@
 const bcrypt = require('bcrypt');
 const mongo = require('mongodb');
-
-
 //List all Users 
 // To delete
 const listAllUsers = async (user) => {
@@ -61,7 +59,7 @@ const showUserFromEmail = async (email, client) => {
     filter =  { projection: {  password: 0}}
 
     try{
-      const user = client.findOne(query,filter )
+      const user = client.findOne(query )
       resolve(user);
       
     } catch (err) {
@@ -71,11 +69,30 @@ const showUserFromEmail = async (email, client) => {
   });
 };
 
+// update user's informations
+const updateUser = async (client,userVerify, updated) => {
+
+  return new Promise((resolve, reject) => {
+    try{
+      
+      const userUpdated =  client.findOneAndUpdate({_id: new mongo.ObjectId(userVerify._id)}, updated )
+      resolve(userUpdated)
+      
+    } catch (err) {
+      reject(err)
+    }
+    
+  });
+};
+
+
+
 
 
 module.exports = {
   listAllUsers,
   showUser,
   createNewUser,
-  showUserFromEmail
+  showUserFromEmail,
+  updateUser
 };
