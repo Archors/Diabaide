@@ -12,6 +12,7 @@ const {
   exports.index = async (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     const decoded = jwt.verify(token, 'pfe_2022');
+    console.log(token)
     try {
       const userdb = await (await db.connect()).db().collection('Users')
       const userToVerify = await showUserFromEmail(decoded.email,userdb);  

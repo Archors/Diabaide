@@ -15,14 +15,15 @@ export default {
 
 Vue.use(VueCookies);
 
+
 Vue.config.productionTip = false;
+Vue.use(Chart);
 
 new Vue({
   router,
   store,
   vuetify,
   axios,
-  VFrappeChart,
   render: function (h) {
     return h(App);
   },

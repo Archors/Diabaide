@@ -4,7 +4,8 @@ const mongo = require('mongodb');
 const listHistory = async (history, userToVerify) => {
   return new Promise((resolve, reject) => {
     try{
-      const res = history.find({userId : userToVerify._id}).sort({"timestamp":1}).toArray();
+      const res = history.find({userId : userToVerify._id}).sort({"timestamp":-1}).toArray();
+      console.log(res)
       resolve(res);
 
     } catch (err) {

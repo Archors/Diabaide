@@ -4,19 +4,18 @@
       <div class="text-h6">History</div>
     </v-card-text>
     <v-card-text>
-      <v-sheet color = "secondary">
-        <v-sparkline 
-          color = "primary"
-          :value="glycemias"
-          height="125"
-          padding="15"
-          stroke-linecap="round"
-          line-width="1"
-          smooth="5"
-        >
-          <template v-slot:label="item">{{ item.value }} mg</template>
-        </v-sparkline>
-      </v-sheet>
+    
+<v-frappe-chart
+    type="line"
+    :labels="['11h', '12h', '13h', '14h', '15h', '16h']"
+    :data="[
+        { values: glycemias}
+    ]"
+    :colors="['red']"
+:lineOptions="{
+    dotSize: 6 // default: 4
+}"
+/>
     </v-card-text>
   </v-card>
 </template>
