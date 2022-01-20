@@ -6,14 +6,14 @@
     <v-card-text>
     
         <v-frappe-chart
-          type='axis-mixed'
+          type="line"
           :labels= timestamp
           :data="[
               { values: glycemias}
           ]"
           :colors="['red']"
           :lineOptions="{
-            dotSize: 6 // default: 4
+            regionFill: 1
           }"/>
     </v-card-text>
   </v-card>
@@ -22,11 +22,10 @@
 <script>
 export default {
   data: () => ({
-    glycemias: [],
-    timestamp: [],
+    glycemias: [1,2,3,4,5,6,7,8,9,10],
+    timestamp: ["","","","","","","","","",""],
   }),
   created() {
-    //this.glycemias = this.$store.value_history_glycemias;
   },
   computed: {},
   watch: {
