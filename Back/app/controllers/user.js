@@ -1,11 +1,13 @@
 const {
   listAllUsers,
-  showUser,
   createNewUser,
-  showUserFromEmail
+  showUserFromEmail,
+  updateUser,
+  updatePwd
 } = require("../models/user");
 const db = require("../../DB.js")
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 exports.index = async (req, res) => {
   try {
@@ -81,5 +83,70 @@ exports.showFromEmail = async (req, res) => {
     return res.status(200).json(user);
   } catch (err) {
     return res.sendStatus(404);
+  }
+};
+
+
+
+exports.update = async (req, res) => {
+  const { body } = req;
+
+  var updated = {};
+
+  if (body.first_name) {
+    updated.first_name = body.first_name
+  }
+  if (body.ratio) {
+    updated.ratio = body.ratio
+  }
+  if (body.last_name) {
+    updated.last_name = body.last_name
+  }
+  if (body.birthdate) {
+    updated.birthdate = body.birthdate
+  }
+  if (body.email) {
+    updated.email = body.email
+  }
+  updated = { $set: updated }
+
+  const token = req.headers.authorization.split(' ')[1];
+  const decoded = jwt.verify(token, 'pfe_2022');
+
+  try {
+    const client = await (await db.connect()).db().collection('Users')
+    const userVerify = await showUserFromEmail(decoded.email, client);
+
+    const user = await updateUser(client,userVerify, updated);
+    return res.status(200).json(user);
+  } catch (err) {
+    return res.status(401).send(error.message);
+  }
+};
+
+exports.updatePwd = async (req, res) => {
+  const { body } = req;
+
+  var updated = {};
+
+  if (body.password) {
+    updated.password = bcrypt.hashSync(body.password, 10)
+  }
+  
+  updated = { $set: updated }
+
+  const token = req.headers.authorization.split(' ')[1];
+  const decoded = jwt.verify(token, 'pfe_2022');
+
+  try {
+    const client = await (await db.connect()).db().collection('Users')
+    const userVerify = await showUserFromEmail(decoded.email, client);
+    const authentification= bcrypt.compareSync(body.oldPassword, userVerify.password);
+    if (!authentification)
+      return res.status(400).send("Wrong Password m8");
+    const user = await updateUser(client,userVerify, updated);
+    return res.status(200).json(user);
+  } catch (err) {
+    return res.status(401).send(error.message);
   }
 };
