@@ -1,78 +1,232 @@
 <template>
-  <div class="container">
-
-    <div class="bandeau">
-      <h1>Profil</h1>
-    </div>
-    <div class="row">
-      <v-card class="fiche col-sm">
-            
-            <h4> Informations personelles </h4>
-              <hr></hr>
-              <table >
-                <tbody>
-                  <tr>
-                      <td>Prénom : </td>
-                      <td>{data.prenom}</td>
-                  </tr>
-                  <tr>
-                      <td>Nom : </td>
-                      <td>{data.nom}</td>
-                  </tr>
-                  <tr>
-                      <td>Age : </td>
-                      <td>{data.age}</td>
-                  </tr>
-                  <tr>
-                    <td>Adresse : </td>
-                    <td>{data.adresse.rue}</td>
-                  </tr>
-                  <tr>
-                    <td> </td>
-                    <td>{data.adresse.ville}</td>
-                  </tr>
-                  <tr>
-                    <td> </td>
-                    <td>{data.adresse.cp}</td>
-                  </tr>
-                  <tr >
-                      <td> </td>
-                  </tr>
-                                          
-                </tbody>
-              </table>
-               <p style=" color:#D0364F; text-align:right">Modifier mes Informations</p>
-
-
-          </v-card>
-      </div>
-
-      <div class="row">
-          <v-card class="fiche col-sm" >
-            <h4>Informations de compte</h4>              <hr></hr>
-              <table>
-                <tbody>
-                  <tr>
-                      <td>Email : </td>
-                      <td>{}</td>
-                  </tr>
-                  <tr>
-                      <td>Mot de passe : </td>
-                      <td>{}</td>
-                  </tr>
-                   <tr >
-                      <td> </td>
-                  </tr>
-                </tbody>
-              </table>
-                      <p style=" color:#D0364F; text-align:right">Modifier mes Informations</p>
-
-            </v-card>
-        </div>
-    </div>
-
+  <div>
+    <v-card class="overflow-hidden" color="secondary">
+      <v-toolbar flat color="primary">
+        <v-icon>mdi-account</v-icon>
+        <v-toolbar-title class="font-weight-light"> Profil </v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-btn
+          color="blue"
+          fab
+          small
+          @click="isEditingUserInfo = !isEditingUserInfo"
+        >
+          <v-icon v-if="isEditingUserInfo"> mdi-close </v-icon>
+          <v-icon v-else> mdi-pencil </v-icon>
+        </v-btn>
+      </v-toolbar>
+      <v-card-text>
+        <v-form v-model="validUser" @submit="saveUserInfo">
+          <v-text-field
+            :disabled="!isEditingUserInfo"
+            v-model="user.first_name"
+            label="Prénom*"
+            :rules="[(v) => !!v || 'Le prénom est obligatoire']"
+            required
+          ></v-text-field>
+          <v-text-field
+            :disabled="!isEditingUserInfo"
+            v-model="user.last_name"
+            label="Nom*"
+            :rules="[(v) => !!v || 'Le nom est obligatoire']"
+            required
+          >
+          </v-text-field>
+          <v-menu
+            v-model="boolBirthDate"
+            :close-on-content-click="false"
+            :nudge-right="40"
+            transition="scale-transition"
+            offset-y
+            min-width="auto"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-text-field
+                :disabled="!isEditingUserInfo"
+                v-model="user.birthdate"
+                label="Date de naissance"
+                prepend-icon="mdi-calendar"
+                readonly
+                clear-icon="mdi-close-circle"
+                v-bind="attrs"
+                v-on="on"
+                :rules="[(v) => !!v || 'La date de naissance est obligatoire']"
+              ></v-text-field>
+            </template>
+            <v-date-picker
+              v-model="user.birthdate"
+              @input="boolBirthDate = false"
+              locale="fr-FR"
+            ></v-date-picker>
+          </v-menu>
+          <v-text-field
+            :disabled="!isEditingUserInfo"
+            v-model="user.email"
+            label="Mail*"
+            :rules="[(v) => !!v || 'L\'adresse mail est obligatoire']"
+            required
+          ></v-text-field>
+          <v-text-field
+            :disabled="!isEditingUserInfo"
+            v-model="user.ratio"
+            label="Ratio*"
+            :rules="[(v) => !!v || 'Le ratio est obligatoire']"
+            required
+          ></v-text-field>
+        </v-form>
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn
+          color="success"
+          text
+          type="submit"
+          :disabled="!validUser || !isEditingUserInfo"
+        >
+          Sauvegarder
+        </v-btn>
+      </v-card-actions>
+      <v-snackbar
+        v-model="hasSavedUserInfo"
+        :timeout="2000"
+        absolute
+        bottom
+        left
+      >
+        Votre profil a été mis à jour
+      </v-snackbar>
+    </v-card>
+    <v-card class="overflow-hidden" color="secondary">
+      <v-toolbar flat color="primary">
+        <v-icon>mdi-account</v-icon>
+        <v-toolbar-title class="font-weight-light"> Password </v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-btn
+          color="blue"
+          fab
+          small
+          @click="isEditingPasswordInfo = !isEditingPasswordInfo"
+        >
+          <v-icon v-if="isEditingPasswordInfo"> mdi-close </v-icon>
+          <v-icon v-else> mdi-pencil </v-icon>
+        </v-btn>
+      </v-toolbar>
+      <v-form v-model="validPassword" @submit="savePasswordInfo">
+        <v-card-text>
+          <v-text-field
+            :disabled="!isEditingPasswordInfo"
+            :append-icon="showOldPassword ? 'mdi-eye' : 'mdi-eye-off'"
+            :type="showOldPassword ? 'text' : 'password'"
+            @click:append="showOldPassword = !showOldPassword"
+            v-model="oldPassword"
+            label="Ancien Mot de passe*"
+            :rules="[(v) => !!v || 'Le prénom est obligatoire']"
+            required
+          ></v-text-field>
+          <v-text-field
+            :disabled="!isEditingPasswordInfo"
+            :append-icon="showNewPassword1 ? 'mdi-eye' : 'mdi-eye-off'"
+            :type="showNewPassword1 ? 'text' : 'password'"
+            @click:append="showNewPassword1 = !showNewPassword1"
+            v-model="newPassword1"
+            label="Nouveau mot de passe"
+            :rules="[(v) => !!v || 'Le nom est obligatoire']"
+            required
+          >
+          </v-text-field>
+          <v-text-field
+            :disabled="!isEditingPasswordInfo"
+            :append-icon="showNewPassword2 ? 'mdi-eye' : 'mdi-eye-off'"
+            :type="showNewPassword2 ? 'text' : 'password'"
+            @click:append="showNewPassword2 = !showNewPassword2"
+            v-model="newPassword2"
+            label="Nouveau mot de passe"
+            :rules="[(v) => !!v || 'L\'adresse mail est obligatoire']"
+            loading=""
+            required
+          ><template v-slot:progress>
+                <v-progress-linear
+                  :value="progressNewPassword2"
+                  :color="colorNewPassword2"
+                  absolute
+                  height="7"
+                ></v-progress-linear> </template
+            ></v-text-field>
+        </v-card-text>
+      </v-form>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn
+          :disabled="!validPassword || !isEditingPasswordInfo"
+          color="success"
+          @click="savePasswordInfo"
+        >
+          Sauvegarder
+        </v-btn>
+      </v-card-actions>
+      <v-snackbar
+        v-model="hasSavedPasswordInfo"
+        :timeout="2000"
+        absolute
+        bottom
+        left
+      >
+        Votre mot de passe a été mis à jour
+      </v-snackbar>
+    </v-card>
+  </div>
 </template>
 
-<style>
-@import "../assets/style.css";
-</style>
+<script>
+export default {
+  data() {
+    return {
+      user: {},
+      boolBirthDate: false,
+      hasSavedUserInfo: false,
+      hasSavedPasswordInfo: false,
+      isEditingUserInfo: null,
+      isEditingPasswordInfo: null,
+      oldPassword: "",
+      newPassword1: "",
+      newPassword2: "",
+      validUser: false,
+      validPassword: false,
+      showOldPassword: false,
+      showNewPassword1: false,
+      showNewPassword2: false,
+    };
+  },
+  created() {
+    this.user = this.$store.getters.user;
+  },
+
+  methods: {
+    saveUserInfo() {
+      this.isEditingUserInfo = !this.isEditingUserInfo;
+      this.hasSavedUserInfo = true;
+    },
+    savePasswordInfo() {
+      console.log("save pwd");
+    },
+  },
+  computed: {
+    progressNewPassword1() {
+      return Math.min(100, (this.newPassword1.length * 100) / 6);
+    },
+    colorNewPassword1() {
+      if (this.progressNewPassword1 == 100) return "success";
+      else if (this.progressNewPassword1 > 50) return "warning";
+      else return "error";
+    },
+    progressNewPassword2() {
+      return Math.min(100, (this.newPassword2.length * 100) / 6);
+    },
+    colorNewPassword2() {
+      if (this.progressNewPassword2 == 100) return "success";
+      else if (this.progressNewPassword2 > 50) return "warning";
+      else return "error";
+    },
+  },
+};
+</script>

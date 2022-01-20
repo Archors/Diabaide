@@ -33,7 +33,6 @@ export default {
   watch: {
     "$store.state.value_history_glycemias": function () {
       this.glycemias = this.$store.getters.value_history_glycemias;
-      console.log(this.$store.getters.value_history_glycemias)
     },
   },
 };

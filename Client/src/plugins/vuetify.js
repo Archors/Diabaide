@@ -12,8 +12,9 @@ export default new Vuetify({
       light: {
         primary: '#d0364f',
         secondary: '#f1f0e6',
-        blue: colors.shades.black,
+        blue: colors.shades.blue,
         error: colors.red.accent3,
+        button: colors.shades.blue,
       },
       dark: {
         primary: colors.blue.lighten3,

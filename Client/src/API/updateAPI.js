@@ -21,7 +21,6 @@ export async function updateAPI() {
     store.getters.history_glycemias.forEach(element => {
         if(element.timestamp > yesterday) {
             arrayglycemia.push(parseInt(element.glycemia))
-            console.log(arrayglycemia)
         }
     });
     

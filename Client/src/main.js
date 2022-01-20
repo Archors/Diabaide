@@ -4,13 +4,16 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 import axios from "axios";
-import { VFrappeChart } from 'vue-frappe-chart'
+import VueCookies from "vue-cookies";
+import { VFrappeChart } from "vue-frappe-chart";
 
 export default {
   components: {
-    VFrappeChart
-  }
-}
+    VFrappeChart,
+  },
+};
+
+Vue.use(VueCookies);
 
 Vue.config.productionTip = false;
 

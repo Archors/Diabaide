@@ -17,9 +17,9 @@ export default new Vuex.Store({
     connection_status: 0, //-1 = to signUp   0 = toSignIn    1 = Connected
   },
   mutations: {
-    LOGIN_SUCCESS(state, accessToken) {
+    LOGIN_SUCCESS(state, accessToken = -1) {
       console.log("Connected");
-      localStorage.setItem("token", JSON.stringify(accessToken));
+      if (accessToken != -1) Vue.$cookies.set("token", accessToken, "1d");
       state.connection_status = 1;
       router.push({ path: "home" }).catch(() => {
         /* ignore */
