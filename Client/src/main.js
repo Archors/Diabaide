@@ -5,22 +5,17 @@ import store from "./store";
 import vuetify from "./plugins/vuetify";
 import axios from "axios";
 import './assets/style.css';
-import { VFrappeChart } from 'vue-frappe-chart'
+import Chart from 'vue-frappe-chart'
 
-export default {
-  components: {
-    VFrappeChart
-  }
-}
 
 Vue.config.productionTip = false;
+Vue.use(Chart);
 
 new Vue({
   router,
   store,
   vuetify,
   axios,
-  VFrappeChart,
   render: function (h) {
     return h(App);
   },
