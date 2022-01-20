@@ -1,4 +1,5 @@
 import axios from "axios";
+import authHeader from "../authentification/authHeader";
 
 export async function updatePassword(oldPassword, password) {
   return axios({

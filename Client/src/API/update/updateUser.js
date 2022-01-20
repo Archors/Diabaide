@@ -1,6 +1,7 @@
 import axios from "axios";
+import authHeader from "../authentification/authHeader";
 
-export async function addUser(user) {
+export async function updateUser(user) {
   return axios({
     method: "put",
     url: process.env.VUE_APP_ROOT_API + "/users/",

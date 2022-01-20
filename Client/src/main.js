@@ -9,9 +9,7 @@ import Chart from 'vue-frappe-chart'
 
 Vue.use(VueCookies);
 
-
 Vue.config.productionTip = false;
-Vue.use(Chart);
 
 new Vue({
   router,
