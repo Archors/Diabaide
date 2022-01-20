@@ -13,6 +13,7 @@ export default new Vuex.Store({
     history_meals: {},
     history_glycemias: {},
     value_history_glycemias: {},
+    value_timestamp_glycemias : {},
     api: "urlapi",
     connection_status: 0, //-1 = to signUp   0 = toSignIn    1 = Connected
   },
@@ -52,6 +53,9 @@ export default new Vuex.Store({
     SET_VALUE_HISTORY_GLYCEMIAS(state, value_history_glycemias) {
       state.value_history_glycemias = value_history_glycemias;
     },
+    SET_VALUE_TIMESTAMP_GLYCEMIAS(state, value_timestamp_glycemias) {
+      state.value_timestamp_glycemias = value_timestamp_glycemias;
+    },
   },
   actions: {},
   modules: {},
@@ -83,6 +87,9 @@ export default new Vuex.Store({
     },
     value_history_glycemias(state) {
       return state.value_history_glycemias;
+    },
+    value_timestamp_glycemias(state) {
+      return state.value_timestamp_glycemias;
     },
     api(state) {
       return state.api;

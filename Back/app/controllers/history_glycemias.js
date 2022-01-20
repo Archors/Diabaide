@@ -19,7 +19,6 @@ const {
       const client = await (await db.connect()).db().collection('History_glycemie')
       const users = await listHistory(client,userToVerify);   
       return res.status(200).json(users);
-      
   
     } catch (err) {
       return res.status(400).json(err.message);

@@ -5,13 +5,7 @@ import store from "./store";
 import vuetify from "./plugins/vuetify";
 import axios from "axios";
 import VueCookies from "vue-cookies";
-import { VFrappeChart } from "vue-frappe-chart";
-
-export default {
-  components: {
-    VFrappeChart,
-  },
-};
+import Chart from 'vue-frappe-chart'
 
 Vue.use(VueCookies);
 
