@@ -1,22 +1,22 @@
 <template>
   <div>
     <v-card class="overflow-hidden" color="secondary">
-      <v-toolbar flat color="primary">
-        <v-icon>mdi-account</v-icon>
-        <v-toolbar-title class="font-weight-light"> Profil </v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-btn
-          color="blue"
-          fab
-          small
-          @click="isEditingUserInfo = !isEditingUserInfo"
-        >
-          <v-icon v-if="isEditingUserInfo"> mdi-close </v-icon>
-          <v-icon v-else> mdi-pencil </v-icon>
-        </v-btn>
-      </v-toolbar>
-      <v-card-text>
-        <v-form v-model="validUser" @submit="saveUserInfo">
+      <v-form v-model="validUser" v-on:submit.prevent @submit="saveUserInfo">
+        <v-toolbar flat color="primary">
+          <v-icon>mdi-account</v-icon>
+          <v-toolbar-title class="font-weight-light"> Profil </v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="blue"
+            fab
+            small
+            @click="isEditingUserInfo = !isEditingUserInfo"
+          >
+            <v-icon v-if="isEditingUserInfo"> mdi-close </v-icon>
+            <v-icon v-else> mdi-pencil </v-icon>
+          </v-btn>
+        </v-toolbar>
+        <v-card-text>
           <v-text-field
             :disabled="!isEditingUserInfo"
             v-model="user.first_name"
@@ -73,28 +73,28 @@
             :rules="[(v) => !!v || 'Le ratio est obligatoire']"
             required
           ></v-text-field>
-        </v-form>
-      </v-card-text>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn
-          color="success"
-          text
-          type="submit"
-          :disabled="!validUser || !isEditingUserInfo"
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="success"
+            text
+            type="submit"
+            :disabled="!validUser || !isEditingUserInfo"
+          >
+            Sauvegarder
+          </v-btn>
+        </v-card-actions>
+        <v-snackbar
+          v-model="hasSavedUserInfo"
+          :timeout="2000"
+          absolute
+          bottom
+          left
         >
-          Sauvegarder
-        </v-btn>
-      </v-card-actions>
-      <v-snackbar
-        v-model="hasSavedUserInfo"
-        :timeout="2000"
-        absolute
-        bottom
-        left
-      >
-        Votre profil a été mis à jour
-      </v-snackbar>
+          Votre profil a été mis à jour
+        </v-snackbar>
+      </v-form>
     </v-card>
     <v-card class="overflow-hidden" color="secondary">
       <v-toolbar flat color="primary">
@@ -131,8 +131,16 @@
             v-model="newPassword1"
             label="Nouveau mot de passe"
             :rules="[(v) => !!v || 'Le nom est obligatoire']"
+            loading=""
             required
-          >
+            ><template v-slot:progress>
+              <v-progress-linear
+                :value="progressNewPassword1"
+                :color="colorNewPassword1"
+                absolute
+                height="7"
+              ></v-progress-linear>
+            </template>
           </v-text-field>
           <v-text-field
             :disabled="!isEditingPasswordInfo"
@@ -144,14 +152,14 @@
             :rules="[(v) => !!v || 'L\'adresse mail est obligatoire']"
             loading=""
             required
-          ><template v-slot:progress>
-                <v-progress-linear
-                  :value="progressNewPassword2"
-                  :color="colorNewPassword2"
-                  absolute
-                  height="7"
-                ></v-progress-linear> </template
-            ></v-text-field>
+            ><template v-slot:progress>
+              <v-progress-linear
+                :value="progressNewPassword2"
+                :color="colorNewPassword2"
+                absolute
+                height="7"
+              ></v-progress-linear> </template
+          ></v-text-field>
         </v-card-text>
       </v-form>
       <v-card-actions>
@@ -178,6 +186,8 @@
 </template>
 
 <script>
+import { updatePassword } from "../API/update/updatePassword";
+import { updateUser } from "../API/update/updateUser";
 export default {
   data() {
     return {
@@ -200,14 +210,16 @@ export default {
   created() {
     this.user = this.$store.getters.user;
   },
-
   methods: {
     saveUserInfo() {
       this.isEditingUserInfo = !this.isEditingUserInfo;
       this.hasSavedUserInfo = true;
+      updateUser(this.user);
     },
     savePasswordInfo() {
-      console.log("save pwd");
+      this.isEditingPasswordInfo = !this.isEditingPasswordInfo;
+      this.hasSavedPasswordInfo = !this.hasSavedPasswordInfo;
+      updatePassword(this.oldPassword, this.newPassword1);
     },
   },
   computed: {
