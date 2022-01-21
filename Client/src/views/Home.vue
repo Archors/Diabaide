@@ -5,7 +5,7 @@
     </div>
     <v-divider></v-divider>
     <br>
-    <span class="primary--text bold">Vous n'avez rensignez aucune données aujourd'hui !!</span>
+    <span class="primary--text bold">Vous n'avez renseigné aucune donnée aujourd'hui !</span>
     <br>
     <br>
     <h3>Votre dernier taux enregistrer :</h3>
