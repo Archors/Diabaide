@@ -1,5 +1,5 @@
 <template>
-  <v-bottom-navigation fixed app hide-on-scroll grow color="secondary">
+  <v-bottom-navigation fixed app grow color="secondary">
     <v-btn to="home">
       <v-icon x-large color="primary">mdi-home</v-icon>
     </v-btn>

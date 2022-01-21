@@ -5,9 +5,10 @@
     </div>
     <v-divider></v-divider>
     <br>
+    <span class="primary--text bold">Vous n'avez rensignez aucune données aujourd'hui !!</span>
     <br>
     <br>
-    <h3>Taux actuel :</h3>
+    <h3>Votre dernier taux enregistrer :</h3>
     <h1>
       {{ lastGlycemia }}
     </h1>
