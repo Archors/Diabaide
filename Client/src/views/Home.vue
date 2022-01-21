@@ -1,12 +1,20 @@
 <template>
   <div class="container">
     <div class="bandeau">
-      <h1>Bonjour {{ user.first_name }}</h1>
+      <h1>Bonjour {{ user.first_name }} {{ user.last_name }}</h1>
     </div>
+    <v-divider></v-divider>
+    <br>
+    <br>
+    <br>
     <h3>Taux actuel :</h3>
     <h1>
       {{ lastGlycemia }}
     </h1>
+    <v-divider></v-divider>
+    <br>
+    <br>
+    <br>
     <Graph />
   </div>
 </template>

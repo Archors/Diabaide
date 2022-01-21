@@ -4,12 +4,14 @@
       <div v-if="index < limit_by">
         <v-list-item :key="item.title">
           <v-list-item-content>
-            <span class="title">{{ item.name }}</span>
-            <p>
-              {{ item.brand }}
-              <br />
-              <br />
-              {{ item.sugar }}g de glucides pour 100grammes
+            <h2 class="#303952--text">{{ item.name }}</h2>
+            <p></p>
+            <h4 class="#303952--text">{{ item.brand }}</h4>
+            <br />
+            <br />
+            <p class="#303952--text">
+              <span style="font-weight: bold">{{ item.sugar }} g</span> de
+              glucides pour 100grammes
             </p>
           </v-list-item-content>
         </v-list-item>

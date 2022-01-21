@@ -40,5 +40,7 @@ export default {
   font-family: "Montserrat", Helvetica, Arial;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #303952;
+  
 }
 </style>

@@ -1,32 +1,27 @@
 <template>
-  <v-card color = "secondary"  class="mx-auto text-center" max-width="750">
-    <v-card-text>
-      <div class="text-h6">History</div>
-    </v-card-text>
-    <v-card-text>
-    
-        <v-frappe-chart
-          type="line"
-          :labels= timestamp
-          :data="[
-              { values: glycemias}
-          ]"
-          :colors="['red']"
-          :lineOptions="{
-            regionFill: 1
-          }"/>
-    </v-card-text>
-  </v-card>
+  <div>
+    <div class="text-h6">History</div>
+    <div>
+      <v-frappe-chart
+        type="line"
+        :labels="timestamp"
+        :data="[{ values: glycemias }]"
+        :colors="['red']"
+        :lineOptions="{
+          regionFill: 1,
+        }"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
   data: () => ({
-    glycemias: [1,2,3,4,5,6,7,8,9,10],
-    timestamp: ["","","","","","","","","",""],
+    glycemias: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    timestamp: ["", "", "", "", "", "", "", "", "", ""],
   }),
-  created() {
-  },
+  created() {},
   computed: {},
   watch: {
     "$store.state.value_history_glycemias": function () {
@@ -38,4 +33,3 @@ export default {
   },
 };
 </script>
-
