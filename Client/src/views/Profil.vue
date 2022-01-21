@@ -18,6 +18,7 @@
         </v-toolbar>
         <v-card-text>
           <v-text-field
+            dense
             :disabled="!isEditingUserInfo"
             v-model="user.first_name"
             label="Prénom*"
@@ -25,6 +26,7 @@
             required
           ></v-text-field>
           <v-text-field
+            dense
             :disabled="!isEditingUserInfo"
             v-model="user.last_name"
             label="Nom*"
@@ -42,6 +44,7 @@
           >
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
+                dense
                 :disabled="!isEditingUserInfo"
                 v-model="user.birthdate"
                 label="Date de naissance"
@@ -60,6 +63,7 @@
             ></v-date-picker>
           </v-menu>
           <v-text-field
+            dense
             :disabled="!isEditingUserInfo"
             v-model="user.email"
             label="Mail*"
@@ -67,6 +71,7 @@
             required
           ></v-text-field>
           <v-text-field
+            dense
             :disabled="!isEditingUserInfo"
             v-model="user.ratio"
             label="Ratio*"
@@ -114,6 +119,7 @@
       <v-form v-model="validPassword" @submit="savePasswordInfo">
         <v-card-text>
           <v-text-field
+            dense
             :disabled="!isEditingPasswordInfo"
             :append-icon="showOldPassword ? 'mdi-eye' : 'mdi-eye-off'"
             :type="showOldPassword ? 'text' : 'password'"
@@ -124,6 +130,7 @@
             required
           ></v-text-field>
           <v-text-field
+            dense
             :disabled="!isEditingPasswordInfo"
             :append-icon="showNewPassword1 ? 'mdi-eye' : 'mdi-eye-off'"
             :type="showNewPassword1 ? 'text' : 'password'"
@@ -143,6 +150,7 @@
             </template>
           </v-text-field>
           <v-text-field
+            dense
             :disabled="!isEditingPasswordInfo"
             :append-icon="showNewPassword2 ? 'mdi-eye' : 'mdi-eye-off'"
             :type="showNewPassword2 ? 'text' : 'password'"
@@ -182,12 +190,18 @@
         Votre mot de passe a été mis à jour
       </v-snackbar>
     </v-card>
+    <v-row justify="center">
+      <v-col padding-top: cols="2">
+        <v-btn color="error" @click="log_out"> Deconnexion </v-btn>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
 <script>
 import { updatePassword } from "../API/update/updatePassword";
 import { updateUser } from "../API/update/updateUser";
+import { logout } from "../API/authentification/logout";
 export default {
   data() {
     return {
@@ -220,6 +234,15 @@ export default {
       this.isEditingPasswordInfo = !this.isEditingPasswordInfo;
       this.hasSavedPasswordInfo = !this.hasSavedPasswordInfo;
       updatePassword(this.oldPassword, this.newPassword1);
+      this.clearPasswords();
+    },
+    clearPasswords() {
+      this.oldPassword = "";
+      this.newPassword1 = "";
+      this.newPassword2 = "";
+    },
+    log_out() {
+      logout();
     },
   },
   computed: {

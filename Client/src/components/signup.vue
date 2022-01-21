@@ -107,7 +107,7 @@
         <v-spacer></v-spacer>
 
         <v-card-actions class="justify-center">
-          <v-btn color="primary" text type="submit" :disabled="!valid">
+          <v-btn color="primary" type="submit" :disabled="!valid">
             Créer le compte
           </v-btn>
         </v-card-actions>

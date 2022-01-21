@@ -26,9 +26,14 @@
           </v-container>
         </v-card-text>
         <v-card-actions class="justify-center">
-          <v-btn color="primary" type="submit">
+          <v-btn color="primary" type="submit" v-if="!submited">
             Se connecter
           </v-btn>
+          <v-progress-circular
+            v-if="submited"
+            indeterminate
+            color="primary"
+          ></v-progress-circular>
         </v-card-actions>
       </v-form>
 
@@ -52,6 +57,7 @@ export default {
   data: () => ({
     valid: false,
     email: "",
+    submited: false,
     password: "",
     show1: false,
     snackbar: false,
@@ -62,8 +68,10 @@ export default {
   }),
   methods: {
     async login() {
+      this.submited = true;
       if ((await login(this.email, this.password)) == 0) {
         this.snackbar = true;
+        this.submited = false;
       }
     },
     toSignUp() {
