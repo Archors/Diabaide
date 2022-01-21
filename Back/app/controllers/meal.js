@@ -16,7 +16,6 @@ const {
 
       const mealsdb = await (await db.connect()).db().collection('Meals')
       const meals = await listAllMeals(mealsdb,decoded);   
-      console.log(meals)
       return res.status(200).json(meals);
       
   

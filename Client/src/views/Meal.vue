@@ -1,21 +1,17 @@
 <template>
-<div class="container">
+<div class="container "  >
+<div class="container "  >
 
   <div >
     <h1>Ajoutez vos apports en glucides</h1>
+    Ici vous pouvez ajoutez vos plats, recettes et envies afin de les retrouvez plus facilement
+    <br>
+    <br>
+    <br>
   </div>
   <br>
     <div class="row">
-      <v-card class="bloc col-sm" color="secondary">
-        Voulez-vous ajouter un repas ?
-        <v-btn
-        class="mx-2"
-        fab
-        dark
-        color="primary"
-        >
-        <v-icon  size="35">mdi-barcode-scan</v-icon>
-        </v-btn >
+      <v-card class="bloc col-sm">
        <AddMealForm />
         <v-divider></v-divider>
         <br>
@@ -24,15 +20,13 @@
     </div>
     <br>
     <br>
-    <div class="row">
+    <v-divider></v-divider>
     <br>
-      <v-card class="bloc col-sm" color="secondary" >
-        <h4>Banque de plats enregistrés</h4>
+        <h1>Banque de plats enregistrés</h1>
         <br>
         <ShowMeal/>
-      </v-card>
     </div>
-  </div>
+   </div>
 </template>
 
 

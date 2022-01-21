@@ -1,14 +1,18 @@
 <template>
   <div>
-    <v-row wrap>
-      <v-col cols="4">
-        <br />
-        <v-btn @click="isShow = !isShow">Renseigner un repas manuellement</v-btn>
+    Voulez-vous ajouter un repas ?
+    <v-row>
+      <br />
+      <v-col class="text-left">
+        <v-btn class="primary" @click="isShow = !isShow">Renseigner un repas manuellement</v-btn>
+        <v-btn class="mx-2" color="primary">
+          <v-icon size="35">mdi-barcode-scan</v-icon>
+        </v-btn>
       </v-col>
     </v-row>
     <br />
     <br />
-    <v-card v-if="isShow">
+    <v-card v-if="isShow" class="pale">
       <v-card-title class="justify-center">
         <span class="headline">Ajout d'un repas</span>
       </v-card-title>

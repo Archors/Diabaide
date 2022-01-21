@@ -12,7 +12,11 @@ export default new Vuetify({
       light: {
         primary: '#d0364f',
         secondary: '#f1f0e6',
-        blue: colors.shades.blue,
+        third: '#88a7e0',
+        pale : '#F0EBE2',
+        pale_one : '#D96575',
+        pale_two : '#E1939B',
+        pale_three : '#E9C2C1',
         error: colors.red.accent3,
         button: colors.shades.blue,
       },
