@@ -11,8 +11,9 @@ export async function updateAPI() {
     store.commit("SET_HISTORY_GLYCEMIAS", await getGlycemias());
     store.commit("SET_VALUE_HISTORY_GLYCEMIAS",await getLastDay());
     store.commit("SET_VALUE_TIMESTAMP_GLYCEMIAS",await getTimestamp());
-    /*store.commit("SET_HISTORY_MEALS", await getMeals());
-    store.commit("SET_HISTORY_INJECTIONS", await getInjections());*/
+    store.commit("SET_VALUE_MEALS", await getMeals());
+    // store.commit("SET_HISTORY_MEALS", await getMeals());
+    // store.commit("SET_HISTORY_INJECTIONS", await getInjections());
 }
 
 

@@ -1,13 +1,13 @@
 <template>
   <div>
-      
     <v-row wrap>
-    
-      <v-col cols="3">
-          Voulez-vous ajouter un repas ?
-        <v-btn @click="isShow = !isShow">Renseigner un repas</v-btn>
+      <v-col cols="4">
+        <br />
+        <v-btn @click="isShow = !isShow">Renseigner un repas manuellement</v-btn>
       </v-col>
     </v-row>
+    <br />
+    <br />
     <v-card v-if="isShow">
       <v-card-title class="justify-center">
         <span class="headline">Ajout d'un repas</span>
@@ -19,34 +19,33 @@
               v-model="meal.name"
               label="Name"
               :rules="[(v) => !!v || 'Quel est le nom du repas ?']"
-              prepend-icon="mdi-account"
+              prepend-icon="mdi-tag-outline"
               required
             ></v-text-field>
             <v-text-field
               v-model="meal.brand"
               label="Brand"
               :rules="[(v) => !!v || 'Quel est la marque du repas ?']"
-              prepend-icon="mdi-account"
+              prepend-icon="mdi-form-textbox"
               required
             ></v-text-field>
             <v-text-field
               v-model="meal.barcode"
               label="Code Bar"
               :rules="barCodeRule"
-              prepend-icon="mdi-account"
+              prepend-icon="mdi-barcode"
               required
             ></v-text-field>
             <v-text-field
               v-model="meal.sugar"
               label="Glucides"
-              prepend-icon="mdi-cards-heart"
+              prepend-icon="mdi-cube-outline"
               type="number"
               :rules="[(v) => !!v || 'Le pourcentage de sucre est requis']"
             />
           </v-container>
         </v-card-text>
         <v-spacer></v-spacer>
-
         <v-card-actions class="justify-center">
           <v-btn color="primary" text type="submit" :disabled="!valid">
             Ajouter ce repas

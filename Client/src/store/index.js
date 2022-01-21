@@ -9,6 +9,7 @@ export default new Vuex.Store({
     token: "",
     id: "61d8095482279396c5022ecf",
     user: {},
+    value_meals : {},
     history_injections: {},
     history_meals: {},
     history_glycemias: {},
@@ -44,6 +45,9 @@ export default new Vuex.Store({
     SET_HISTORY_INJECTIONS(state, history_injections) {
       state.history_injections = history_injections;
     },
+    SET_VALUE_MEALS(state, value_meals) {
+      state.value_meals = value_meals;
+    },
     SET_HISTORY_MEALS(state, history_meals) {
       state.history_meals = history_meals;
     },
@@ -75,6 +79,9 @@ export default new Vuex.Store({
     },
     user(state) {
       return state.user;
+    },
+    value_meals(state) {
+      return state.value_meals;
     },
     history_injections(state) {
       return state.history_injections;

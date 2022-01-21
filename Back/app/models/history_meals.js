@@ -4,7 +4,7 @@ const mongo = require('mongodb');
 const listHistory = async (history,userToVerify) => {
   return new Promise((resolve, reject) => {
     try{
-      const res = history.find({userId : userToVerify[0]._id}).sort({"timestamp":-1}).toArray();
+      const res = history.find({userId : userToVerify._id}).sort({"timestamp":-1}).toArray();
       resolve(res);
 
     } catch (err) {
@@ -37,7 +37,7 @@ const updateHistory = (client,timestamp, body,user) => {
     meal: body.meal
   }};
 
-  const history =  { $and: [ { timestamp: timestamp }, { userId:  userToVerify[0]._id } ] };
+  const history =  { $and: [ { timestamp: timestamp }, { userId:  userToVerify._id } ] };
 
   return new Promise((resolve, reject) => {
     client.updateOne(history,newH, (err) => {
@@ -53,10 +53,10 @@ const updateHistory = (client,timestamp, body,user) => {
 // Show history by date
 const showHistoryByTimestamp = async (info, client,userToVerify) => {
     return new Promise((resolve, reject) => {
-        var query =   { $and: [ { timestamp: info }, { userId:  userToVerify[0]._id } ] }
+        var query =   { $and: [ { timestamp: info }, { userId:  userToVerify._id } ] }
         if (/[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/.test(info))
         {
-          query =  { $and: [ { timestamp :{'$regex' : info, '$options' : 'i'}},  { userId:  userToVerify[0]._id } ] }
+          query =  { $and: [ { timestamp :{'$regex' : info, '$options' : 'i'}},  { userId:  userToVerify._id } ] }
         }
         const filter =  { projection: { _id: 0}}
         client.find(query,filter).sort({"timestamp":-1}).toArray(function(err, result) {

@@ -5,7 +5,7 @@ const mongo = require('mongodb');
 const listAllMeals = async (meals, userToVerify) => {
     return new Promise((resolve, reject) => {
       try{
-        const res = meals.find({userId : userToVerify[0]._id}).toArray();
+        const res = meals.find({userId : new mongo.ObjectId(userToVerify._id)}).toArray();
         resolve(res);
   
       } catch (err) {
@@ -38,9 +38,9 @@ const listAllMeals = async (meals, userToVerify) => {
 // Show meal by its name
   const showMeal = async (meal, client,userToVerify) => {
     return new Promise((resolve, reject) => {
-      var query =  { $and: [ { name: meal }, { userId:  userToVerify[0]._id } ] }
+      var query =  { $and: [ { name: meal }, { userId: new mongo.ObjectId(userToVerify._id) } ] }
       if (/\d{8}/.test(meal))
-        query =  { $and: [ { barcode: meal }, { userId:  userToVerify[0]._id } ] }
+        query =  { $and: [ { barcode: meal }, { userId: new mongo.ObjectId(userToVerify._id)} ] }
       filter =  { projection: { _id: 0}}
       client.find(query, filter).toArray(function(err, result) {
       if (err) reject(err);
@@ -53,7 +53,7 @@ const listAllMeals = async (meals, userToVerify) => {
   // Show meal by its name and brand
   const showMealByBrand = async (info, client,userToVerify) => {
     return new Promise((resolve, reject) => {
-      const query = { $and: [ { name: info.meal }, { brand: info.brand }, { userId: userToVerify[0]._id } ] }
+      const query = { $and: [ { name: info.meal }, { brand: info.brand }, { userId: new mongo.ObjectId(userToVerify._id) } ] }
       filter =  { projection: { _id: 0}}
       client.find(query,filter).toArray(function(err, result) {
       if (err) reject(err);

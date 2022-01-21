@@ -5,7 +5,7 @@ import authHeader from "../authentification/authHeader";
 export async function getMeals() {
   return axios({
     method: "get",
-    url: process.env.VUE_APP_ROOT_API + "/history_meals/",
+    url: process.env.VUE_APP_ROOT_API + "/meals/",
     headers: authHeader()
   })
     .then(function (response) {
