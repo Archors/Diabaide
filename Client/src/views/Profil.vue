@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <v-card class="overflow-hidden" color="secondary">
+  <div class="container">
+    <v-card class="overflow-hidden" color="secondary" :class="'rounded-xl'">
       <v-form v-model="validUser" v-on:submit.prevent @submit="saveUserInfo">
         <v-toolbar flat color="primary">
           <v-icon>mdi-account</v-icon>
@@ -20,6 +20,7 @@
           <v-text-field
             dense
             :disabled="!isEditingUserInfo"
+            prepend-icon="mdi-account-cowboy-hat"
             v-model="user.first_name"
             label="Prénom*"
             :rules="[(v) => !!v || 'Le prénom est obligatoire']"
@@ -28,6 +29,7 @@
           <v-text-field
             dense
             :disabled="!isEditingUserInfo"
+            prepend-icon="mdi-badge-account"
             v-model="user.last_name"
             label="Nom*"
             :rules="[(v) => !!v || 'Le nom est obligatoire']"
@@ -65,6 +67,7 @@
           <v-text-field
             dense
             :disabled="!isEditingUserInfo"
+            prepend-icon="mdi-email"
             v-model="user.email"
             label="Mail*"
             :rules="[(v) => !!v || 'L\'adresse mail est obligatoire']"
@@ -74,6 +77,9 @@
             dense
             :disabled="!isEditingUserInfo"
             v-model="user.ratio"
+            prepend-icon="mdi-cards-heart"
+            type="number"
+            oninput="if(this.value < 0) this.value = 0;"
             label="Ratio*"
             :rules="[(v) => !!v || 'Le ratio est obligatoire']"
             required
@@ -101,7 +107,8 @@
         </v-snackbar>
       </v-form>
     </v-card>
-    <v-card class="overflow-hidden" color="secondary">
+    <br>
+    <v-card class="overflow-hidden" color="secondary" :class="'rounded-xl'">
       <v-toolbar flat color="primary">
         <v-icon>mdi-account</v-icon>
         <v-toolbar-title class="font-weight-light"> Password </v-toolbar-title>
@@ -121,6 +128,7 @@
           <v-text-field
             dense
             :disabled="!isEditingPasswordInfo"
+            prepend-icon="mdi-lock"
             :append-icon="showOldPassword ? 'mdi-eye' : 'mdi-eye-off'"
             :type="showOldPassword ? 'text' : 'password'"
             @click:append="showOldPassword = !showOldPassword"
@@ -132,6 +140,7 @@
           <v-text-field
             dense
             :disabled="!isEditingPasswordInfo"
+            prepend-icon="mdi-lock"
             :append-icon="showNewPassword1 ? 'mdi-eye' : 'mdi-eye-off'"
             :type="showNewPassword1 ? 'text' : 'password'"
             @click:append="showNewPassword1 = !showNewPassword1"
@@ -152,6 +161,7 @@
           <v-text-field
             dense
             :disabled="!isEditingPasswordInfo"
+            prepend-icon="mdi-lock"
             :append-icon="showNewPassword2 ? 'mdi-eye' : 'mdi-eye-off'"
             :type="showNewPassword2 ? 'text' : 'password'"
             @click:append="showNewPassword2 = !showNewPassword2"
@@ -191,6 +201,7 @@
       </v-snackbar>
     </v-card>
     <v-row justify="center">
+      <v-col cols="12"></v-col>
       <v-col padding-top: cols="2">
         <v-btn color="error" @click="log_out"> Deconnexion </v-btn>
       </v-col>
