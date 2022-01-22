@@ -25,10 +25,12 @@ export default {
   computed: {},
   watch: {
     "$store.state.value_history_glycemias": function () {
-      this.glycemias = this.$store.getters.value_history_glycemias;
+      if(Object.keys(this.$store.getters.value_history_glycemias).length > 1)
+        this.glycemias = this.$store.getters.value_history_glycemias;
     },
     "$store.state.value_timestamp_glycemias": function () {
-      this.timestamp = this.$store.getters.value_timestamp_glycemias;
+      if(Object.keys(this.$store.getters.value_timestamp_glycemias).length > 1)
+        this.timestamp = this.$store.getters.value_timestamp_glycemias;
     },
   },
 };

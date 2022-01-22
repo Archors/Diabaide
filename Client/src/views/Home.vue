@@ -16,11 +16,14 @@
     <br>
     <br>
     <br>
-    <Graph_glycemia />
+    <Graph_glycemia v-if="Object.keys(history_glycemias).length >1" />
+      <p v-else> Aucune données à afficher pour le graphe de la glycémie</p>
+      <v-divider></v-divider>
     <br>
     <br>
     <br>
-    <Graph_injection />
+    <Graph_injection v-if="Object.keys(history_injections).length >1"/>
+      <p v-else> Aucune données à afficher pour le graphe des injections </p>
   </div>
 </template>
 

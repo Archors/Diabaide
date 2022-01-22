@@ -25,10 +25,12 @@ export default {
   computed: {},
   watch: {
     "$store.state.value_history_injections": function () {
-      this.injections = this.$store.getters.value_history_injections;
+      if(Object.keys(this.$store.getters.value_history_injections).length > 1)
+        this.injections = this.$store.getters.value_history_injections;
     },
     "$store.state.value_timestamp_injections": function () {
-      this.timestamp = this.$store.getters.value_timestamp_injections;
+      if(Object.keys(this.$store.getters.value_timestamp_injections).length > 1)
+        this.timestamp = this.$store.getters.value_timestamp_injections;
     },
   },
 };
