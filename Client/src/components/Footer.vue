@@ -1,7 +1,7 @@
 <template>
-  <v-container>
+  <div>
     <FooterMobile />
-  </v-container>
+  </div>
 </template>
 
 <script>

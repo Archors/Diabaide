@@ -107,7 +107,7 @@
         </v-snackbar>
       </v-form>
     </v-card>
-    <br />
+    <br>
     <v-card class="overflow-hidden" color="secondary" :class="'rounded-xl'">
       <v-toolbar flat color="primary">
         <v-icon>mdi-account</v-icon>

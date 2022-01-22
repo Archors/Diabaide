@@ -1,5 +1,4 @@
 <template>
-  <div>
     <v-app :style="{ background: $vuetify.theme.themes[theme].pale }">
       <v-main>
         <v-container>
@@ -8,16 +7,17 @@
       </v-main>
       <Footer v-if="connectionStatus === 1" />
     </v-app>
-  </div>
 </template>
 
 <script>
+import NavbarDesktop from "./components/NavbarDesktop";
 import Footer from "./components/Footer";
 
 export default {
   name: "App",
   components: {
     Footer,
+    NavbarDesktop,
   },
 
   data: () => ({}),
