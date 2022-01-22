@@ -43,16 +43,10 @@ async function getTimestamp (items) {
     var i = 0
     items.forEach(element => {
         if(i < 10)
-        {
-            if(element.quantity){
-                console.log((element.timestamp).match(/\d\d:\d\d/)[0])
-            }
-            
+        { 
             arrayglycemia.push((element.timestamp).match(/\d\d:\d\d/)[0]);
             i = i +1;
-        }
-            
-        
+        }  
     });
     
     return arrayglycemia.reverse();

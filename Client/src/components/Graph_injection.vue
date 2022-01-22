@@ -21,12 +21,14 @@ export default {
     injections: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     timestamp: ["", "", "", "", "", "", "", "", "", ""],
   }),
-  created() {},
+  created() {
+  },
   computed: {},
   watch: {
     "$store.state.value_history_injections": function () {
-      if(Object.keys(this.$store.getters.value_history_injections).length > 1)
+      if(Object.keys(this.$store.getters.value_history_injections).length > 1){
         this.injections = this.$store.getters.value_history_injections;
+      }
     },
     "$store.state.value_timestamp_injections": function () {
       if(Object.keys(this.$store.getters.value_timestamp_injections).length > 1)
