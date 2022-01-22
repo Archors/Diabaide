@@ -70,7 +70,7 @@ export default new Vuex.Store({
       state.value_history_injections = value_history_injections;
     },
     SET_VALUE_TIMESTAMP_INJECTIONS(state, value_timestamp_injections) {
-      state.value_history_injections = value_timestamp_injections;
+      state.value_timestamp_injections = value_timestamp_injections;
     },
   },
   actions: {},
