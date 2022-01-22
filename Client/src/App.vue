@@ -12,13 +12,11 @@
 </template>
 
 <script>
-import NavbarDesktop from "./components/NavbarDesktop";
 import Footer from "./components/Footer";
 
 export default {
   name: "App",
   components: {
-    NavbarDesktop,
     Footer,
   },
 
@@ -41,6 +39,5 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #303952;
-  
 }
 </style>

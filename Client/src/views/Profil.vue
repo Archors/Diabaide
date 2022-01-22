@@ -107,7 +107,7 @@
         </v-snackbar>
       </v-form>
     </v-card>
-    <br>
+    <br />
     <v-card class="overflow-hidden" color="secondary" :class="'rounded-xl'">
       <v-toolbar flat color="primary">
         <v-icon>mdi-account</v-icon>
@@ -200,10 +200,11 @@
         Votre mot de passe a été mis à jour
       </v-snackbar>
     </v-card>
+    <v-btn class="logoutbutton" color="error" @click="log_out"> Deconnexion </v-btn>
     <v-row justify="center">
       <v-col cols="12"></v-col>
       <v-col padding-top: cols="2">
-        <v-btn color="error" @click="log_out"> Deconnexion </v-btn>
+        
       </v-col>
     </v-row>
   </div>
@@ -276,3 +277,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.logoutbutton {
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
