@@ -10,8 +10,13 @@ const {
   const jwt = require('jsonwebtoken');
   
   exports.index = async (req, res) => {
-    const token = req.headers.authorization.split(' ')[1];
-    const decoded = jwt.verify(token, 'pfe_2022');
+      var decoded = null
+    try {
+      const token = req.headers.authorization.split(' ')[1];
+      decoded = jwt.verify(token, 'pfe_2022');
+    } catch (err) {
+      return res.status(401).send("Missing Authentification Token");
+    }
     try { 
 
       const mealsdb = await (await db.connect()).db().collection('Meals')
@@ -39,8 +44,14 @@ const {
       return res.status(400).send("Brand is required");
     }
   
-    const token = req.headers.authorization.split(' ')[1];
-    const decoded = jwt.verify(token, 'pfe_2022');
+    var decoded = null
+    try {
+      const token = req.headers.authorization.split(' ')[1];
+      decoded = jwt.verify(token, 'pfe_2022');
+    } catch (err) {
+      return res.status(401).send("Missing Authentification Token");
+    }
+    
     try {
 
       const client = await (await db.connect()).db().collection('Meals')
@@ -55,8 +66,14 @@ const {
   
   exports.show = async (req, res) => {
 
-    const token = req.headers.authorization.split(' ')[1];
-    const decoded = jwt.verify(token, 'pfe_2022');
+    var decoded = null
+    try {
+      const token = req.headers.authorization.split(' ')[1];
+      decoded = jwt.verify(token, 'pfe_2022');
+    } catch (err) {
+      return res.status(401).send("Missing Authentification Token");
+    }
+
     try {
 
       const client = await (await db.connect()).db().collection('Meals')
@@ -73,7 +90,7 @@ const {
 
   exports.showFromBrand = async (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
-    const decoded = jwt.verify(token, 'pfe_2022');
+    var decoded = jwt.verify(token, 'pfe_2022');
     try { 
 
       const client = await (await db.connect()).db().collection('Meals')

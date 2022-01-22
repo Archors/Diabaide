@@ -11,8 +11,14 @@ const {
   const jwt = require('jsonwebtoken');
   
   exports.index = async (req, res) => {
-    const token = req.headers.authorization.split(' ')[1];
-    const decoded = jwt.verify(token, 'pfe_2022');
+    var decoded = null
+    try {
+      const token = req.headers.authorization.split(' ')[1];
+      decoded = jwt.verify(token, 'pfe_2022');
+    } catch (err) {
+      return res.status(401).send("Missing Authentification Token");
+    }
+    
     try {
       const userdb = await (await db.connect()).db().collection('Users')
       const userToVerify = await showUserFromEmail(decoded.email,userdb);  
@@ -36,8 +42,14 @@ const {
       return res.status(400).send("Meal is required");
     }
 
-    const token = req.headers.authorization.split(' ')[1];
-    const decoded = jwt.verify(token, 'pfe_2022');
+    var decoded = null
+    try {
+      const token = req.headers.authorization.split(' ')[1];
+      decoded = jwt.verify(token, 'pfe_2022');
+    } catch (err) {
+      return res.status(401).send("Missing Authentification Token");
+    }
+    
     try {
       const userdb = await (await db.connect()).db().collection('Users')
       const userToVerify = await showUserFromEmail(decoded.email,userdb);  
@@ -61,8 +73,14 @@ const {
       return res.status(400).send("Meal is required");
     }
 
-    const token = req.headers.authorization.split(' ')[1];
-    const decoded = jwt.verify(token, 'pfe_2022');
+    var decoded = null
+    try {
+      const token = req.headers.authorization.split(' ')[1];
+      decoded = jwt.verify(token, 'pfe_2022');
+    } catch (err) {
+      return res.status(401).send("Missing Authentification Token");
+    }
+    
     try {
       const userdb = await (await db.connect()).db().collection('Users')
       const userToVerify = await showUserFromEmail(decoded.email,userdb);  
@@ -78,8 +96,14 @@ const {
   };
   
   exports.showByTimestamp = async (req, res) => {
-    const token = req.headers.authorization.split(' ')[1];
-    const decoded = jwt.verify(token, 'pfe_2022');
+    var decoded = null
+    try {
+      const token = req.headers.authorization.split(' ')[1];
+      decoded = jwt.verify(token, 'pfe_2022');
+    } catch (err) {
+      return res.status(401).send("Missing Authentification Token");
+    }
+    
     try {
       const userdb = await (await db.connect()).db().collection('Users')
       const userToVerify = await showUserFromEmail(decoded.email,userdb);  

@@ -61,8 +61,13 @@ exports.create = async (req, res) => {
 };
 
 exports.show = async (req, res) => {
-  const token = req.headers.authorization.split(' ')[1];
-  const decoded = jwt.verify(token, 'pfe_2022');
+  var decoded = null
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    decoded = jwt.verify(token, 'pfe_2022');
+  } catch (err) {
+    return res.status(401).send("Missing Authentification Token");
+  }
 
   try {
     const client = await (await db.connect()).db().collection('Users')
@@ -109,11 +114,18 @@ exports.update = async (req, res) => {
     updated.email = body.email
   }
   updated = { $set: updated }
-
-  const token = req.headers.authorization.split(' ')[1];
-  const decoded = jwt.verify(token, 'pfe_2022');
+  var decoded = null
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    decoded = jwt.verify(token, 'pfe_2022');
+  } catch (err) {
+    return res.status(401).send("Missing Authentification Token");
+  }
 
   try {
+    const token = req.headers.authorization.split(' ')[1];
+    var decoded = jwt.verify(token, 'pfe_2022');
+
     const client = await (await db.connect()).db().collection('Users')
     const userVerify = await showUserFromEmail(decoded.email, client);
 
@@ -135,8 +147,13 @@ exports.updatePwd = async (req, res) => {
   
   updated = { $set: updated }
 
-  const token = req.headers.authorization.split(' ')[1];
-  const decoded = jwt.verify(token, 'pfe_2022');
+  var decoded = null
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    decoded = jwt.verify(token, 'pfe_2022');
+  } catch (err) {
+    return res.status(401).send("Missing Authentification Token");
+  }
 
   try {
     const client = await (await db.connect()).db().collection('Users')

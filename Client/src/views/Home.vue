@@ -16,22 +16,30 @@
     <br>
     <br>
     <br>
-    <Graph />
+    <Graph_glycemia />
+    <br>
+    <br>
+    <br>
+    <Graph_injection />
   </div>
 </template>
 
 <script>
-import Graph from "../components/Graph";
 import { updateAPI } from "../API/updateAPI";
+import Graph_glycemia from '../components/Graph_glycemia.vue';
+import Graph_injection from '../components/Graph_injection.vue';
 
 export default {
   components: {
-    Graph,
+    Graph_glycemia,
+    Graph_injection,
   },
   data: () => ({
     user: {},
     history_glycemias: {},
     value_history_glycemias: {},
+    history_injections: {},
+    value_history_injections: {},
   }),
   created() {
     this.timer = setInterval(async () => {
@@ -43,9 +51,15 @@ export default {
     async updateData() {
       await updateAPI();
       this.user = this.$store.getters.user;
+
       this.history_glycemias = this.$store.getters.history_glycemias;
       this.value_history_glycemias =
         this.$store.getters.value_history_glycemias;
+
+        this.history_injections = this.$store.getters.history_injections;
+      this.value_history_injections =
+        this.$store.getters.value_history_injections;
+
     },
     cancelAutoUpdate() {
       clearInterval(this.timer);
@@ -73,6 +87,11 @@ export default {
       this.history_glycemias = this.$store.getters.history_glycemias;
       this.value_history_glycemias =
         this.$store.getters.value_history_glycemias;
+    },
+    "$store.state.history_injections": function () {
+      this.history_injections = this.$store.getters.history_injections;
+      this.value_history_injections =
+        this.$store.getters.value_history_injections;
     },
   },
   beforeDestroy() {

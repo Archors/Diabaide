@@ -1,7 +1,5 @@
 <template>
-<div class="container "  >
-<div class="container "  >
-
+<div>
   <div >
     <h1>Ajoutez vos apports en glucides</h1>
     Ici vous pouvez ajoutez vos plats, recettes et envies afin de les retrouvez plus facilement
@@ -25,8 +23,7 @@
         <h1>Banque de plats enregistrés</h1>
         <br>
         <ShowMeal/>
-    </div>
-   </div>
+</div>
 </template>
 
 
