@@ -18,13 +18,11 @@ const {
       return res.status(401).send("Missing Authentification Token");
     }
     
-    try {
-      const userdb = await (await db.connect()).db().collection('Users')
-      const userToVerify = await showUserFromEmail(decoded.email,userdb);  
+    try { 
 
       const client = await (await db.connect()).db().collection('History_injections')
-      const users = await listHistory(client,userToVerify);   
-      return res.status(200).json(users);
+      const injections = await listHistory(client,decoded);   
+      return res.status(200).json(injections);
       
   
     } catch (err) {
