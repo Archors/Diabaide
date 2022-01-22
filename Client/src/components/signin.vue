@@ -73,6 +73,7 @@ export default {
         this.snackbar = true;
         this.submited = false;
       }
+      else this.$router.push({ path: "home" });
     },
     toSignUp() {
       this.$store.commit("LOGIN_TO_SIGNUP");

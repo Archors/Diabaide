@@ -61,11 +61,14 @@ const router = new VueRouter({
 
 //Check Authentification before allowing changing page
 router.beforeEach((to, from, next) => {
-  const auth = store.getters.isLoggedIn;
+  //const auth = store.getters.isLoggedIn;
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
-  if (requiresAuth && !auth) {
-    next("login");}
-  else next();
+  if (requiresAuth && Vue.$cookies.get("token") == null) {
+    next("login");
+  } else {
+    store.commit("LOGIN_SUCCESS");
+    next();
+  }
 });
 
 export default router;

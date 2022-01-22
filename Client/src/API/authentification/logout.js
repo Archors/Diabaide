@@ -7,5 +7,4 @@ store.getters.config;
 export function logout() {
     Vue.$cookies.remove("token");
     store.commit("DISCONNECT");
-    router.push('/login')
 }

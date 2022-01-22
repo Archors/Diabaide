@@ -1,23 +1,22 @@
 <template>
-    <v-app :style="{ background: $vuetify.theme.themes[theme].pale }">
-      <v-main>
-        <v-container>
-          <router-view />
-        </v-container>
-      </v-main>
-      <Footer v-if="connectionStatus === 1" />
-    </v-app>
+  <v-app :style="{ background: $vuetify.theme.themes[theme].pale }">
+    <v-main>
+      <v-container>
+        <router-view />
+      </v-container>
+    </v-main>
+    <Footer v-if="connectionStatus === 1" />
+  </v-app>
 </template>
 
 <script>
-import NavbarDesktop from "./components/NavbarDesktop";
+import NavbarDesktop from "./components/NavbarDesktop"; //don't delete
 import Footer from "./components/Footer";
 
 export default {
   name: "App",
   components: {
     Footer,
-    NavbarDesktop,
   },
 
   data: () => ({}),

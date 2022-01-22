@@ -9,27 +9,25 @@ export default new Vuex.Store({
     token: "",
     id: "61d8095482279396c5022ecf",
     user: {},
-    value_meals : {},
+    value_meals: {},
     value_history_injections: {},
     value_timestamp_injections: {},
     history_meals: {},
     history_glycemias: {},
     value_history_glycemias: {},
-    value_timestamp_glycemias : {},
+    value_timestamp_glycemias: {},
     api: "urlapi",
     connection_status: 0, //-1 = to signUp   0 = toSignIn    1 = Connected
   },
   mutations: {
     LOGIN_SUCCESS(state, accessToken = -1) {
-      console.log("Connected");
       if (accessToken != -1) Vue.$cookies.set("token", accessToken, "1d");
       state.connection_status = 1;
-      router.push({ path: "home" }).catch(() => {
-        /* ignore */
-      });
     },
     DISCONNECT(state) {
+      Vue.$cookies.remove("token");
       state.connection_status = 0;
+      router.push({ path: "login" });
     },
     LOGIN_TO_SIGNUP(state) {
       state.connection_status = -1;

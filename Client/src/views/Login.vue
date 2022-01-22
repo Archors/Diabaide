@@ -15,6 +15,9 @@ export default {
   created() {
     if (this.$cookies.get("token") != null) {
       this.$store.commit("LOGIN_SUCCESS", this.$cookies.get("token"));
+      this.$router.push({ path: "home" });
+    } else {
+      this.$store.commit("LOGIN_TO_SIGNIN");
     }
   },
   computed: {
