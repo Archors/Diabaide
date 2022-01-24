@@ -5,7 +5,7 @@ const mongo = require('mongodb');
 const listAllMeals = async (meals, userToVerify) => {
     return new Promise((resolve, reject) => {
       try{
-        const res = meals.find({userId : new mongo.ObjectId(userToVerify._id)}).toArray();
+        const res = meals.find({userId : new mongo.ObjectId(userToVerify._id)}).sort({"name": 1}).toArray();
         resolve(res);
   
       } catch (err) {

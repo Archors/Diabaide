@@ -1,8 +1,8 @@
 <template id="list">
   <div>
-    <v-card v-for="(item, index) in items" :key="item.title">
+    <v-card v-for="(item, index) in items" :key="index">
       <div v-if="index < limit_by">
-        <v-list-item :key="item.title">
+        <v-list-item :key="index">
           <v-list-item-content>
             <h2 class="#303952--text">{{ item.name }}</h2>
             <p></p>

@@ -25,6 +25,10 @@
             <v-btn color="red" @click="reset"> reset </v-btn>
           </v-col>
         </v-row>
+        <br>
+        <br>
+        <v-divider></v-divider>
+        <TimelineMeal />
       </div>
     </div>
   </div>
@@ -34,8 +38,12 @@
 import { injection } from "../Pump/injection";
 import { reset } from "../Pump/reset";
 import { checkData } from "../API/checkData";
+import  TimelineMeal  from "../components/TimelineMeal.vue";
 
 export default {
+  components: {
+  TimelineMeal,
+  },
   data() {
     return {
       urlInject: "http://192.168.220.86/?inject=",
