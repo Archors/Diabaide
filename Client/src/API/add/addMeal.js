@@ -7,8 +7,10 @@ export async function addMeal(meal) {
     method: "post",
     url: process.env.VUE_APP_ROOT_API + "/meals/",
     data: mealJSON,
+    headers: authHeader()
   })
     .then(function (response) {
+      store.commit("ADD_VALUE_MEALS", meal)
       return response;
     })
     .catch(function (erreur) {

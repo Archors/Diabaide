@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="bandeau">
-      <h1>Bonjour {{ user.first_name }} {{ user.last_name }}</h1>
+      <h2>Bonjour {{ user.first_name }} {{ user.last_name }}</h2>
     </div>
     <v-divider></v-divider>
     <br />
@@ -10,11 +10,10 @@
     >
     <br />
     <br />
-    <h3>Votre dernier taux enregistrer :</h3>
-    <h1>
+    <h4>Votre dernier taux enregistré :</h4>
+    <h2>
       {{ lastGlycemia }}
-    </h1>
-    <br />
+    </h2>
     <v-divider></v-divider>
     <br />
     <v-row>

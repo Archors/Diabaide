@@ -9,10 +9,13 @@ export default new Vuex.Store({
     token: "",
     id: "61d8095482279396c5022ecf",
     user: {},
+    value_open_food: {},
     value_meals: {},
     value_history_injections: {},
     value_timestamp_injections: {},
     history_meals: {},
+    timestamp_history_meals : {},
+    real_history_meals : {},
     history_glycemias: {},
     value_history_glycemias: {},
     value_timestamp_glycemias: {},
@@ -46,9 +49,18 @@ export default new Vuex.Store({
     SET_VALUE_MEALS(state, value_meals) {
       state.value_meals = value_meals;
     },
+    ADD_VALUE_MEALS(state, value_meals) {
+      state.value_meals.push(value_meals);
+    },
     ///HISOTRY MEALS----------------------------------------------------
     SET_HISTORY_MEALS(state, history_meals) {
       state.history_meals = history_meals;
+    },
+    SET_VALUE_HISTORY_MEALS(state, value_history_meals) {
+      state.value_history_meals = value_history_meals;
+    },
+    SET_VALUE_TIMESTAMP_MEALS(state, value_timestamp_meals) {
+      state.value_timestamp_meals = value_timestamp_meals;
     },
     ///HISTORY GLYCEMIAS----------------------------------------------------
     SET_HISTORY_GLYCEMIAS(state, history_glycemias) {
@@ -69,6 +81,10 @@ export default new Vuex.Store({
     },
     SET_VALUE_TIMESTAMP_INJECTIONS(state, value_timestamp_injections) {
       state.value_timestamp_injections = value_timestamp_injections;
+    },
+    //OPEN FOOD-------------------------------------------------------------------
+    SET_VALUE_OPEN_FOOD(state, value_open_food) {
+      state.value_open_food = value_open_food;
     },
   },
   actions: {},
@@ -99,6 +115,12 @@ export default new Vuex.Store({
     history_meals(state) {
       return state.history_meals;
     },
+    value_history_meals(state) {
+      return state.value_history_meals;
+    },
+    value_timestamp_meals(state) {
+      return state.value_timestamp_meals;
+    },
     ///HISTORY GLYCEMIA----------------------------------------------------
     history_glycemias(state) {
       return state.history_glycemias;
@@ -118,6 +140,10 @@ export default new Vuex.Store({
     },
     value_timestamp_injections(state) {
       return state.value_timestamp_injections;
+    },
+    ///OPEN FOOD -------------------------------------------------------
+    value_open_food(state) {
+      return state.value_open_food;
     },
     api(state) {
       return state.api;

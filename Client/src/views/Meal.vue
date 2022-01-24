@@ -3,7 +3,7 @@
     <div>
       <h1>Ajoutez vos apports en glucides</h1>
       Ici vous pouvez ajoutez vos plats, recettes et envies afin de les
-      retrouvez plus facilement
+      retrouver plus facilement
       <br />
       <br />
       <br />
