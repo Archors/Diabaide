@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="text-h6">Historique de vos derniers relevés de glycémie</div>
+    <div class="text-h6">Historique des dernières glycémie</div>
     <div>
       <v-frappe-chart
         type="line"

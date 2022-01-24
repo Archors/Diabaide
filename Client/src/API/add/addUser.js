@@ -8,7 +8,6 @@ export async function addUser(user) {
     data: user,
   })
     .then(function (response) {
-      console.log("user ajoute")
       return response;
     })
     .catch(function (erreur) {

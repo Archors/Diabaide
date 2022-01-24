@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="text-h6">Historique de vos dernières injections</div>
+    <div class="text-h6">Historique des dernières injections</div>
     <div>
       <v-frappe-chart
         type="line"

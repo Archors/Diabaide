@@ -4,33 +4,64 @@
       <h1>Bonjour {{ user.first_name }} {{ user.last_name }}</h1>
     </div>
     <v-divider></v-divider>
-    <br>
-    <span class="primary--text bold">Vous n'avez renseigné aucune donnée aujourd'hui !</span>
-    <br>
-    <br>
+    <br />
+    <span class="primary--text bold"
+      >Vous n'avez renseigné aucune donnée aujourd'hui !</span
+    >
+    <br />
+    <br />
     <h3>Votre dernier taux enregistrer :</h3>
     <h1>
       {{ lastGlycemia }}
     </h1>
+    <br />
     <v-divider></v-divider>
-    <br>
-    <br>
-    <br>
+    <br />
+    <v-row>
+      <v-col cols="8"><h4>Ajout d'une glycemie :</h4></v-col>
+      <v-col cols="4">
+        <v-text-field
+          v-model="glycemia"
+          label="Glycemie"
+          single-line
+          prepend-icon="mdi-cards-heart"
+          type="number"
+          oninput="if(this.value < 0) this.value = 0;"
+          dense
+        />
+      </v-col>
+      <v-col cols="6"
+        ><v-btn
+          color="success"
+          @click="addGlycemia"
+          :disabled="this.glycemia == 0"
+        >
+          Ajout
+        </v-btn></v-col
+      >
+      <v-col cols="6"><v-btn color="red">Supprimer</v-btn></v-col>
+    </v-row>
+    <br />
+    <v-divider></v-divider>
+    <br />
+    <br />
+    <br />
     <Graph_glycemia v-if="history_glycemias" />
-      <p v-else> Aucune données à afficher pour le graphe de la glycémie</p>
-      <v-divider></v-divider>
-    <br>
-    <br>
-    <br>
-    <Graph_injection v-if="history_injections"/>
-      <p v-else> Aucune données à afficher pour le graphe des injections </p>
+    <p v-else>Aucune données à afficher pour le graphe de la glycémie</p>
+    <v-divider></v-divider>
+    <br />
+    <br />
+    <br />
+    <Graph_injection v-if="history_injections" />
+    <p v-else>Aucune données à afficher pour le graphe des injections</p>
   </div>
 </template>
 
 <script>
 import { updateAPI } from "../API/updateAPI";
-import Graph_glycemia from '../components/Graph_glycemia.vue';
-import Graph_injection from '../components/Graph_injection.vue';
+import { addGlycemia } from "../API/add/addGlycemia";
+import Graph_glycemia from "../components/Graph_glycemia.vue";
+import Graph_injection from "../components/Graph_injection.vue";
 
 export default {
   components: {
@@ -39,6 +70,7 @@ export default {
   },
   data: () => ({
     user: {},
+    glycemia: 0,
     history_glycemias: {},
     value_history_glycemias: {},
     history_injections: {},
@@ -59,13 +91,16 @@ export default {
       this.value_history_glycemias =
         this.$store.getters.value_history_glycemias;
 
-        this.history_injections = this.$store.getters.history_injections;
-        this.value_history_injections =
+      this.history_injections = this.$store.getters.history_injections;
+      this.value_history_injections =
         this.$store.getters.value_history_injections;
-
     },
     cancelAutoUpdate() {
       clearInterval(this.timer);
+    },
+    addGlycemia() {
+      addGlycemia(this.glycemia);
+      this.glycemia = 0;
     },
   },
   computed: {

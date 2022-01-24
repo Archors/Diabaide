@@ -33,8 +33,7 @@
 <script>
 import { injection } from "../Pump/injection";
 import { reset } from "../Pump/reset";
-import { checkData } from "../API/checkData";
-
+//import { checkData } from "../API/checkData";
 export default {
   data() {
     return {
@@ -50,7 +49,7 @@ export default {
     injection() {
       var injected = this.urlInject + this.inject;
       //window.open(injected, "_blank");
-      injection(this.inject);
+      injection(Math.round(this.inject * 2.83));
       this.inject = 0;
     },
     reset() {

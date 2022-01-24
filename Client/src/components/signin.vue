@@ -72,8 +72,7 @@ export default {
       if ((await login(this.email, this.password)) == 0) {
         this.snackbar = true;
         this.submited = false;
-      }
-      else this.$router.push({ path: "home" });
+      } else this.$router.push({ path: "home" });
     },
     toSignUp() {
       this.$store.commit("LOGIN_TO_SIGNUP");

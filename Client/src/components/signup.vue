@@ -65,7 +65,7 @@
               label="E-mail"
               prepend-icon="mdi-email"
               required
-            ></v-text-field>
+            />
             <v-text-field
               v-model="user.password"
               label="Password"

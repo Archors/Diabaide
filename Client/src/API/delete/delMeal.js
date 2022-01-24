@@ -1,12 +1,12 @@
 import axios from "axios";
+import authHeader from "../authentification/authHeader";
 
-//Ajouter un meal en BDD
-export async function addMeal(meal) {
-  var mealJSON = JSON.stringify(meal);
+//Supprimer la derniere glycemie en BDD
+export async function delMeal() {
   return axios({
-    method: "post",
+    method: "delete",
     url: process.env.VUE_APP_ROOT_API + "/meals/",
-    data: mealJSON,
+    headers: authHeader(),
   })
     .then(function (response) {
       return response;
