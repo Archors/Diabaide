@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="text-h6">History</div>
+    <div class="text-h6">Historique de vos derniers relevés de glycémie</div>
     <div>
       <v-frappe-chart
         type="line"
@@ -18,8 +18,8 @@
 <script>
 export default {
   data: () => ({
-    glycemias: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    timestamp: ["", "", "", "", "", "", "", "", "", ""],
+    glycemias: [1, 2, 3, 4, 5, 6, 7],
+    timestamp: ["", "", "", "", "", "", ""],
   }),
   created() {},
   computed: {},

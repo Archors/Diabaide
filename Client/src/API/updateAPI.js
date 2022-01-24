@@ -24,7 +24,7 @@ export async function updateAPI() {
     var arrayglycemia = [];
     var i = 0
     items.forEach(element => {
-        if(i < 10)
+        if(i < 7)
         {
             if(element.glycemia){
                 arrayglycemia.push(element.glycemia);
@@ -42,7 +42,7 @@ async function getTimestamp (items) {
     var arrayglycemia = [];
     var i = 0
     items.forEach(element => {
-        if(i < 10)
+        if(i < 7)
         { 
             arrayglycemia.push((element.timestamp).match(/\d\d:\d\d/)[0]);
             i = i +1;

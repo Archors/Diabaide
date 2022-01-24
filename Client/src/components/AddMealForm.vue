@@ -4,7 +4,7 @@
     <v-row>
       <br />
       <v-col class="text-left">
-        <v-btn class="primary" @click="isShow = !isShow">Renseigner un repas manuellement</v-btn>
+        <v-btn class="primary" @click="isShow = !isShow">Ajout manuel</v-btn>
         <v-btn class="mx-2" color="#546de5">
           <v-icon size="35">mdi-barcode-scan</v-icon>
         </v-btn>
