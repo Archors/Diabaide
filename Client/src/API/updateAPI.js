@@ -4,6 +4,7 @@ import { getUser } from "./get/getUser";
 import { getGlycemias } from "../API/get/getGlycemias";
 import { getMeals } from "../API/get/getMeals";
 import { getInjections } from "../API/get/getInjections";
+import { getOpenFood } from "./get/getOpenFoods";
 
 //Met a jour les donnes dans l'application
 export async function updateAPI() {

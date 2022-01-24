@@ -21,7 +21,7 @@ const listAllMeals = async (meals, userToVerify) => {
       sugar: body.sugar,
       brand: body.brand,
       barCode : body.barCode,
-      userId : user._id
+      userId : new mongo.ObjectId(user._id)
     };
   
     return new Promise((resolve, reject) => {
@@ -62,9 +62,6 @@ const listAllMeals = async (meals, userToVerify) => {
      
     });
   };
-  
-  
-  
   
   module.exports = {
     listAllMeals,

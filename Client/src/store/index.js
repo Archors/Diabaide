@@ -9,6 +9,7 @@ export default new Vuex.Store({
     token: "",
     id: "61d8095482279396c5022ecf",
     user: {},
+    value_open_food: {},
     value_meals: {},
     value_history_injections: {},
     value_timestamp_injections: {},
@@ -70,6 +71,10 @@ export default new Vuex.Store({
     SET_VALUE_TIMESTAMP_INJECTIONS(state, value_timestamp_injections) {
       state.value_timestamp_injections = value_timestamp_injections;
     },
+    //OPEN FOOD-------------------------------------------------------------------
+    SET_VALUE_OPEN_FOOD(state, value_open_food) {
+      state.value_open_food = value_open_food;
+    },
   },
   actions: {},
   modules: {},
@@ -118,6 +123,10 @@ export default new Vuex.Store({
     },
     value_timestamp_injections(state) {
       return state.value_timestamp_injections;
+    },
+    ///OPEN FOOD -------------------------------------------------------
+    value_open_food(state) {
+      return state.value_open_food;
     },
     api(state) {
       return state.api;
