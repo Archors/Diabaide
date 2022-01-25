@@ -60,9 +60,7 @@ const showUserFromEmail = async (email, client) => {
 
     try{
       const user = client.findOne(query )
-      console.log(user)
       resolve(user);
-      
     } catch (err) {
       reject(err)
     }
