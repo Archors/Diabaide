@@ -1,11 +1,9 @@
 const {
     listHistory,
     showHistoryByTimestamp,
-    addToHistory
+    addToHistory,
+    deleteGlycemia
   } = require("../models/history_glycemias");
-  const {
-    showUserFromEmail
-  } = require("../models/user");
   const db = require("../../DB.js")
   const jwt = require('jsonwebtoken');
   
@@ -76,6 +74,24 @@ const {
       return res.sendStatus(404);
     }finally {
       await db.close()
+    }
+  };
+
+  exports.delete = async (req, res) => {
+    var decoded = null
+    try {
+      const token = req.headers.authorization.split(' ')[1];
+      decoded = jwt.verify(token, 'pfe_2022');
+    } catch (err) {
+      return res.status(401).send("Missing Authentification Token");
+    }
+
+    try{
+      const client = await (await db.connect()).db().collection('History_glycemie')
+      const glyc = await deleteGlycemia(client,decoded);
+      return res.status(204).json(glyc)
+    } catch (err) {
+      return res.status(401).send("Can't delete the last glycemias");
     }
   };
   

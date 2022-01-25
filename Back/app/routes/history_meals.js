@@ -7,5 +7,6 @@ router.get('/',auth, historyMealsController.index);
 router.post('/',auth, historyMealsController.create);
 router.get('/:timestamp',auth, historyMealsController.showByTimestamp);
 router.put('/:timestamp',auth, historyMealsController.updateByTimestamp);
+router.delete('/',auth, historyMealsController.delete);
 
 module.exports = router;

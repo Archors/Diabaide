@@ -2,7 +2,8 @@ const {
     listHistory,
     showHistoryByTimestamp,
     addToHistory,
-    updateHistory
+    updateHistory,
+    deleteHistoryMeal
   } = require("../models/history_meals");
   const {
     showUserFromEmail
@@ -116,6 +117,24 @@ const {
       return res.sendStatus(404);
     }finally {
       await db.close()
+    }
+  };
+
+  exports.delete = async (req, res) => {
+    var decoded = null
+    try {
+      const token = req.headers.authorization.split(' ')[1];
+      decoded = jwt.verify(token, 'pfe_2022');
+    } catch (err) {
+      return res.status(401).send("Missing Authentification Token");
+    }
+
+    try{
+      const client = await (await db.connect()).db().collection('History_meals')
+      const meal = await deleteHistoryMeal(client,decoded);
+      return res.status(204).json(meal)
+    } catch (err) {
+      return res.status(401).send("Can't delete the last glycemias");
     }
   };
   
