@@ -53,6 +53,7 @@ import { injection } from "../Pump/injection";
 import { reset } from "../Pump/reset";
 import { checkData } from "../API/checkData";
 import { addInjection } from "../API/add/addInjection";
+import { addGlycemia } from "../API/add/addGlycemia";
 import { delInjection } from "../API/delete/delInjection";
 import TimelineMeal from "../components/TimelineMeal.vue";
 
@@ -77,6 +78,8 @@ export default {
     injection() {
       injection(Math.round(this.inject * 2.83));
       addInjection(this.inject);
+      addGlycemia(parseInt(this.glucides));
+      
       this.inject = 0;
     },
     reset() {
