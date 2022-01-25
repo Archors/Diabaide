@@ -22,7 +22,7 @@
         prepend-icon="mdi-cards-heart"
         type="number"
         oninput="if(this.value < 0 || this.value > 1000) this.value = 0;"
-        label="Quantité d'insuline"
+        label="Quantité d'insuline*"
         required
       ></v-text-field>
       <div fill-height fluid>
@@ -42,6 +42,8 @@
         <v-divider></v-divider>
         <TimelineMeal />
       </div>
+      <br>
+      <h5>* : Cette application est une aide au calcul de glucides, les paramètres étant propres à chaque personne elle ne peut en aucun cas être désignée responsable d'un problème lié à un mauvais dosage d'insuline</h5>
     </div>
   </div>
 </template>

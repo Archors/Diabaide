@@ -1,8 +1,8 @@
 import axios from "axios";
 import authHeader from "../authentification/authHeader";
-import updateAPI from "../updateAPI"
 import store from "../../store/index";
 store.getters.config;
+import { updateAPI } from "../updateAPI";
 
 //Ajouter une glycemie en BDD
 export async function addGlycemia(glycemia) {
@@ -16,8 +16,8 @@ export async function addGlycemia(glycemia) {
     headers: authHeader(),
   })
     .then(function (response) {
-      updateAPI();
       store.commit("ADD_GLYCEMIA", glycemia);
+      updateAPI();
       return response;
     })
     .catch(function (erreur) {
