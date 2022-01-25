@@ -18,7 +18,7 @@ const addToHistory = (body,client, user) => {
   const history = {
     timestamp: new Date().toISOString(),
     glycemia: body.glycemia,
-    userId : user._id
+    userId : new mongo.ObjectId(user._id)
   };
 
   return new Promise((resolve, reject) => {
@@ -50,11 +50,27 @@ const showHistoryByTimestamp = async (info, client, userToVerify) => {
     });
   };
 
+  const deleteGlycemia = (client, decoded) => {
+  
+    return new Promise((resolve, reject) => {
+      
+      client.deleteOne( {userId : new mongo.ObjectId(decoded._id)},
+        { sort: { "timestamp": -1 } }, (err) => {
+          if (err) {
+            return reject(err);
+          } else {
+            resolve();
+          }
+        });
+    });
+  };
+
 
 
 module.exports = {
     listHistory,
     showHistoryByTimestamp,
     addToHistory,
+    deleteGlycemia,
     
 };

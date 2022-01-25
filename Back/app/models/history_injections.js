@@ -50,11 +50,27 @@ const showHistoryByTimestamp = async (info, client, userToVerify) => {
     });
   };
 
+  const deleteInjection = (client, decoded) => {
+  
+    return new Promise((resolve, reject) => {
+      
+      client.deleteOne( {userId : new mongo.ObjectId(decoded._id)},
+        { sort: { "timestamp": -1 } }, (err) => {
+          if (err) {
+            return reject(err);
+          } else {
+            resolve();
+          }
+        });
+    });
+  };
+
 
 
 module.exports = {
     listHistory,
     showHistoryByTimestamp,
     addToHistory,
+    deleteInjection
     
 };
