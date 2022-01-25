@@ -15,25 +15,25 @@
             <v-col>
               <v-row v-for="(el, idx) in item.meal" :key="idx">
                 <v-col>
-                <strong>{{ infoMeal(el).name }}</strong>
+                  <strong>{{ infoMeal(el).name }}</strong>
                 </v-col>
                 <v-col>
-                <div class="text-caption">{{ infoMeal(el).sugar }}g / 100g</div>
+                  <div class="text-caption">
+                    {{ infoMeal(el).sugar }}g / 100g
+                  </div>
                 </v-col>
               </v-row>
             </v-col>
           </v-row>
-          <br>
+          <br />
           <v-divider></v-divider>
         </v-timeline-item>
-        
       </v-timeline>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
-import {checkData} from "../API/checkData"
 export default {
   data: () => ({
     items: [],
@@ -42,11 +42,10 @@ export default {
     default_limit: 10,
   }),
   created() {
-    checkData();
     this.meals = this.$store.getters.value_meals;
     this.items = this.$store.getters.history_meals;
     this.default_limit = Object.keys(this.items).length;
-    console.log(this.meals)
+    console.log(this.meals);
   },
   computed: {},
   methods: {
@@ -54,7 +53,7 @@ export default {
       this.limit_by = this.limit_by === 3 ? this.default_limit : 3;
     },
     infoMeal(el) {
-      return (this.meals).find((d) => d._id === el);
+      return this.meals.find((d) => d._id === el);
     },
   },
   watch: {

@@ -37,6 +37,7 @@
 <script>
 import { injection } from "../Pump/injection";
 import { reset } from "../Pump/reset";
+import { checkData } from "../API/checkData";
 import TimelineMeal from "../components/TimelineMeal.vue";
 
 export default {
@@ -49,6 +50,9 @@ export default {
       urlReset: "http://192.168.220.86/?reset=0",
       inject: 0,
     };
+  },
+  created() {
+    checkData();
   },
   methods: {
     injection() {

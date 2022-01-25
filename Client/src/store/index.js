@@ -14,8 +14,8 @@ export default new Vuex.Store({
     value_history_injections: {},
     value_timestamp_injections: {},
     history_meals: {},
-    timestamp_history_meals : {},
-    real_history_meals : {},
+    timestamp_history_meals: {},
+    real_history_meals: {},
     history_glycemias: {},
     value_history_glycemias: {},
     value_timestamp_glycemias: {},
@@ -23,6 +23,7 @@ export default new Vuex.Store({
     connection_status: 0, //-1 = to signUp   0 = toSignIn    1 = Connected
   },
   mutations: {
+    ///LOGIN-----------------------------------------------------
     LOGIN_SUCCESS(state, accessToken = -1) {
       if (accessToken != -1) Vue.$cookies.set("token", accessToken, "1d");
       state.connection_status = 1;
@@ -52,7 +53,7 @@ export default new Vuex.Store({
     ADD_VALUE_MEALS(state, value_meals) {
       state.value_meals.push(value_meals);
     },
-    ///HISOTRY MEALS----------------------------------------------------
+    ///HISTORY MEALS----------------------------------------------------
     SET_HISTORY_MEALS(state, history_meals) {
       state.history_meals = history_meals;
     },
@@ -62,9 +63,22 @@ export default new Vuex.Store({
     SET_VALUE_TIMESTAMP_MEALS(state, value_timestamp_meals) {
       state.value_timestamp_meals = value_timestamp_meals;
     },
+    REM_LAST_VALUE_HISTORY_MEALS(state) {
+      state.value_meals.pop();
+    },
     ///HISTORY GLYCEMIAS----------------------------------------------------
     SET_HISTORY_GLYCEMIAS(state, history_glycemias) {
       state.history_glycemias = history_glycemias;
+    },
+    ADD_GLYCEMIA(state, valueGlycemia) {
+      var glycemia = {
+        glycemia: valueGlycemia,
+        timestamp: Date().toISOString(),
+      };
+      state.history_glycemias.push(glycemia);
+    },
+    REM_LAST_VALUE_HISTORY_GLYCEMIAS(state) {
+      state.history_glycemias.pop();
     },
     SET_VALUE_HISTORY_GLYCEMIAS(state, value_history_glycemias) {
       state.value_history_glycemias = value_history_glycemias;
@@ -75,6 +89,16 @@ export default new Vuex.Store({
     ///HISTORY INJECTIONS----------------------------------------------------
     SET_HISTORY_INJECTIONS(state, history_injections) {
       state.history_injections = history_injections;
+    },
+    ADD_INJECTION(state, valueInjection) {
+      var injection = {
+        quantity: valueInjection,
+        timestamp: Date().toISOString(),
+      };
+      state.history_injections.push(injection);
+    },
+    REM_LAST_VALUE_HISTORY_INJECTIONS(state) {
+      state.history_injections.pop();
     },
     SET_VALUE_HISTORY_INJECTIONS(state, value_history_injections) {
       state.value_history_injections = value_history_injections;

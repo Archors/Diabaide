@@ -5,9 +5,9 @@
       <br />
       <v-col class="text-left">
         <v-btn class="primary" @click="isShow = !isShow">Ajout manuel</v-btn>
-        <v-btn class="mx-2" color="#546de5"  @click="goScanner = !goScanner">
+        <v-btn class="mx-2" color="#546de5" @click="goScanner = !goScanner">
           <v-icon size="35">mdi-barcode-scan</v-icon>
-          <Scanner @code="getCode" v-if="goScanner"/>
+          <Scanner @code="getCode" v-if="goScanner" />
         </v-btn>
       </v-col>
     </v-row>
@@ -66,8 +66,7 @@
 </template>
 
 <script>
-import Scanner from './Scanner.vue';
-import { OpenFood } from "../API/scannerAPI";
+import Scanner from "./Scanner.vue";
 import { getOpenFoods } from "../API/get/getOpenFoods";
 import { addMeal } from "../API/add/addMeal";
 
@@ -78,7 +77,7 @@ export default {
   data: () => ({
     isShow: false,
     scanned: false,
-    goScanner :false,
+    goScanner: false,
     valid: false,
     meal: {
       name: "",
@@ -96,34 +95,33 @@ export default {
     barCodeRule: [(v) => /.+\d{8}.+/.test(v) || "Le code bar doit être valide"],
   }),
   methods: {
-      onDecode(result) {
-        console.log(result);
-      },
+    onDecode(result) {
+      console.log(result);
+    },
     AddMeal() {
       addMeal(this.meal);
-      this.snackbar = true
+      this.snackbar = true;
       this.isShow = false;
       this.meal = this.emptyMeal;
-
     },
     async getCode(result) {
-        if (this.scanned) return;
-        this.scanned = true;
-        this.isShow = true;
-        this.meal.barcode = result
-        
-        const res = await getOpenFoods(result);
-        this.meal.sugar = res.product.nutriments.carbohydrates_100g;
-        this.meal.brand  = res.product.brands;
-        this.meal.name  = res.product.category_properties['ciqual_food_name:fr'];
-      },
-      async onClick(barcode){ 
-        const res = await getOpenFoods(barcode);
-        this.meal.barCode = barcode
-        this.meal.sugar = res.product.nutriments.carbohydrates_100g;
-        this.meal.brand  = res.product.brands;
-        this.meal.name  = res.product.category_properties['ciqual_food_name:fr'];
-      }
+      if (this.scanned) return;
+      this.scanned = true;
+      this.isShow = true;
+      this.meal.barcode = result;
+
+      const res = await getOpenFoods(result);
+      this.meal.sugar = res.product.nutriments.carbohydrates_100g;
+      this.meal.brand = res.product.brands;
+      this.meal.name = res.product.category_properties["ciqual_food_name:fr"];
+    },
+    async onClick(barcode) {
+      const res = await getOpenFoods(barcode);
+      this.meal.barCode = barcode;
+      this.meal.sugar = res.product.nutriments.carbohydrates_100g;
+      this.meal.brand = res.product.brands;
+      this.meal.name = res.product.category_properties["ciqual_food_name:fr"];
+    },
   },
 };
 </script>
