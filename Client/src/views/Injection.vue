@@ -22,7 +22,10 @@
             <v-btn color="success" @click="injection"> Injecter </v-btn>
           </v-col>
           <v-col cols="6">
-            <v-btn color="red" @click="reset"> reset </v-btn>
+            <v-btn color="error" @click="reset"> reset </v-btn>
+          </v-col>
+          <v-col>
+            <v-btn color="red" @click="suppLastInjection">Supprimer</v-btn>
           </v-col>
         </v-row>
         <br />
@@ -38,6 +41,8 @@
 import { injection } from "../Pump/injection";
 import { reset } from "../Pump/reset";
 import { checkData } from "../API/checkData";
+import { addInjection } from "../API/add/addInjection";
+import { delInjection } from "../API/delete/delInjection";
 import TimelineMeal from "../components/TimelineMeal.vue";
 
 export default {
@@ -57,10 +62,14 @@ export default {
   methods: {
     injection() {
       injection(Math.round(this.inject * 2.83));
+      addInjection(this.inject);
       this.inject = 0;
     },
     reset() {
       reset();
+    },
+    suppLastInjection() {
+      delInjection();
     },
   },
 };
