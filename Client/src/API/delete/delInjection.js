@@ -1,5 +1,7 @@
 import axios from "axios";
 import authHeader from "../authentification/authHeader";
+import store from "../../store/index";
+store.getters.config;
 
 //Supprimer la derniere glycemie en BDD
 export async function delInjection() {
@@ -9,6 +11,7 @@ export async function delInjection() {
     headers: authHeader(),
   })
     .then(function (response) {
+      store.commit("REM_LAST_VALUE_HISTORY_INJECTIONS");
       return response;
     })
     .catch(function (erreur) {

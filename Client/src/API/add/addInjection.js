@@ -1,5 +1,7 @@
 import axios from "axios";
 import authHeader from "../authentification/authHeader";
+import store from "../../store/index";
+store.getters.config;
 
 //Ajouter une injection en BDD
 export async function addInjection(quantity) {
@@ -13,6 +15,7 @@ export async function addInjection(quantity) {
     headers: authHeader(),
   })
     .then(function (response) {
+      store.commit("ADD_GLYCEMIA", quantity);
       return response;
     })
     .catch(function (erreur) {

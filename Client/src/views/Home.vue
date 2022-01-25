@@ -59,6 +59,7 @@
 <script>
 import { updateAPI } from "../API/updateAPI";
 import { addGlycemia } from "../API/add/addGlycemia";
+import { delGlycemia } from "../API/delete/delGlycemia";
 import Graph_glycemia from "../components/Graph_glycemia.vue";
 import Graph_injection from "../components/Graph_injection.vue";
 
@@ -100,6 +101,9 @@ export default {
     addGlycemia() {
       addGlycemia(this.glycemia);
       this.glycemia = 0;
+    },
+    deleteGlycemia() {
+      delGlycemia();
     },
   },
   computed: {

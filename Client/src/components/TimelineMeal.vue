@@ -33,10 +33,25 @@
               <strong>{{ infoMeal(el).name }}</strong>
             </v-col>
             <v-col>
+<<<<<<< HEAD
               <div class="text-caption">{{ infoMeal(el).sugar }}g / 100g</div>
             </v-col>
           </v-row>
 
+=======
+              <v-row v-for="(el, idx) in item.meal" :key="idx">
+                <v-col>
+                  <strong>{{ infoMeal(el).name }}</strong>
+                </v-col>
+                <v-col>
+                  <div class="text-caption">
+                    {{ infoMeal(el).sugar }}g / 100g
+                  </div>
+                </v-col>
+              </v-row>
+            </v-col>
+          </v-row>
+>>>>>>> cb4521a412f796c274562a4623ae3fee957a2f77
           <br />
           <v-divider></v-divider>
         </v-timeline-item>
@@ -46,7 +61,10 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import { checkData } from "../API/checkData";
+=======
+>>>>>>> cb4521a412f796c274562a4623ae3fee957a2f77
 export default {
   data: () => ({
     items: [],
@@ -70,10 +88,13 @@ export default {
     default_limit: 10,
   }),
   created() {
-    checkData();
     this.meals = this.$store.getters.value_meals;
     this.items = this.$store.getters.history_meals;
     this.default_limit = Object.keys(this.items).length;
+<<<<<<< HEAD
+=======
+    console.log(this.meals);
+>>>>>>> cb4521a412f796c274562a4623ae3fee957a2f77
   },
   computed: {
   },
