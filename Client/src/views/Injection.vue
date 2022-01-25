@@ -9,11 +9,20 @@
       <br />
       <v-text-field
         dense
+        v-model="glucides"
+        prepend-icon="mdi-cards-heart"
+        type="number"
+        oninput="if(this.value < 0 || this.value > 1000) this.value = 0;"
+        label="Glucides ingérés"
+        required
+      ></v-text-field>
+      <v-text-field
+        dense
         v-model="inject"
         prepend-icon="mdi-cards-heart"
         type="number"
         oninput="if(this.value < 0 || this.value > 1000) this.value = 0;"
-        label="Quantité"
+        label="Quantité d'insuline"
         required
       ></v-text-field>
       <div fill-height fluid>
@@ -51,13 +60,16 @@ export default {
   },
   data() {
     return {
+      user: {},
       urlInject: "http://192.168.220.86/?inject=",
       urlReset: "http://192.168.220.86/?reset=0",
       inject: 0,
+      glucides: "",
     };
   },
   created() {
     checkData();
+    this.user = this.$store.getters.user;
   },
   methods: {
     injection() {
@@ -70,6 +82,14 @@ export default {
     },
     suppLastInjection() {
       delInjection();
+    },
+  },
+  watch: {
+    "$store.state.user": function () {
+      this.user = this.$store.getters.user;
+    },
+    glucides: function () {
+      this.inject = this.glucides / this.user.ratio;
     },
   },
 };
