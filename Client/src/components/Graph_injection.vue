@@ -33,6 +33,7 @@ export default {
       if(Object.keys(this.$store.getters.value_history_injections).length > 1){
         this.injections = this.$store.getters.value_history_injections;
         this.Show = true
+        console.log(this.injections)
       }
     },
     "$store.state.value_timestamp_injections": function () {

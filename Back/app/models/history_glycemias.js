@@ -16,7 +16,7 @@ const listHistory = async (history, userToVerify) => {
 // Add a new event in history
 const addToHistory = (body,client, user) => {
   const history = {
-    timestamp: new Date().toISOString(),
+    timestamp: new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' }),
     glycemia: body.glycemia,
     userId : new mongo.ObjectId(user._id)
   };
