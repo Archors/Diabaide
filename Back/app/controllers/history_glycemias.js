@@ -89,7 +89,7 @@ const {
     try{
       const client = await (await db.connect()).db().collection('History_glycemie')
       const glyc = await deleteGlycemia(client,decoded);
-      return res.status(204).json(glyc)
+      return res.sendStatus(200);
     } catch (err) {
       return res.status(401).send("Can't delete the last glycemias");
     }
