@@ -38,7 +38,7 @@
           Ajout
         </v-btn></v-col
       >
-      <v-col cols="6"><v-btn @click="deleteGlycemia" color="red">Supprimer</v-btn></v-col>
+      <v-col cols="6"><v-btn @click="deleteGlycemia" color="primary">Supprimer</v-btn></v-col>
     </v-row>
     <br />
     <v-divider></v-divider>
