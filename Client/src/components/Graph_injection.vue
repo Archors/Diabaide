@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import {updateInjections}  from "../API/updateInjections";
 export default {
   data: () => ({
     injections: [1, 2, 3, 4, 5, 6, 7],
@@ -26,6 +27,7 @@ export default {
     Show : false,
   }),
   created() {
+    updateInjections()
   },
   computed: {},
   watch: {
@@ -33,7 +35,6 @@ export default {
       if(Object.keys(this.$store.getters.value_history_injections).length > 1){
         this.injections = this.$store.getters.value_history_injections;
         this.Show = true
-        console.log(this.injections)
       }
     },
     "$store.state.value_timestamp_injections": function () {
