@@ -3,23 +3,21 @@
     <div class="bandeau">
       <h2>Bonjour {{ user.first_name }} {{ user.last_name }}</h2>
     </div>
-    <v-divider></v-divider>
     <br />
-    <span class="primary--text bold"
-      >Vous n'avez renseigné aucune donnée aujourd'hui !</span
-    >
-    <br />
-    <br />
+    <v-divider />
+    <br>
     <h4>Votre dernier taux enregistré :</h4>
     <h2>
       {{ lastGlycemia }}
     </h2>
-    <v-divider></v-divider>
+    <br>
+    <v-divider />
     <br />
     <v-row>
-      <v-col cols="8"><h4>Ajout d'une glycemie :</h4></v-col>
+      <v-col cols="8"><h3>Ajout d'une glycemie :</h3></v-col>
       <v-col cols="4">
         <v-text-field
+          class="ma-0 pa-0"
           v-model="glycemia"
           label="Glycemie"
           single-line
@@ -27,6 +25,7 @@
           type="number"
           oninput="if(this.value < 0) this.value = 0;"
           dense
+          hide-details
         />
       </v-col>
       <v-col cols="6"

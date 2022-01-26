@@ -5,15 +5,13 @@
     <UpdatePassword />
     <br />
     <v-row>
-      <v-col></v-col>
-      <v-spacer></v-spacer>
+      <v-spacer />
       <v-col>
         <v-btn class="logoutbutton" color="error" @click="log_out">
           Deconnexion
         </v-btn>
       </v-col>
-      <v-spacer></v-spacer>
-      <v-col></v-col>
+      <v-spacer />
     </v-row>
   </div>
 </template>

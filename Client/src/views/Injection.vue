@@ -27,15 +27,21 @@
       ></v-text-field>
       <div fill-height fluid>
         <v-row class="align-items: center">
-          <v-col cols="6">
+          <v-spacer/>
+          <v-col>
             <v-btn color="success" @click="injection"> Injecter </v-btn>
           </v-col>
-          <v-col cols="6">
-            <v-btn color="error" @click="reset"> reset </v-btn>
-          </v-col>
+          <v-spacer/>
           <v-col>
             <v-btn class="primary" @click="suppLastInjection">Supprimer</v-btn>
           </v-col>
+          <v-spacer/>
+        </v-row>
+        <br>
+        <v-row>
+          <v-spacer></v-spacer>
+          <v-col><v-btn color="error" @click="reset"> reset </v-btn> </v-col>
+          <v-spacer></v-spacer>
         </v-row>
         <br />
         <br />

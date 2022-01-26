@@ -1,6 +1,8 @@
 <template>
   <div>
-    Voulez-vous ajouter un repas ?
+    <v-row>
+      <v-col>Voulez-vous ajouter un repas ?</v-col>
+    </v-row>
     <v-row>
       <br />
       <v-col class="text-left">
