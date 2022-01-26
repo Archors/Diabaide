@@ -16,7 +16,7 @@ const listHistory = async (history, userToVerify) => {
 // Add a new event in history
 const addToHistory = (body,client, user) => {
   const history = {
-    timestamp: new Date().toLocaleString('en-US', { timeZone: 'Europe/Paris' }),
+    timestamp: new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' }),
     quantity: body.quantity,
     userId : user._id
   };
