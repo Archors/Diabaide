@@ -70,15 +70,13 @@ const showHistoryByTimestamp = async (info, client,userToVerify) => {
   const deleteHistoryMeal = (client, decoded) => {
   
     return new Promise((resolve, reject) => {
-      
-      client.deleteOne( {userId : new mongo.ObjectId(decoded._id)},
-        { sort: { "_id": -1 } }, (err) => {
-          if (err) {
-            return reject(err);
-          } else {
-            resolve();
-          }
-        });
+      try{
+
+      client.findOneAndDelete({userId : new mongo.ObjectId(decoded._id)},{ "sort": { "_id": -1 } })
+      }catch(err){
+        return reject(err);
+
+      }
     });
   };
 

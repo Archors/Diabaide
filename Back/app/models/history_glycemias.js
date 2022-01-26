@@ -4,7 +4,7 @@ const mongo = require('mongodb');
 const listHistory = async (history, userToVerify) => {
   return new Promise((resolve, reject) => {
     try{
-      const res = history.find({userId : new mongo.ObjectId(userToVerify._id)}).sort({"timestamp":1}).toArray();
+      const res = history.find({userId : new mongo.ObjectId(userToVerify._id)}).sort({"timestamp":-1}).toArray();
       resolve( res)
 
     } catch (err) {
@@ -42,7 +42,7 @@ const showHistoryByTimestamp = async (info, client, userToVerify) => {
             query =  { $and: [ { timestamp :{'$regex' : info, '$options' : 'i'}},  { userId:  new mongo.ObjectId(userToVerify._id) } ] }
         }
         const filter =  { projection: { _id: 0}}
-        client.find(query,filter).sort({"timestamp": 1}).toArray(function(err, result) {
+        client.find(query,filter).sort({"timestamp": -1}).toArray(function(err, result) {
         if (err) reject(err);
         resolve(result)
       });
@@ -53,15 +53,13 @@ const showHistoryByTimestamp = async (info, client, userToVerify) => {
   const deleteGlycemia = (client, decoded) => {
   
     return new Promise((resolve, reject) => {
-      
-      client.deleteOne( {userId : new mongo.ObjectId(decoded._id)},
-        { sort: { "timestamp": -1 } }, (err) => {
-          if (err) {
-            return reject(err);
-          } else {
-            resolve();
-          }
-        });
+      try{
+
+      client.findOneAndDelete({userId : new mongo.ObjectId(decoded._id)},{ "sort": { "timestamp": -1 } })
+      }catch(err){
+        return reject(err);
+
+      }
     });
   };
 

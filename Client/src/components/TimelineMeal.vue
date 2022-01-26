@@ -1,5 +1,6 @@
 <template>
-  <v-card>
+<div>
+  <v-card v-if="Show">
     <v-card-text>
       <v-timeline align-top dense>
         <v-timeline-item
@@ -51,15 +52,17 @@
       </v-timeline>
     </v-card-text>
   </v-card>
+  <div v-if="!Show">Vous n'avez consommé aucun plat</div>
+</div>
 </template>
 
 <script>
-import { checkData } from "../API/checkData";
 export default {
   data: () => ({
     items: [],
     meals: [],
     total: 0,
+    Show: false,
     tab_mois: [
       "Janvier",
       "Février",
@@ -81,6 +84,8 @@ export default {
     this.meals = this.$store.getters.value_meals;
     this.items = this.$store.getters.history_meals;
     this.default_limit = Object.keys(this.items).length;
+    if(this.meals)
+      this.Show = true;
   },
   computed: {},
   methods: {
@@ -94,6 +99,7 @@ export default {
   watch: {
     "$store.state.history_meals": function () {
       this.items = this.$store.getters.history_meals;
+      this.Show = true;
     },
     "$store.state.value_meals": function () {
       this.meals = this.$store.getters.value_meals;

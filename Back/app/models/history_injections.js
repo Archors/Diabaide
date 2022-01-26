@@ -4,7 +4,7 @@ const mongo = require('mongodb');
 const listHistory = async (history, userToVerify) => {
   return new Promise((resolve, reject) => {
     try{
-      const res = history.find({userId : new mongo.ObjectId(userToVerify._id)}).sort({"timestamp":1}).toArray();
+      const res = history.find({userId : new mongo.ObjectId(userToVerify._id)}).sort({"timestamp":-1}).toArray();
       resolve(res);
 
     } catch (err) {
@@ -53,15 +53,13 @@ const showHistoryByTimestamp = async (info, client, userToVerify) => {
   const deleteInjection = (client, decoded) => {
   
     return new Promise((resolve, reject) => {
-      
-      client.deleteOne( {userId : new mongo.ObjectId(decoded._id)},
-        { sort: { "timestamp": -1 } }, (err) => {
-          if (err) {
-            return reject(err);
-          } else {
-            resolve();
-          }
-        });
+      try{
+
+      client.findOneAndDelete({userId : new mongo.ObjectId(decoded._id)},{ "sort": { "timestamp": -1 } })
+      }catch(err){
+        return reject(err);
+
+      }
     });
   };
 
