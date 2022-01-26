@@ -14,6 +14,7 @@ export default new Vuex.Store({
     value_history_injections: {},
     value_timestamp_injections: {},
     history_meals: {},
+    history_injections: {},
     timestamp_history_meals: {},
     real_history_meals: {},
     history_glycemias: {},

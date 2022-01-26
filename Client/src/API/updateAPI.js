@@ -9,41 +9,37 @@ import { getHistoryMeals } from "../API/get/getHistoryMeals";
 //Met a jour les donnes dans l'application
 export async function updateAPI() {
   store.commit("SET_USER", await getUser());
-
   store.commit("SET_HISTORY_GLYCEMIAS", await getGlycemias());
   store.commit(
     "SET_VALUE_HISTORY_GLYCEMIAS",
-    await getLast(store.getters.history_glycemias)
+    getLast(store.getters.history_glycemias)
   );
   store.commit(
     "SET_VALUE_TIMESTAMP_GLYCEMIAS",
-    await getTimestamp(store.getters.history_glycemias)
+    getTimestamp(store.getters.history_glycemias)
   );
 
   store.commit("SET_VALUE_MEALS", await getMeals());
 
   store.commit("SET_HISTORY_MEALS", await getHistoryMeals());
-  store.commit(
-    "SET_VALUE_HISTORY_MEALS",
-    await getLast(store.getters.history_meals)
-  );
+  store.commit("SET_VALUE_HISTORY_MEALS", getLast(store.getters.history_meals));
   store.commit(
     "SET_VALUE_TIMESTAMP_MEALS",
-    await getTimestampCompleteDate(store.getters.history_meals)
+    getTimestampCompleteDate(store.getters.history_meals)
   );
 
   store.commit("SET_HISTORY_INJECTIONS", await getInjections());
   store.commit(
     "SET_VALUE_HISTORY_INJECTIONS",
-    await getLast(store.getters.history_injections)
+    getLast(store.getters.history_injections)
   );
   store.commit(
     "SET_VALUE_TIMESTAMP_INJECTIONS",
-    await getTimestamp(store.getters.history_injections)
+    getTimestamp(store.getters.history_injections)
   );
 }
 
-async function getLast(items) {
+function getLast(items) {
   var arrayglycemia = [];
   var i = 0;
   items.forEach((element) => {
@@ -63,7 +59,7 @@ async function getLast(items) {
   return arrayglycemia.reverse();
 }
 
-async function getTimestamp(items) {
+function getTimestamp(items) {
   var arrayglycemia = [];
   var i = 0;
   items.forEach((element) => {
@@ -76,7 +72,7 @@ async function getTimestamp(items) {
   return arrayglycemia.reverse();
 }
 
-async function getTimestampCompleteDate(items) {
+function getTimestampCompleteDate(items) {
   var arrayglycemia = [];
   var i = 0;
   items.forEach((element) => {

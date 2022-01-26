@@ -134,11 +134,6 @@ export default {
       this.value_history_glycemias =
         this.$store.getters.value_history_glycemias;
     },
-    "$store.state.history_injections": function () {
-      this.history_injections = this.$store.getters.history_injections;
-      this.value_history_injections =
-        this.$store.getters.value_history_injections;
-    },
   },
   beforeDestroy() {
     this.cancelAutoUpdate();

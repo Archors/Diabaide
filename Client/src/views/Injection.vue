@@ -56,6 +56,7 @@
 import { injection } from "../Pump/injection";
 import { reset } from "../Pump/reset";
 import { checkData } from "../API/checkData";
+import { updateAPI } from "../API/updateAPI"
 import { addInjection } from "../API/add/addInjection";
 import { delInjection } from "../API/delete/delInjection";
 import TimelineMeal from "../components/TimelineMeal.vue";
