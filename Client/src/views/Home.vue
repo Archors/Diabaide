@@ -32,7 +32,7 @@
         ><v-btn
           color="success"
           @click="addGlycemia"
-          :disabled="this.glycemia === 0"
+          :disabled="this.glycemia == 0"
         >
           Ajout
         </v-btn></v-col
