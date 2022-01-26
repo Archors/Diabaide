@@ -52,7 +52,7 @@
       <h5>
         * : Cette application est une aide au calcul de glucides, les paramètres
         étant propres à chaque personne elle ne peut en aucun cas être désignée
-        responsable d'un problème lié à un mauvais dosage d'insuline
+        responsable d'un problème lié à un mauvais dosage d'insuline.
       </h5>
     </div>
     <v-snackbar v-model="addInjectionSnackbar" :timeout="3000">

@@ -83,7 +83,9 @@
           :rules="[(v) => !!v || 'Le ratio est obligatoire']"
           required
         ></v-text-field>
-        <h5 :disabled="!isEditingUserInfo">Unité d'insuline, ces valeurs sont propres à chacun et doivent être validées par une équipe médicale.</h5>
+        <h5 :disabled="!isEditingUserInfo">
+          Unité d'insuline : estime la quantité de glucides couvert par une unité d’insuline.
+        </h5>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
