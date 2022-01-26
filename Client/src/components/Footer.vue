@@ -1,7 +1,7 @@
 <template>
   <v-bottom-navigation
     fixed
-    dense
+    app
     grow
     color="primary"
     background-color="white"
