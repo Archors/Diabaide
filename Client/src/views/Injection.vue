@@ -27,17 +27,17 @@
       ></v-text-field>
       <div fill-height fluid>
         <v-row class="align-items: center">
-          <v-spacer/>
+          <v-spacer />
           <v-col>
             <v-btn color="success" @click="injection"> Injecter </v-btn>
           </v-col>
-          <v-spacer/>
+          <v-spacer />
           <v-col>
             <v-btn class="primary" @click="suppLastInjection">Supprimer</v-btn>
           </v-col>
-          <v-spacer/>
+          <v-spacer />
         </v-row>
-        <br>
+        <br />
         <v-row>
           <v-spacer></v-spacer>
           <v-col><v-btn color="error" @click="reset"> reset </v-btn> </v-col>
@@ -55,6 +55,15 @@
         responsable d'un problème lié à un mauvais dosage d'insuline
       </h5>
     </div>
+    <v-snackbar v-model="addInjectionSnackbar" :timeout="3000">
+      Injection ajoutée
+    </v-snackbar>
+    <v-snackbar v-model="delInjectionSnackbar" :timeout="3000">
+      Injection supprimée
+    </v-snackbar>
+    <v-snackbar v-model="resetPumpSnackbar" :timeout="3000">
+      Pompe reset
+    </v-snackbar>
   </div>
 </template>
 
@@ -79,6 +88,9 @@ export default {
       urlReset: "http://192.168.220.86/?reset=0",
       inject: "",
       glucides: "",
+      addInjectionSnackbar: false,
+      delInjectionSnackbar: false,
+      resetPumpSnackbar: false,
     };
   },
   created() {
@@ -89,12 +101,15 @@ export default {
     injection() {
       injection(Math.round(this.inject * 2.83));
       addInjection(this.inject);
+      this.addInjectionSnackbar = true;
       this.inject = 0;
     },
     reset() {
+      this.resetPumpSnackbar = true;
       reset();
     },
     suppLastInjection() {
+      this.delInjectionSnackbar = true;
       delInjection();
     },
   },

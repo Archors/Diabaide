@@ -5,12 +5,12 @@
     </div>
     <br />
     <v-divider />
-    <br>
+    <br />
     <h4>Votre dernier taux enregistré :</h4>
     <h2>
       {{ lastGlycemia }}
     </h2>
-    <br>
+    <br />
     <v-divider />
     <br />
     <v-row>
@@ -56,6 +56,12 @@
     <br />
     <TimelineMeal />
     <br />
+    <v-snackbar v-model="addGlycemiaSnackbar" :timeout="3000">
+      Glycémie ajoutée
+    </v-snackbar>
+    <v-snackbar v-model="delGlycemiaSnackbar" :timeout="3000">
+      Glycémie supprimée
+    </v-snackbar>
   </div>
 </template>
 
@@ -79,6 +85,8 @@ export default {
     value_history_glycemias: {},
     history_injections: {},
     value_history_injections: {},
+    addGlycemiaSnackbar : false,
+    delGlycemiaSnackbar : false,
   }),
   created() {
     this.timer = setInterval(async () => {
@@ -103,10 +111,12 @@ export default {
       clearInterval(this.timer);
     },
     addGlycemia() {
+      this.addGlycemiaSnackbar = true;
       addGlycemia(this.glycemia);
       this.glycemia = 0;
     },
     deleteGlycemia() {
+      this.delGlycemiaSnackbar = true;
       delGlycemia();
     },
   },
