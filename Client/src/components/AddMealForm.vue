@@ -47,7 +47,7 @@
               label="Glucides"
               prepend-icon="mdi-cube-outline"
               type="number"
-              :rules="[(v) => !!v || 'Le pourcentage de sucre est requis']"
+              :rules="[(v) => !!v ||  'Le pourcentage de sucre est requis']"
             />
           </v-container>
         </v-card-text>

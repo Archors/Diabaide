@@ -34,7 +34,7 @@
             <v-btn color="error" @click="reset"> reset </v-btn>
           </v-col>
           <v-col>
-            <v-btn color="red" @click="suppLastInjection">Supprimer</v-btn>
+            <v-btn color="primary" @click="suppLastInjection">Supprimer</v-btn>
           </v-col>
         </v-row>
         <br />

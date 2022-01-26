@@ -33,18 +33,11 @@
             <v-col>
               <strong>{{ infoMeal(el).name }}</strong>
             </v-col>
-            <v-col>
-              <v-row v-for="(el, idx) in item.meal" :key="idx">
-                <v-col>
-                  <strong>{{ infoMeal(el).name }}</strong>
-                </v-col>
                 <v-col>
                   <div class="text-caption">
                     {{ infoMeal(el).sugar }}g / 100g
                   </div>
                 </v-col>
-              </v-row>
-            </v-col>
           </v-row>
           <br />
           <v-divider></v-divider>
