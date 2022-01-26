@@ -89,8 +89,8 @@ const {
 
     try{
       const client = await (await db.connect()).db().collection('History_injections')
-      const injec = await deleteInjection(client,decoded);
-      return res.status(204).json(injec)
+      await deleteInjection(client,decoded);
+      return res.sendStatus(200);
     } catch (err) {
       return res.status(401).send("Can't delete the last injection");
     }

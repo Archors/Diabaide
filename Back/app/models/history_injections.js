@@ -56,6 +56,7 @@ const showHistoryByTimestamp = async (info, client, userToVerify) => {
       try{
 
       client.findOneAndDelete({userId : new mongo.ObjectId(decoded._id)},{ "sort": { "timestamp": -1 } })
+      resolve()
       }catch(err){
         return reject(err);
 
