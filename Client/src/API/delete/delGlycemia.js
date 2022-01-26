@@ -12,7 +12,6 @@ export async function delGlycemia() {
     headers: authHeader(),
   })
     .then(function (response) {
-      store.commit("REM_LAST_VALUE_HISTORY_GLYCEMIAS");
       updateAPI();
       return response;
     })

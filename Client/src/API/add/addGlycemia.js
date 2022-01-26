@@ -16,7 +16,6 @@ export async function addGlycemia(glycemia) {
     headers: authHeader(),
   })
     .then(function (response) {
-      store.commit("ADD_GLYCEMIA", glycemia);
       updateAPI();
       return response;
     })

@@ -33,12 +33,14 @@
         ><v-btn
           color="success"
           @click="addGlycemia"
-          :disabled="this.glycemia == 0"
+          :disabled="this.glycemia === 0"
         >
           Ajout
         </v-btn></v-col
       >
-      <v-col cols="6"><v-btn @click="deleteGlycemia" color="primary">Supprimer</v-btn></v-col>
+      <v-col cols="6"
+        ><v-btn @click="deleteGlycemia" color="primary">Supprimer</v-btn></v-col
+      >
     </v-row>
     <br />
     <v-divider></v-divider>
@@ -53,10 +55,8 @@
     <v-divider></v-divider>
     <h2>Derniers repas consommés</h2>
     <br />
-        <TimelineMeal />
-
+    <TimelineMeal />
     <br />
-    
   </div>
 </template>
 
@@ -114,12 +114,12 @@ export default {
   computed: {
     lastGlycemia() {
       if (
-        typeof this.value_history_glycemias !== "undefined" &&
-        this.value_history_glycemias.length > 0
+        typeof this.$store.getters.value_history_glycemias !== "undefined" &&
+        this.$store.getters.value_history_glycemias.length > 0
       )
         return (
-          this.value_history_glycemias[
-            this.value_history_glycemias.length - 1
+          this.$store.getters.value_history_glycemias[
+            this.$store.getters.value_history_glycemias.length - 1
           ] + " mg"
         );
       return "Pas d'historique de glycemie";

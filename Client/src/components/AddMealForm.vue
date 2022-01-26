@@ -37,18 +37,18 @@
             <v-text-field
               v-model="meal.barcode"
               label="Code Bar"
-              :rules="barCodeRule"
+              :error-messages="barCodeRule()"
               prepend-icon="mdi-barcode"
-              required
             ></v-text-field>
             <v-btn @click="onClick(meal.barcode)">Ajout par Code Bar</v-btn>
             <v-text-field
-              v-model="meal.sugar"
-              label="Glucides"
               prepend-icon="mdi-cube-outline"
+              v-model="meal.sugar"
               type="number"
-              :rules="[(v) => !!v ||  'Le pourcentage de sucre est requis']"
-            />
+              oninput="if(this.value < 0 || this.value > 1000) this.value = 0;"
+              label="Glucides"
+              required
+            ></v-text-field>
           </v-container>
         </v-card-text>
         <v-spacer></v-spacer>
@@ -92,11 +92,19 @@ export default {
       barcode: "",
     },
     snackbar: false,
-    barCodeRule: [(v) => /.+\d{8}.+/.test(v) || "Le code bar doit être valide"],
+    //barCodeRule: [(v) => /.+\d{8}.+/.test(v) || "Le code bar doit être valide"],
   }),
   methods: {
     onDecode(result) {
       console.log(result);
+    },
+    barCodeRule() {
+      if (this.meal.barcode != null)
+        if (this.meal.barcode.length != 0)
+          if (this.meal.barcode.length != 8)
+            if (this.meal.barcode.length != 13)
+              return "Le code bar doit etre valide";
+      return "";
     },
     AddMeal() {
       addMeal(this.meal);
