@@ -6,7 +6,7 @@ export async function getInjections(id) {
   return axios({
     method: "get",
     url: process.env.VUE_APP_ROOT_API + "/history_injections/",
-    headers: authHeader()
+    headers: authHeader(),
   })
     .then(function (response) {
       return response.data;

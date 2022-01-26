@@ -14,7 +14,6 @@ export async function addMeal(meal) {
     headers: authHeader(),
   })
     .then(function (response) {
-      store.commit("ADD_VALUE_MEALS", meal);
       updateAPI();
       return response;
     })

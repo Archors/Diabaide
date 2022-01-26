@@ -16,7 +16,6 @@ export async function addInjection(quantity) {
     headers: authHeader(),
   })
     .then(function (response) {
-      store.commit("ADD_GLYCEMIA", quantity);
       updateAPI();
       return response;
     })
