@@ -27,7 +27,6 @@ export async function updateAPI() {
     "SET_VALUE_TIMESTAMP_MEALS",
     getTimestampCompleteDate(store.getters.history_meals)
   );
-
   store.commit("SET_HISTORY_INJECTIONS", await getInjections());
   store.commit(
     "SET_VALUE_HISTORY_INJECTIONS",

@@ -56,7 +56,6 @@
 import { injection } from "../Pump/injection";
 import { reset } from "../Pump/reset";
 import { checkData } from "../API/checkData";
-import { updateAPI } from "../API/updateAPI"
 import { addInjection } from "../API/add/addInjection";
 import { delInjection } from "../API/delete/delInjection";
 import TimelineMeal from "../components/TimelineMeal.vue";
@@ -72,7 +71,7 @@ export default {
       user: {},
       urlInject: "http://192.168.220.86/?inject=",
       urlReset: "http://192.168.220.86/?reset=0",
-      inject: 0,
+      inject: "",
       glucides: "",
     };
   },

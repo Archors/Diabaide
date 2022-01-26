@@ -2,8 +2,6 @@
   <v-bottom-navigation
     fixed
     dense
-    app
-    horizontal
     grow
     color="primary"
     background-color="white"
