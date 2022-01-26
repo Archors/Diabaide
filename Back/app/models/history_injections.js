@@ -63,8 +63,6 @@ const showHistoryByTimestamp = async (info, client, userToVerify) => {
     });
   };
 
-
-
 module.exports = {
     listHistory,
     showHistoryByTimestamp,

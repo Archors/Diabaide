@@ -40,7 +40,7 @@
         <br />
         <br />
         <v-divider></v-divider>
-        <TimelineMeal />
+        <Graph_injection/>
       </div>
       <br>
       <h5>* : Cette application est une aide au calcul de glucides, les paramètres étant propres à chaque personne elle ne peut en aucun cas être désignée responsable d'un problème lié à un mauvais dosage d'insuline</h5>
@@ -56,10 +56,12 @@ import { addInjection } from "../API/add/addInjection";
 import { addGlycemia } from "../API/add/addGlycemia";
 import { delInjection } from "../API/delete/delInjection";
 import TimelineMeal from "../components/TimelineMeal.vue";
+import Graph_injection from "../components/Graph_injection.vue";
 
 export default {
   components: {
     TimelineMeal,
+    Graph_injection,
   },
   data() {
     return {

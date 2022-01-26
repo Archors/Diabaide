@@ -50,9 +50,13 @@
     <v-divider></v-divider>
     <br />
     <br />
+    <v-divider></v-divider>
+    <h2>Derniers repas consommés</h2>
     <br />
-    <Graph_injection v-if="history_injections" />
-    <p v-else>Aucune données à afficher pour le graphe des injections</p>
+        <TimelineMeal />
+
+    <br />
+    
   </div>
 </template>
 
@@ -62,11 +66,12 @@ import { addGlycemia } from "../API/add/addGlycemia";
 import { delGlycemia } from "../API/delete/delGlycemia";
 import Graph_glycemia from "../components/Graph_glycemia.vue";
 import Graph_injection from "../components/Graph_injection.vue";
-
+import TimelineMeal from "../components/TimelineMeal.vue";
 export default {
   components: {
     Graph_glycemia,
     Graph_injection,
+    TimelineMeal,
   },
   data: () => ({
     user: {},

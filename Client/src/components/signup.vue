@@ -2,6 +2,9 @@
   <div>
     <v-card>
       <v-card-title class="justify-center">
+        <v-img src="@/assets/logo_diabaide.svg" max-width="250"></v-img>
+      </v-card-title>
+      <v-card-title class="justify-center">
         <span class="headline">Créer un compte</span>
       </v-card-title>
       <v-form v-model="valid" @submit="registration" onSubmit="return false;">
@@ -13,6 +16,7 @@
               :rules="[(v) => !!v || 'Il faut renseigner son prenom']"
               prepend-icon="mdi-account"
               required
+              dense
             ></v-text-field>
             <v-text-field
               v-model="user.last_name"
@@ -20,6 +24,7 @@
               :rules="[(v) => !!v || 'Il faut renseigner son nom']"
               prepend-icon="mdi-account"
               required
+              dense
             ></v-text-field>
             <v-menu
               v-model="boolBirthDate"
@@ -28,6 +33,7 @@
               transition="scale-transition"
               offset-y
               min-width="auto"
+              dense
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
@@ -38,6 +44,7 @@
                   clearable
                   clear-icon="mdi-close-circle"
                   v-bind="attrs"
+                  dense
                   v-on="on"
                   :rules="[
                     (v) => !!v || 'La date de naissance est obligatoire',
@@ -58,6 +65,7 @@
               type="number"
               oninput="if(this.value < 0) this.value = 0;"
               :rules="[(v) => !!v || 'Le ratio est obligatoire']"
+              dense
             />
             <v-text-field
               v-model="user.email"
@@ -65,6 +73,7 @@
               label="E-mail"
               prepend-icon="mdi-email"
               required
+              dense
             />
             <v-text-field
               v-model="user.password"
@@ -76,6 +85,7 @@
               @click:append="showPassword1 = !showPassword1"
               loading
               :error-messages="password1Rule()"
+              dense
               ><template v-slot:progress>
                 <v-progress-linear
                   :value="progressPassword1"
@@ -94,6 +104,7 @@
               @click:append="showPassword2 = !showPassword2"
               loading=""
               :error-messages="password2Rule()"
+              dense
               ><template v-slot:progress>
                 <v-progress-linear
                   :value="progressPassword2"

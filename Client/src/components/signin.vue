@@ -2,6 +2,9 @@
   <div>
     <v-card>
       <v-card-title class="justify-center">
+        <v-img src="@/assets/logo_diabaide.svg" max-width="250"></v-img>
+      </v-card-title>
+      <v-card-title class="justify-center">
         <span class="headline">Connexion</span>
       </v-card-title>
       <v-form v-model="valid" @submit="login" onSubmit="return false;">
