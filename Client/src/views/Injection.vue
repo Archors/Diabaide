@@ -84,8 +84,6 @@ export default {
   data() {
     return {
       user: {},
-      urlInject: "http://192.168.220.86/?inject=",
-      urlReset: "http://192.168.220.86/?reset=0",
       inject: "",
       glucides: "",
       addInjectionSnackbar: false,

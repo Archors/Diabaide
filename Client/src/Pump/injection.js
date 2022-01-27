@@ -1,10 +1,9 @@
 import axios from "axios";
 
 export async function injection(quantity = 0) {
-  console.log("Injection effectue");
   return axios({
     method: "get",
-    url: process.env.VUE_APP_ROOT_PUMP + "?inject=" + quantity,
+    url: "http://192.168.143.86?inject=" + quantity,
   })
     .then(function (response) {
       return response;
