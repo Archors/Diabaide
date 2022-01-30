@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div >
     <UpdateUser />
     <br />
     <UpdatePassword />
@@ -7,7 +7,7 @@
     <v-row>
       <v-spacer />
       <v-col>
-        <v-btn class="logoutbutton" color="error" @click="log_out">
+        <v-btn class="logoutbutton" color="primary" @click="log_out">
           Deconnexion
         </v-btn>
       </v-col>

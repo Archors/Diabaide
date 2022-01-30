@@ -6,7 +6,7 @@
     <br />
     <v-divider />
     <br />
-    <h4>Votre dernier taux enregistré :</h4>
+    <h4>Votre dernier taux de glycémie enregistré :</h4>
     <h2>
       {{ lastGlycemia }}
     </h2>
@@ -14,7 +14,7 @@
     <v-divider />
     <br />
     <v-row>
-      <v-col cols="8"><h3>Ajout d'une glycemie :</h3></v-col>
+      <v-col cols="8"><h3>Ajout d'une glycémie :</h3></v-col>
       <v-col cols="4">
         <v-text-field
           class="ma-0 pa-0"
@@ -45,19 +45,16 @@
     <v-divider></v-divider>
     <br />
     <br />
-    <br />
-    <Graph_injection />
-    <v-divider></v-divider>
-    <br />
-    <br />
-    <br />
-    <Graph_glycemia v-if="history_glycemias" />
-    <p v-else>Aucune données à afficher pour le graphe de la glycémie</p>
+
+    
+      <Graph_glycemia v-if="history_glycemias" />
+      <p v-else>Aucune(s) données(s) à afficher pour le graphe de la glycémie</p>
+ 
+
     <v-divider></v-divider>
     <br />
     <br />
     <v-divider></v-divider>
-    <h2>Derniers repas consommés</h2>
     <br />
     <TimelineMeal />
     <br />

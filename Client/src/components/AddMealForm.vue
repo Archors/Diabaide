@@ -7,7 +7,7 @@
       <br />
       <v-col class="text-left">
         <v-btn class="primary" @click="isShow = !isShow">Ajout manuel</v-btn>
-        <v-btn class="mx-2" color="#546de5" @click="goScanner = !goScanner">
+        <v-btn class="mx-2" color="#df9d9d" @click="goScanner = !goScanner">
           <v-icon size="35">mdi-barcode-scan</v-icon>
           <Scanner @code="getCode" v-if="goScanner" />
         </v-btn>
@@ -42,7 +42,7 @@
               :error-messages="barCodeRule()"
               prepend-icon="mdi-barcode"
             ></v-text-field>
-            <v-btn @click="onClick(meal.barcode)">Ajout par Code Bar</v-btn>
+            <v-btn @click="onClick(meal.barcode)">Ajout par Code Barre</v-btn>
             <v-text-field
               prepend-icon="mdi-cube-outline"
               v-model="meal.sugar"

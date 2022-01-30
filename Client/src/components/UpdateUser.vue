@@ -1,12 +1,12 @@
 <template>
-  <v-card class="overflow-hidden" color="secondary" :class="'rounded-xl'">
+  <v-card class="overflow-hidden" color="white" :class="'rounded-xl'">
     <v-form v-model="validUser" v-on:submit.prevent @submit="saveUserInfo">
       <v-toolbar flat color="primary">
         <v-icon>mdi-account</v-icon>
         <v-toolbar-title class="font-weight-light"> Profil </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn
-          color="blue"
+          color="#df9d9d"
           fab
           small
           @click="isEditingUserInfo = !isEditingUserInfo"
