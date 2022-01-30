@@ -84,7 +84,9 @@
           required
         ></v-text-field>
         <h5 :disabled="!isEditingUserInfo">
-          Unité d'insuline : estime la quantité de glucides couvert par une unité d’insuline.
+          
+          <p style="color:gray; font-size:10px">**Ratio : estime la quantité de glucides couvert par une unité d’insuline.</p>
+
         </h5>
       </v-card-text>
       <v-card-actions>

@@ -59,7 +59,7 @@
             </v-menu>
             <v-text-field
               v-model="user.ratio"
-              label="Ratio"
+              label="Ratio *"
               single-line
               prepend-icon="mdi-cards-heart"
               type="number"
@@ -111,9 +111,13 @@
                   :color="colorPassword2"
                   absolute
                   height="7"
-                ></v-progress-linear> </template
-            ></v-text-field>
+                ></v-progress-linear>
+                </template>
+                
+                </v-text-field>
+                <p style="color:gray; font-size:12px">*Ratio : estime la quantité de glucides couvert par une unité d’insuline.</p>
           </v-container>
+          
         </v-card-text>
         <v-spacer></v-spacer>
 
