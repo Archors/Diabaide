@@ -1,6 +1,10 @@
 <template>
 <div>
-  <v-card v-if="Show">
+  <v-toolbar-title class="font-weight-bold">
+      Derniers repas consommés
+  </v-toolbar-title>
+
+  <v-card v-if="Show" class="col-sm" color="white" :class="'rounded-xl'">
     <v-card-text>
       <v-timeline align-top dense>
         <v-timeline-item

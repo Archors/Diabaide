@@ -1,20 +1,26 @@
 <template>
-  <div >
-    <div class="text-h6">Historique des dernières glycémie</div>
-    <div>
-      <v-frappe-chart  v-if="Show"
-        type="line"
-        :labels="timestamp"
-        :data="[{ values: glycemias }]"
-        :colors="['red']"
-        :lineOptions="{
-          regionFill: 1,
-        }"
-      />
-    </div>
-  <div v-if="!Show">
-    Aucune valeur de glycémie
-  </div>
+  <div text-align="center">
+    <v-toolbar-title class="font-weight-bold">
+      Historique des dernières glycémie
+    </v-toolbar-title>
+
+    <v-card class="col-sm" color="white" :class="'rounded-xl'">
+      <div>
+        <v-frappe-chart  v-if="Show"
+          type="line"
+          :labels="timestamp"
+          :data="[{ values: glycemias }]"
+          :colors="['red']"
+          :lineOptions="{
+            regionFill: 1,
+          }"
+        />
+      </div>
+      <div v-if="!Show">
+        Aucune valeur de glycémie
+      </div>
+  
+    </v-card>
   </div>
 </template>
 

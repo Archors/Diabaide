@@ -1,29 +1,33 @@
 <template>
-  <div>
-    <div>
-      <h1>Ajoutez vos apports en glucides</h1>
-      Ici vous pouvez ajoutez vos plats, recettes et envies afin de les
-      retrouver plus facilement.
+  <div class="container">
+    <div style="background-color:#B5364E; text-align:center; margin:-23px -25px 23px; border-radius:0px 0px 30px 30px" >
+      <h1 style="color:white">Ajoutez vos apports en glucides</h1>
+     
+        </div> Ici, vous pouvez ajoutez vos plats, recettes et envies afin de les
+      retrouver plus facilement
+          <br />
       <br />
       <br />
-      <br />
-    </div>
+
     <br />
-    <div class="row">
-      <v-card class="bloc col-sm">
+    <v-row>
+      <v-card class=" col-sm" color="white" :class="'rounded-xl'">
         <AddMealForm />
         <v-divider></v-divider>
         <br />
       </v-card>
       <br />
-    </div>
+    </v-row>
     <br />
     <br />
     <v-divider></v-divider>
     <br />
-    <h1>Banque de plats enregistrés</h1>
-    <br />
-    <ShowMeal />
+    <v-row>
+      
+        <br />
+        <ShowMeal />
+
+    </v-row>
   </div>
 </template>
 
