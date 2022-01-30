@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <div class="bandeau">
-      <h1>Injection d'insuline</h1>
+     <div style="text-align:center">
+       <h1 style="color:#d0364f ; font-variant-caps: all-small-caps; font-size:35px;">Injection d'insuline</h1>
     </div>
-
+        <br>
     <div>
       <h3>Insuline à administrer :</h3>
       <br />
@@ -26,26 +26,27 @@
         required
       ></v-text-field>
       <div fill-height fluid>
-        <v-row class="align-items: center">
-          <v-spacer />
-          <v-col>
+        <v-row >
+          <v-col style="text-align:left">
             <v-btn color="success" @click="injection"> Injecter </v-btn>
           </v-col>
-          <v-spacer />
-          <v-col>
+          <v-col style="text-align:right">
+
             <v-btn class="primary" @click="suppLastInjection">Supprimer</v-btn>
           </v-col>
-          <v-spacer />
+
         </v-row>
         <br />
         <v-row>
-          <v-spacer></v-spacer>
-          <v-col><v-btn color="error" @click="reset"> reset </v-btn> </v-col>
-          <v-spacer></v-spacer>
+          <v-col style="text-align:left">
+            <v-btn color="error" @click="reset"> reset </v-btn>
+          </v-col>
         </v-row>
         <br />
         <br />
         <v-divider></v-divider>
+        <br>
+        <br>
         <form-select-meal @glucidesMeal="getGlucides" />
       </div>
       <br />

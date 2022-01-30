@@ -1,69 +1,72 @@
 <template>
-  <div>
-    <v-row>
-      <v-col>Voulez-vous ajouter un repas ?</v-col>
-    </v-row>
-    <v-row>
-      <br />
-      <v-col class="text-left">
-        <v-btn class="primary" @click="isShow = !isShow">Ajout manuel</v-btn>
-        <v-btn class="mx-2" color="#df9d9d" @click="goScanner = !goScanner">
-          <v-icon size="35">mdi-barcode-scan</v-icon>
-          <Scanner @code="getCode" v-if="goScanner" />
-        </v-btn>
-      </v-col>
-    </v-row>
-    <br />
-    <br />
-    <v-card v-if="isShow" class="pale">
-      <v-card-title class="justify-center">
-        <span class="headline">Ajout d'un repas</span>
-      </v-card-title>
-      <v-form v-model="valid" @submit="AddMeal" onSubmit="return false;">
-        <v-card-text>
-          <v-container>
-            <v-text-field
-              v-model="meal.name"
-              label="Name"
-              :rules="[(v) => !!v || 'Quel est le nom du repas ?']"
-              prepend-icon="mdi-tag-outline"
-              required
-            ></v-text-field>
-            <v-text-field
-              v-model="meal.brand"
-              label="Brand"
-              :rules="[(v) => !!v || 'Quel est la marque du repas ?']"
-              prepend-icon="mdi-form-textbox"
-              required
-            ></v-text-field>
-            <v-text-field
-              v-model="meal.barcode"
-              label="Code Bar"
-              :error-messages="barCodeRule()"
-              prepend-icon="mdi-barcode"
-            ></v-text-field>
-            <v-btn @click="onClick(meal.barcode)">Ajout par Code Barre</v-btn>
-            <v-text-field
-              prepend-icon="mdi-cube-outline"
-              v-model="meal.sugar"
-              type="number"
-              oninput="if(this.value < 0 || this.value > 1000) this.value = 0;"
-              label="Glucides"
-              required
-            ></v-text-field>
-          </v-container>
-        </v-card-text>
-        <v-spacer></v-spacer>
-        <v-card-actions class="justify-center">
-          <v-btn color="primary" text type="submit" :disabled="!valid">
-            Ajouter ce repas
+  <div class="container">
+    <v-toolbar-title class="font-weight-bold"> Ajouter un repas </v-toolbar-title>
+    <v-card class=" col-sm" color="white" :class="'rounded-xl'">
+      <v-row>
+        <br/>
+        <v-col class="text-center">
+          <v-btn class="primary" @click="isShow = !isShow" height="100px">Ajout manuel</v-btn>
+          <v-btn class="mx-2" color="#df9d9d" @click="goScanner = !goScanner" height="100px" width="150px">
+            <v-icon size="35">mdi-barcode-scan</v-icon>
+            <Scanner @code="getCode" v-if="goScanner" />
           </v-btn>
-        </v-card-actions>
-      </v-form>
+        </v-col>
+      </v-row>
+
+      <br v-if="isShow">
+
+      <v-card v-if="isShow" class="pale">
+
+        <v-card-title class="justify-center">
+
+          <span class="headline">Ajout d'un repas</span>
+        </v-card-title>
+        <v-form v-model="valid" @submit="AddMeal" onSubmit="return false;">
+          <v-card-text>
+            <v-container>
+              <v-text-field
+                v-model="meal.name"
+                label="Nom"
+                :rules="[(v) => !!v || 'Quel est le nom du repas ?']"
+                prepend-icon="mdi-tag-outline"
+                required
+              ></v-text-field>
+              <v-text-field
+                v-model="meal.brand"
+                label="Marque"
+                :rules="[(v) => !!v || 'Quel est la marque du repas ?']"
+                prepend-icon="mdi-form-textbox"
+                required
+              ></v-text-field>
+              <v-text-field
+                v-model="meal.barcode"
+                label="Code Barre"
+                :error-messages="barCodeRule()"
+                prepend-icon="mdi-barcode"
+              ></v-text-field>
+              <v-btn @click="onClick(meal.barcode)">Ajout par Code Barre</v-btn>
+              <v-text-field
+                prepend-icon="mdi-cube-outline"
+                v-model="meal.sugar"
+                type="number"
+                oninput="if(this.value < 0 || this.value > 1000) this.value = 0;"
+                label="Glucides (g)"
+                required
+              ></v-text-field>
+            </v-container>
+          </v-card-text>
+          <v-spacer></v-spacer>
+          <v-card-actions class="justify-center">
+            <v-btn color="primary" text type="submit" :disabled="!valid">
+              Ajouter ce repas
+            </v-btn>
+          </v-card-actions>
+        </v-form>
+      </v-card>
+      <v-snackbar v-model="snackbar" :timeout="3000">
+        Repas enregistrés
+      </v-snackbar>
     </v-card>
-    <v-snackbar v-model="snackbar" :timeout="3000">
-      Repas enregistrés
-    </v-snackbar>
   </div>
 </template>
 

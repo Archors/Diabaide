@@ -1,10 +1,10 @@
 <template id="list">
-  <div>
-        <v-toolbar-title class="font-weight-light" >Banque de plats enregistrés </v-toolbar-title>
+  <div class="container">
+    <v-toolbar-title class="font-weight-bold" >Banque de plats enregistrés </v-toolbar-title>
 
     <v-card class=" col-sm" color="white" :class="'rounded-xl'">
       <div >
-        <v-card  v-for="(item, index) in items" :key="index" :class="'rounded-xl'"  border="5px solid red">
+        <v-card  v-for="(item, index) in items" :key="index" :class="'rounded-xl'">
           <div v-if="index < limit_by">
             <v-list-item :key="index">
               <v-list-item-content>

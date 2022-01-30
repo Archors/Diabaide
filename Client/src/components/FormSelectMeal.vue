@@ -1,17 +1,19 @@
 <template>
-  <v-card>
+  <v-card :class="'rounded-xl'" style="text-align:center">
     <v-container fluid>
       <v-row align="center">
         <v-col sm="12">
           <v-select
             v-model="selectedFood"
             chips
-            label="Meals"
+            label="Repas **"
             multiple
             outlined
             :items="choices"
           >
           </v-select>
+                <p style="color:gray; font-size:10px">**selectionnez ce que vous allez manger et indiquez la quantité ingurgitée</p>
+
         </v-col>
       </v-row>
     </v-container>

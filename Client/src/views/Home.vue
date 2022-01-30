@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <div class="bandeau">
-      <h2>Bonjour {{ user.first_name }} {{ user.last_name }}</h2>
+     <div style="text-align:center">
+       <h1 style="color:#d0364f ; font-variant-caps: all-small-caps; font-size:35px;">Bonjour {{ user.first_name }} {{ user.last_name }}</h1>
     </div>
     <br />
     <v-divider />
@@ -14,6 +14,7 @@
     <v-divider />
     <br />
     <v-row>
+    
       <v-col cols="8"><h3>Ajout d'une glycémie :</h3></v-col>
       <v-col cols="4">
         <v-text-field
