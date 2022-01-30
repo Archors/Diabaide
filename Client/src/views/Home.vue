@@ -46,6 +46,11 @@
     <br />
     <br />
     <br />
+    <Graph_injection />
+    <v-divider></v-divider>
+    <br />
+    <br />
+    <br />
     <Graph_glycemia v-if="history_glycemias" />
     <p v-else>Aucune données à afficher pour le graphe de la glycémie</p>
     <v-divider></v-divider>

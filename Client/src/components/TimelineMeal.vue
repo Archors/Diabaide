@@ -31,16 +31,22 @@
           </v-row>
           <v-row v-for="(el, idx) in item.meal" :key="idx">
             <v-col>
-              <strong>{{ infoMeal(el).name }}</strong>
+              <strong>{{ el.name }}</strong>
             </v-col>
                 <v-col>
                   <div class="text-caption">
-                    {{ infoMeal(el).sugar }}g / 100g
+                   glucides : {{ el.sugar }}g / 100g
+                  </div>
+                  <div class="text-caption">
+                    consommé : {{ el.consumed }}g 
                   </div>
                 </v-col>
           </v-row>
           <br />
+           <strong>Total Glucides : {{ item.glucides}}g</strong>
           <v-divider></v-divider>
+          
+                
         </v-timeline-item>
       </v-timeline>
     </v-card-text>
@@ -80,8 +86,17 @@ export default {
     if(this.meals)
       this.Show = true;
   },
-  computed: {},
+  computed: {
+    
+  },
   methods: {
+    calculation(element) {
+      var res = 0;
+      element.forEach(item => {
+        res = res + (parseInt(item.sugar) * parseFloat(item.consumed) / 100); 
+      });
+      return res;
+    },
     dynamic_toggle() {
       this.limit_by = this.limit_by === 3 ? this.default_limit : 3;
     },

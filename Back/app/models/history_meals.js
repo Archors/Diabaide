@@ -18,6 +18,7 @@ const addToHistory = (body,client, user) => {
   const history = {
     timestamp: new Date().toLocaleString('en-US', { timeZone: 'Europe/Paris' }),
     meal: body.meal,
+    glucides : body.glucides,
     userId : new mongo.ObjectId(user._id)
   };
 

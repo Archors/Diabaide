@@ -46,7 +46,7 @@
         <br />
         <br />
         <v-divider></v-divider>
-        <Graph_injection />
+        <form-select-meal @glucidesMeal="getGlucides" />
       </div>
       <br />
       <h5>
@@ -75,13 +75,17 @@ import { addInjection } from "../API/add/addInjection";
 import { delInjection } from "../API/delete/delInjection";
 import TimelineMeal from "../components/TimelineMeal.vue";
 import Graph_injection from "../components/Graph_injection.vue";
+import SelectMeal from '../components/SelectMeal.vue';
+import FormSelectMeal from '../components/FormSelectMeal.vue';
 
 export default {
   components: {
     TimelineMeal,
     Graph_injection,
+    SelectMeal,
+    FormSelectMeal,
   },
-  data() {
+    data() {
     return {
       user: {},
       inject: "",
@@ -110,6 +114,9 @@ export default {
       this.delInjectionSnackbar = true;
       delInjection();
     },
+    getGlucides(value) {
+      this.glucides = value // Raja Tamil
+   }
   },
   watch: {
     "$store.state.user": function () {
