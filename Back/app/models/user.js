@@ -1,97 +1,89 @@
-const bcrypt = require('bcrypt');
-const mongo = require('mongodb');
-//List all Users 
+const bcrypt = require("bcrypt");
+const mongo = require("mongodb");
+//List all Users
 // To delete
 const listAllUsers = async (user) => {
   return new Promise((resolve, reject) => {
-    try{
+    try {
       const res = user.find({}).toArray();
       resolve(res);
-      
     } catch (err) {
-      reject(err)
+      reject(err);
     }
   });
 };
 
 // Create a new user
-const createNewUser = (body,client,verify) => {
+const createNewUser = (body, client, verify) => {
   const user = {
     first_name: body.first_name,
     last_name: body.last_name,
     birthdate: body.birthdate,
     email: body.email,
-    ratio : body.ratio,
+    ratio: body.ratio,
     password: bcrypt.hashSync(body.password, 10),
   };
 
   return new Promise((resolve, reject) => {
     try {
       client.insertOne(user, (err) => {
-      if (err) {
-        return reject(err);
-      } else {
-        resolve(user);
-      }
-    });
-  }
-  catch (err) {reject(err);}
-}
-  );
+        if (err) {
+          return reject(err);
+        } else {
+          resolve(user);
+        }
+      });
+    } catch (err) {
+      reject(err);
+    }
+  });
 };
 
 // Show user by id
 const showUser = async (userId, client) => {
   return new Promise((resolve, reject) => {
-    const query = {_id : new mongo.ObjectId(userId)}
-    client.find(query,filter).toArray(function(err, result) {
-    if (err) reject(err);
-    resolve(result)
+    const query = { _id: new mongo.ObjectId(userId) };
+    client.find(query, filter).toArray(function (err, result) {
+      if (err) reject(err);
+      resolve(result);
     });
-   
   });
 };
 
 // Show user /w email
 const showUserFromEmail = async (email, client) => {
   return new Promise((resolve, reject) => {
-    const query = {email : email}
-    filter =  { projection: {  password: 0}}
+    const query = { email: email };
+    filter = { projection: { password: 0 } };
 
-    try{
-      const user = client.findOne(query )
+    try {
+      const user = client.findOne(query);
       resolve(user);
     } catch (err) {
-      reject(err)
+      reject(err);
     }
-   
   });
 };
 
 // update user's informations
-const updateUser = async (client,userVerify, updated) => {
-
+const updateUser = async (client, userVerify, updated) => {
   return new Promise((resolve, reject) => {
-    try{
-      
-      const userUpdated =  client.findOneAndUpdate({_id: new mongo.ObjectId(userVerify._id)}, updated )
-      resolve(userUpdated)
-      
+    try {
+      const userUpdated = client.findOneAndUpdate(
+        { _id: new mongo.ObjectId(userVerify._id) },
+        updated
+      );
+      resolve(userUpdated);
     } catch (err) {
-      reject(err)
+      reject(err);
     }
-    
   });
 };
-
-
-
-
 
 module.exports = {
   listAllUsers,
   showUser,
   createNewUser,
   showUserFromEmail,
-  updateUser
+  updateUser,
 };

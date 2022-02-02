@@ -1,25 +1,27 @@
-const mongo = require('mongodb');
+const mongo = require("mongodb");
 
-//List all the history 
-const listHistory = async (history,userToVerify) => {
+//List all the history
+const listHistory = async (history, userToVerify) => {
   return new Promise((resolve, reject) => {
-    try{
-      const res = history.find({userId : userToVerify._id}).sort({"timestamp":-1}).toArray();
+    try {
+      const res = history
+        .find({ userId: userToVerify._id })
+        .sort({ timestamp: -1 })
+        .toArray();
       resolve(res);
-
     } catch (err) {
-      reject(err)
+      reject(err);
     }
   });
 };
 
 // Add a new event in history
-const addToHistory = (body,client, user) => {
+const addToHistory = (body, client, user) => {
   const history = {
-    timestamp: new Date().toLocaleString('en-US', { timeZone: 'Europe/Paris' }),
+    timestamp: new Date().toLocaleString("en-US", { timeZone: "Europe/Paris" }),
     meal: body.meal,
-    glucides : body.glucides,
-    userId : new mongo.ObjectId(user._id)
+    glucides: body.glucides,
+    userId: new mongo.ObjectId(user._id),
   };
 
   return new Promise((resolve, reject) => {
@@ -33,15 +35,20 @@ const addToHistory = (body,client, user) => {
   });
 };
 
-const updateHistory = (client,timestamp, body,user) => {
-  const newH ={$set: {
-    meal: body.meal
-  }};
+//Update a meal in a user history
+const updateHistory = (client, timestamp, body, user) => {
+  const newH = {
+    $set: {
+      meal: body.meal,
+    },
+  };
 
-  const history =  { $and: [ { timestamp: timestamp }, { userId:  userToVerify._id } ] };
+  const history = {
+    $and: [{ timestamp: timestamp }, { userId: userToVerify._id }],
+  };
 
   return new Promise((resolve, reject) => {
-    client.updateOne(history,newH, (err) => {
+    client.updateOne(history, newH, (err) => {
       if (err) {
         return reject(err);
       } else {
@@ -52,41 +59,46 @@ const updateHistory = (client,timestamp, body,user) => {
 };
 
 // Show history by date
-const showHistoryByTimestamp = async (info, client,userToVerify) => {
-    return new Promise((resolve, reject) => {
-        var query =   { $and: [ { timestamp: info }, { userId:  userToVerify._id } ] }
-        if (/[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/.test(info))
-        {
-          query =  { $and: [ { timestamp :{'$regex' : info, '$options' : 'i'}},  { userId:  userToVerify._id } ] }
-        }
-        const filter =  { projection: { _id: 0}}
-        client.find(query,filter).sort({"timestamp":-1}).toArray(function(err, result) {
+const showHistoryByTimestamp = async (info, client, userToVerify) => {
+  return new Promise((resolve, reject) => {
+    var query = { $and: [{ timestamp: info }, { userId: userToVerify._id }] };
+    if (/[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/.test(info)) {
+      query = {
+        $and: [
+          { timestamp: { $regex: info, $options: "i" } },
+          { userId: userToVerify._id },
+        ],
+      };
+    }
+    const filter = { projection: { _id: 0 } };
+    client
+      .find(query, filter)
+      .sort({ timestamp: -1 })
+      .toArray(function (err, result) {
         if (err) reject(err);
-        resolve(result)
+        resolve(result);
       });
-     
-    });
-  };
+  });
+};
 
-  const deleteHistoryMeal = (client, decoded) => {
-  
-    return new Promise((resolve, reject) => {
-      try{
-
-      client.findOneAndDelete({userId : new mongo.ObjectId(decoded._id)},{ "sort": { "_id": -1 } })
-      }catch(err){
-        return reject(err);
-
-      }
-    });
-  };
-
+//Delete las meal consumed
+const deleteHistoryMeal = (client, decoded) => {
+  return new Promise((resolve, reject) => {
+    try {
+      client.findOneAndDelete(
+        { userId: new mongo.ObjectId(decoded._id) },
+        { sort: { _id: -1 } }
+      );
+    } catch (err) {
+      return reject(err);
+    }
+  });
+};
 
 module.exports = {
-    listHistory,
-    showHistoryByTimestamp,
-    addToHistory,
-    updateHistory,
-    deleteHistoryMeal
-    
+  listHistory,
+  showHistoryByTimestamp,
+  addToHistory,
+  updateHistory,
+  deleteHistoryMeal,
 };

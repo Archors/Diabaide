@@ -9,6 +9,8 @@ const db = require("../../DB.js")
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
+
+//List all users
 exports.index = async (req, res) => {
   try {
     const client = await (await db.connect()).db().collection('Users')
@@ -23,6 +25,8 @@ exports.index = async (req, res) => {
   }
 };
 
+
+//Create a new user
 exports.create = async (req, res) => {
   const { body } = req;
 
@@ -60,6 +64,8 @@ exports.create = async (req, res) => {
   }
 };
 
+
+//Show a specifi user by ID
 exports.show = async (req, res) => {
   var decoded = null
   try {
@@ -80,6 +86,7 @@ exports.show = async (req, res) => {
   }
 };
 
+// SHow a specific user by Email
 exports.showFromEmail = async (req, res) => {
   try {
     const client = await (await db.connect()).db().collection('Users')
@@ -92,7 +99,7 @@ exports.showFromEmail = async (req, res) => {
 };
 
 
-
+//Update a user's information
 exports.update = async (req, res) => {
   const { body } = req;
 
@@ -136,6 +143,7 @@ exports.update = async (req, res) => {
   }
 };
 
+//Update the user password / control if he enter his actual password
 exports.updatePwd = async (req, res) => {
   const { body } = req;
 

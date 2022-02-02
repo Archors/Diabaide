@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const token = 'pfe_2022';
 const bcrypt = require('bcrypt');
 
+//Get user login / verify if the password and email match a curent user
 const getLogin = async (body,users) => {
     const user = users.find(u => {
         return u.email === body.email;
