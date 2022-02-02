@@ -22,9 +22,9 @@ Follow [our installing guide](http://expressjs.com/en/starter/installing.html)
 for more information.
 
 ## Run the server
-go to the env.developpement
-and change the VUE_APP_ROOT_API varaible to your @ip
+go to the env.developpement and change the **VUE_APP_ROOT_API** varaible to your @ip
 then
+
 Open a Bash console 
 ```bash
 npm start
