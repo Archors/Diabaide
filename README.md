@@ -9,7 +9,7 @@ Dans le cadre de notre Projet de Fin d’Etudes (PFE), nous avons réalisé une 
 
  
 
-ABSTRACT  
+## ABSTRACT  
 
 Nowadays, five hundred and thirty-seven million persons in the world are affected by diabetes. In some countries, the inhabitants do not have the chance to benefit from a health system as we can have in France and thus end up paying their health costs. Within the framework of our final project, we realized a connected insulin-pump for people with diabetes and an application linked to that pump. To integrate our project into an open-source approach, we made a partnership with Handitech: a platform that allows the emergence of projects related to health in open innovation. We have created an application with several features. Key features include monitoring the patient’s blood sugar levels and a system to help calculate the insulin dose. This system helps to determine the amount of insulin that he needs to take, depending on his blood sugar levels and the amount of carbohydrate he ingests. This web application also serves as a switch for the insulin pump. Thanks to that, the insulin-pump activates to deliver the amount of insulin desired by the user. We are ensuring that the insulin pump can be used anywhere in the world and at a lower cost. This will be made possible by sharing the plans of the insulin pump to benefit from 3D printing and the different codes made will be available to those who would like to benefit from our device.
 Page Break
@@ -49,10 +49,26 @@ Cependant, nous n’avons pas tous la chance de vivre en France et de bénéfici
 
  
 
-Objectif 
+## Objectif 
 
 Nous souhaitons permettre à n’importe quel diabétique à travers le monde de pouvoir détenir une pompe à insuline. Nous ne sommes pas tous égaux face à la maladie et de nombreuses personnes n’ont pas de quoi se soigner efficacement. Aujourd’hui, certaines personnes diabétiques ne peuvent pas s’insérer activement dans nos sociétés car les contraintes que leur imposent cette maladie sont trop contraignantes pour elles. 
 
  
 
 Notre objectif avec Diab’Aide et la raison d’être de ce projet est de démocratiser l’accès aux pompes à insuline. Nous avons souhaité concevoir une pompe à insuline qui sera accessible financière aux personnes qui en ont besoin. Pour ce faire nous avons développé et réalisé une pompe à insuline imprimable en 3D et dotée de composants abordables. 
+
+
+## People
+
+For the App
+- Antoine Combe
+- Célia Bocher
+- Olivier Gomes
+
+For the Pump 
+- Aurélien Gadblet
+- Sébastien Regnier
+
+For the Medical Research
+- Sofiane Karoui
+- Célia Bocher
